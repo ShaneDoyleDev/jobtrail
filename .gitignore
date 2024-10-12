@@ -1,0 +1,43 @@
+# Python
+*.pyc
+__pycache__/
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Django specific
+db.sqlite3
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.coverage
+*.env
+*.mo
+*.compiled
+staticfiles/
+media/
+
+# Migrations
+*/migrations/__pycache__/
+*/migrations/*.pyc
+*/migrations/*.py
+
+# Local development settings
+local_settings.py
+settings_local.py
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# macOS specific files
+.DS_Store
+
+# Windows specific files
+Thumbs.db
