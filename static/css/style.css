@@ -21,3 +21,23 @@ html {
     background: var(--background-color);
     color: var(--text-color);
 }
+
+.alert-success {
+    background-color: lightgreen;
+    padding: 10px;
+}
+
+.alert-error {
+    background-color: lightcoral;
+    padding: 10px;
+}
+
+.alert-info {
+    background-color: lightblue;
+    padding: 10px;
+}
+
+.alert-warning {
+    background-color: lightyellow;
+    padding: 10px;
+}

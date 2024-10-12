@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
+from django.contrib.messages import constants as message_constants
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +44,14 @@ INSTALLED_APPS = [
 ]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+MESSAGE_TAGS = {
+    message_constants.DEBUG: 'alert alert-secondary',
+    message_constants.INFO: 'alert alert-info',
+    message_constants.SUCCESS: 'alert alert-success',
+    message_constants.WARNING: 'alert alert-warning',
+    message_constants.ERROR: 'alert alert-danger',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
