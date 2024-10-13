@@ -1,10 +1,11 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Profile
 from .forms import ProfileForm
 
-
+@login_required
 def profile_update(request):
     # Get or create the user's profile
     profile, created = Profile.objects.get_or_create(user=request.user)

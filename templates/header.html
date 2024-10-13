@@ -1,1 +1,11 @@
-<p>This is the header</p>
+<a href="{% url 'home' %}">Home</a>
+
+{% if user.is_authenticated %}
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    <a href="{% url 'profile_update' %}">Profile Details</a>
+    <a href="{% url 'account_logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'account_signup' %}">Signup</a>
+    <a href="{% url 'account_login' %}">Login</a>
+{% endif %}
+
