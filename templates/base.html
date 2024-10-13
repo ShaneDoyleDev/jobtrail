@@ -2,17 +2,19 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JobTrail - {% block title %}{% endblock %}</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      JobTrail -{% block title %}
+      {% endblock %}
+    </title>
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-</head>
-<body>
-
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+  </head>
+  <body>
     <header>
-        {% include 'header.html' %}
+      {% include 'header.html' %}
     </header>
 
     {% if messages %}
@@ -22,12 +24,13 @@
         {% endfor %}
       </ul>
     {% endif %}
-    
+
     {% block content %}
+
     {% endblock %}
 
     <footer>
-        {% include 'footer.html' %}
+      {% include 'footer.html' %}
     </footer>
-</body>
+  </body>
 </html>
