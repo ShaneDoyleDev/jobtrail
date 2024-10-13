@@ -14,9 +14,9 @@ def create_job_application(request):
         form = JobApplicationForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=False)
-            form.user = request.user
-            form.save()
+            job_application = form.save(commit=False)
+            job_application.user = request.user
+            job_application.save()
         else:
             print(form.errors)
     else:
