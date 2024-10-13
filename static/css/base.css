@@ -1,43 +1,44 @@
 :root {
-    --primary-color: #114968;
-    --secondary-color: #2ecc71;
-    --text-color: #292929;
-    --background-color: #e6e6dd;
-    --border-color: #dddddd;
-    --font-family: "Poppins", sans-serif;
+  --accent-color: #7563ff;
+  --body-color: #e6e6dd;
+  --white: #ffffff;
+  --text-color: #333333;
+  --text-color-faded: #8f8f8f;
+  --border-color: #d9d9d9;
+  --font-family: "Poppins", sans-serif;
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: var(--font-family);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
 }
 
 body,
 html {
-    padding: 0;
-    margin: 0;
-    background: var(--background-color);
-    color: var(--text-color);
+  padding: 0;
+  margin: 0;
+  background: var(--background-color);
+  color: var(--text-color);
 }
 
 .alert-success {
-    background-color: lightgreen;
-    padding: 10px;
+  background-color: lightgreen;
+  padding: 10px;
 }
 
 .alert-error {
-    background-color: lightcoral;
-    padding: 10px;
+  background-color: lightcoral;
+  padding: 10px;
 }
 
 .alert-info {
-    background-color: lightblue;
-    padding: 10px;
+  background-color: lightblue;
+  padding: 10px;
 }
 
 .alert-warning {
-    background-color: lightyellow;
-    padding: 10px;
+  background-color: lightyellow;
+  padding: 10px;
 }
