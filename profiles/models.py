@@ -1,11 +1,14 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
-class CustomUser(AbstractUser):
-    
+class Profile(models.Model):
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     job_title = models.CharField(max_length=100)
     start_date = models.DateField()
     reason_for_searching = models.TextField()

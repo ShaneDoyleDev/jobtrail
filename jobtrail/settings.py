@@ -131,7 +131,7 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 # Optional, but recommended
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/profile/update/'
 LOGOUT_REDIRECT_URL = '/'
 
 if DEBUG:
