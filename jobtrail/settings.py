@@ -22,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-))w3)egq_)lif1@0kdf4x_fnro#g_kh39muh8y=@v!9^8hi1^h'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# SECURITY WARNING: don"t run with debug turned on in production!
+DEBUG = os.getenv("DEBUG", False)
 
 ALLOWED_HOSTS = ['127.0.0.1',]
 
@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     # Allauth apps
     'allauth',
-    'allauth.account',    
+    'allauth.account',
+    # Cloudinary
+    'cloudinary',
+    'cloudinary_storage',
     # Custom apps
     'job_application',
     'profiles',
@@ -68,6 +71,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Add the account middleware for allauth:
     "allauth.account.middleware.AccountMiddleware",
+    # Middleware to help with staticfiles
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'jobtrail.urls'
@@ -153,12 +158,31 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+FILE_UPLOAD_MAX_MEMORY_SIZE = 2621440  # 2.5 MB
+
+CLOUDINARY_STORAGE = {
+
+    'CLOUD_NAME': os.getenv("CLOUDINARY_CLOUD_NAME", ""),
+    'API_KEY': os.getenv("CLOUDINARY_API_KEY", ""),
+    'API_SECRET': os.getenv("CLOUDINARY_SECRET_KEY", ""),
+    
+}
+
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+if not DEBUG:
+    
+    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

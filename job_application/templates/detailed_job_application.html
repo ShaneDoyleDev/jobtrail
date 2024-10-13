@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Detailed Application{% endblock title %}
+
+{% block content %}
+<!-- templates/view_job_application.html -->
+<h2>Application for {{ job_application.job_title }}</h2>
+
+<p>Company: {{ job_application.company_name }}</p>
+<p>Recruiter: {{ job_application.recruiter_name }}</p>
+
+<h3>Documents</h3>
+
+{% if job_application.cv %}
+    <p>CV: <a href="{% url 'download_doc' 'cv' job_application.id %}">Download CV</a></p>
+{% else %}
+    <p>CV: Not uploaded</p>
+{% endif %}
+
+{% if job_application.cover_letter %}
+    <p>Cover Letter: <a href="{% url 'download_doc' 'cover' job_application.id %}">Download CV</a></p>
+{% else %}
+    <p>Cover Letter: Not uploaded</p>
+{% endif %}
+
+{% endblock %}

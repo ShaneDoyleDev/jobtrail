@@ -21,6 +21,8 @@ class JobApplicationForm(ModelForm):
             'notes',
             'next_stage_date_time',
             'next_stage_prep',
+            'cv',
+            'cover_letter',
             ]
         
         widgets = {

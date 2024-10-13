@@ -11,6 +11,8 @@ class JobApplication(models.Model):
     job_link_description = models.URLField(max_length = 200)
     application_posted = models.DateField()
     date_applied = models.DateField(default=datetime.date.today)
+    cv = models.FileField(blank=True, null=True,)
+    cover_letter = models.FileField(blank=True, null=True,)
     date_last_followup = models.DateField()
     recruiter_name = models.CharField(max_length= 80)
     recruiter_email = models.EmailField(max_length = 250)
