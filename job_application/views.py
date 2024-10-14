@@ -18,6 +18,32 @@ class JobApplicationListView(ListView):
     def get_queryset(self):
         return JobApplication.objects.filter(user=self.request.user)
 
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+
+        # Calculate metrics
+        total_applications = JobApplication.objects.filter(user=self.request.user).count()
+        interviews_scheduled = JobApplication.objects.filter(user=self.request.user, status='interview_scheduled').count()
+
+        # Calculate response rate excluding not viewed yet
+        response = JobApplication.objects.filter(
+            user=self.request.user
+        ).exclude(status__in=['not_applied', 'applied']).count()
+        response_rate = (response / total_applications) * 100 if total_applications > 0 else 0
+
+        # Calculate offer rate
+        total_offers = JobApplication.objects.filter(user=self.request.user, status__in=[
+            'offer_extended', 'offer_accepted', 'offer_declined']).count()
+        offer_rate = (total_offers / total_applications) * 100 if total_applications > 0 else 0
+
+        # Add metrics to context
+        context['total_applications'] = total_applications
+        context['interviews_scheduled'] = interviews_scheduled
+        context['response_rate'] = response_rate
+        context['offer_rate'] = offer_rate
+
+        return context
+
 
 class JobApplicationDetailView(DetailView):
     model = JobApplication
