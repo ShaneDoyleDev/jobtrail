@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as message_constants
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -161,11 +164,9 @@ USE_TZ = True
 FILE_UPLOAD_MAX_MEMORY_SIZE = 2621440  # 2.5 MB
 
 CLOUDINARY_STORAGE = {
-
     'CLOUD_NAME': os.getenv("CLOUDINARY_CLOUD_NAME", ""),
     'API_KEY': os.getenv("CLOUDINARY_API_KEY", ""),
     'API_SECRET': os.getenv("CLOUDINARY_SECRET_KEY", ""),
-    
 }
 
 
@@ -177,7 +178,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 if not DEBUG:
-    
     STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
