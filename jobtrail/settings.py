@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     # Cloudinary
     'cloudinary',
     'cloudinary_storage',
+    # For ColorField in model
+    'colorfield',
     # Custom apps
     'job_application',
     'profiles',

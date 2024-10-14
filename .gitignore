@@ -24,7 +24,7 @@ media/
 # Migrations
 */migrations/__pycache__/
 */migrations/*.pyc
-*/migrations/*.py
+
 
 # Local development settings
 local_settings.py
