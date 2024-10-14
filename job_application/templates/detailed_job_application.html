@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Detailed Application
+{% endblock %}
+
+{% block content %}
+  <!-- templates/view_job_application.html -->
+  <h1>Job Application Details</h1>
+
+  <h2>Job Information</h2>
+  <p>
+    <strong>Job Title:</strong> {{ job_application.job_title }}
+  </p>
+  <p>
+    <strong>Job Description URL:</strong> <a href="{{ job_application.job_link_description }}" target="_blank">{{ job_application.job_link_description }}</a>
+  </p>
+  <p>
+    <strong>Application Posted Date:</strong> {{ job_application.application_posted }}
+  </p>
+  <p>
+    <strong>Date Applied:</strong> {{ job_application.date_applied }}
+  </p>
+
+  <h2>Recruiter and Manager Information</h2>
+  <p>
+    <strong>Recruiter Name:</strong> {{ job_application.recruiter_name }}
+  </p>
+  <p>
+    <strong>Recruiter Email:</strong> <a href="mailto:{{ job_application.recruiter_email }}">{{ job_application.recruiter_email }}</a>
+  </p>
+  <p>
+    <strong>Manager Name:</strong> {{ job_application.manager_name }}
+  </p>
+  <p>
+    <strong>Manager Email:</strong> <a href="mailto:{{ job_application.manager_email }}">{{ job_application.manager_email }}</a>
+  </p>
+
+  <h2>Company Information</h2>
+  <p>
+    <strong>Company Name:</strong> {{ job_application.company_name }}
+  </p>
+  <p>
+    <strong>Company Website:</strong> <a href="{{ job_application.company_website }}" target="_blank">{{ job_application.company_website }}</a>
+  </p>
+
+  <h2>Application Status and Notes</h2>
+  <p>
+    <strong>Status:</strong> {{ job_application.status }}
+  </p>
+  <p>
+    <strong>Notes:</strong> {{ job_application.notes }}
+  </p>
+
+  <h2>Follow-up and Next Steps</h2>
+  <p>
+    <strong>Last Follow-up Date:</strong> {{ job_application.date_last_followup }}
+  </p>
+  <p>
+    <strong>Next Stage Date and Time:</strong> {{ job_application.next_stage_date_time }}
+  </p>
+  <p>
+    <strong>Next Stage Preparation:</strong> {{ job_application.next_stage_prep }}
+  </p>
+
+  <h2>Documents</h2>
+  {% if job_application.cv %}
+    <p>
+      CV: <a href="{% url 'download_doc' 'cv' job_application.id %}">Download CV</a>
+    </p>
+  {% else %}
+    <p>CV: Not uploaded</p>
+  {% endif %}
+
+  {% if job_application.cover_letter %}
+    <p>
+      Cover Letter: <a href="{% url 'download_doc' 'cover' job_application.id %}">Download CV</a>
+    </p>
+  {% else %}
+    <p>Cover Letter: Not uploaded</p>
+  {% endif %}
+
+  <hr />
+  <p>
+    <a href="{% url 'dashboard' %}">Back to Job Applications</a>
+  </p>
+{% endblock %}
