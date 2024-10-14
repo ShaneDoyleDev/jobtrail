@@ -24,6 +24,10 @@ html {
   color: var(--text-color);
 }
 
+ul {
+  list-style: none;
+}
+
 .alert-success {
   background-color: lightgreen;
   padding: 10px;
