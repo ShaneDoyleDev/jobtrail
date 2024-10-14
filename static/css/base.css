@@ -90,14 +90,51 @@ html {
   font-weight: bold;
   margin-bottom: 5px;
 }
+#file-upload-button {
+  font-size: 1rem;
+  padding: 10px;
+  height: 2.2rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
 
 .account-form-group input[type="text"],
 .account-form-group input[type="password"],
 .account-form-group input[type="email"],
+.account-form-group input[type="number"],
+.account-form-group input[type="date"],
+.account-form-group input[type="file"],
+.account-form-group input[type="datetime-local"],
+.account-form-group input[type="url"],
 .account-form-group select {
   font-size: 1rem;
   padding: 10px;
   height: 2.2rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.account-form-group button{
+  font-size: 1rem;
+  padding: 10px;
+  height: 2.2rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+.account-form-group select {
+  padding: 0;
+}
+
+.account-form-group textarea {
+  font-size: 1rem;
+  padding: 10px;
+  height: 13.2rem;
   border-radius: 5px;
   border: 1px solid #ccc;
   width: 100%;
@@ -125,7 +162,17 @@ html {
   color: white;
   cursor: pointer;
 }
-
+.btn-submit {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  margin: 15px 0 0 0;
+}
 .btn-login:hover {
   background-color: #0056b3;
 }
@@ -148,4 +195,21 @@ html {
   border-radius: var(--border-radius);
   border: none;
   cursor: pointer;
+}
+
+input[type="file"] {
+  display: none;
+}
+.btn-cv {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  margin: 15px 0 ;
 }

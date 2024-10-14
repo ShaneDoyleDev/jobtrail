@@ -29,7 +29,7 @@ class JobApplicationCreateView(CreateView):
     model = JobApplication
     template_name = 'form_job_application.html'
     form_class = JobApplicationForm
-    success_url = reverse_lazy('jobapplication_list')
+    success_url = reverse_lazy('dashboard')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -40,7 +40,7 @@ class JobApplicationUpdateView(UpdateView):
     model = JobApplication
     template_name = 'form_job_application.html'
     form_class = JobApplicationForm
-    success_url = reverse_lazy('jobapplication_list')
+    success_url = reverse_lazy('dashboard')
 
     def get_queryset(self):
         # Only allow the user to update their own job applications
