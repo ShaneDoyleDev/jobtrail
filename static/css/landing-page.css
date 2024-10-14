@@ -1,7 +1,7 @@
 header.landing-page {
-  height: 538px;
+  height: 700px;
   width: 100%;
-  background-image: url('https://gratisography.com/wp-content/uploads/2018/05/gratisography-346H-free-stock-photo-1170x780.jpg');
+  background-image: url("../images/header-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -27,8 +27,13 @@ header.landing-page h1{
 header.landing-page img {
   background: transparent;
 }
+
+.about-flex-box {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 #about .image-block {
-  height: 312px;
   width: 100%;
   background-size: cover;
 }
@@ -41,7 +46,6 @@ header.landing-page img {
   flex-direction: column;
 }
 #about .text-block h1 {
-  font-family: 'Fraunces', serif;
   width: 327px;
   font-size: 32px;
   color: #24303E;
@@ -49,7 +53,6 @@ header.landing-page img {
   text-align: center;
 }
 #about .text-block p {
-  font-family: 'Fraunces', serif;
   letter-spacing: -0.13px;
   line-height: 30px;
   width: 327px;
@@ -60,7 +63,6 @@ header.landing-page img {
   margin: 20px auto;
 }
 #about .text-block a {
-  font-family: 'Fraunces', serif;
   width: 327px;
   font-size: 15px;
   letter-spacing: 1px;
