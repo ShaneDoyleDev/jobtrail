@@ -1,42 +1,47 @@
-{% extends "account/base_entrance.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 {% load allauth account %}
-{% block head_title %}
+{% block title %}
     {% trans "Sign In" %}
-{% endblock head_title %}
+{% endblock title %}
 
 {% block content %}
-    <div class="login-container">
-        <h1 class="login-heading">{% trans "Sign In" %}</h1>
+<div class="account-container">
+    <h1 class="account-heading">{% trans "Sign In" %}</h1>
+
+    <p class="account-text">
+        {% blocktranslate %}If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.{% endblocktranslate %}
+    </p>
+
+    <form method="post" action="{% url 'account_login' %}" class="account-form">
+        {% csrf_token %}
         
-            <p class="login-text">
-                {% blocktranslate %}If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.{% endblocktranslate %}
-            </p>
-            
-            <form method="post" action="{% url 'account_login' %}" class="login-form">
-                {% csrf_token %}
-                
-                <!-- Form Fields -->
-                {% for field in form %}
-                    <div class="form-group">
-                        {{ field.label_tag }}
-                        {{ field }}
-                        {% if field.help_text %}
-                            <small class="form-text text-muted">{{ field.help_text }}</small>
-                        {% endif %}
-                        {% for error in field.errors %}
-                            <div class="error">{{ error }}</div>
-                        {% endfor %}
-                    </div>
-                {% endfor %}
-                
-                {{ redirect_field }}
+        <!-- Flex container for form fields -->
+        <div class="account-form-fields">
+            <!-- Form Fields -->
+            {% for field in form %}
+                <div class="account-form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small class="account-form-text">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
 
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary btn-login">
-                    {% trans "Sign In" %}
-                </button>
-            </form>
+        {{ redirect_field }}
 
-    </div>
+        <!-- Flex container for button -->
+        <div class="account-form-actions">
+            <button type="submit" class="btn-login">
+                {% trans "Sign In" %}
+            </button>
+        </div>
+    </form>
+</div>
+
 {% endblock content %}

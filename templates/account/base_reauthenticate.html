@@ -1,29 +1,33 @@
-{% extends "account/base_entrance.html" %}
+{% extends "base.html" %}
 {% load allauth %}
 {% load i18n %}
-{% block head_title %}
+{% block title %}
     {% trans "Confirm Access" %}
-{% endblock head_title %}
+{% endblock title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Confirm Access" %}
-    {% endelement %}
-    {% element p %}
+<div class="account-container">
+    <h1 class="account-heading">{% trans "Confirm Access" %}</h1>
+
+    <p class="account-text">
         {% blocktranslate %}Please reauthenticate to safeguard your account.{% endblocktranslate %}
-    {% endelement %}
+    </p>
+
+    <!-- Reauthentication form content placeholder -->
     {% block reauthenticate_content %}{% endblock %}
+
     {% if reauthentication_alternatives %}
-        {% element hr %}
-        {% endelement %}
-        {% element h2 %}
-            {% translate "Alternative options" %}
-        {% endelement %}
-        {% element button_group %}
+        <hr class="account-divider">
+
+        <h2 class="account-heading-secondary">{% trans "Alternative options" %}</h2>
+
+        <div class="account-form-actions">
             {% for alt in reauthentication_alternatives %}
-                {% element button href=alt.url tags="primary,outline" %}
+                <a href="{{ alt.url }}" class="btn-login">
                     {{ alt.description }}
-                {% endelement %}
+                </a>
             {% endfor %}
-        {% endelement %}
+        </div>
     {% endif %}
+</div>
 {% endblock content %}

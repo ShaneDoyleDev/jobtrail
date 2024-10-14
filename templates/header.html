@@ -2,6 +2,7 @@
 
 {% if user.is_authenticated %}
     <a href="{% url 'dashboard' %}">Dashboard</a>
+    <a href="{% url 'account_set_password' %}">Password Reset</a>
     <a href="{% url 'profile_update' %}">Profile Details</a>
     <a href="{% url 'jobapplication_create' %}">Create Job Application</a>
     <a href="{% url 'account_logout' %}">Logout</a>
