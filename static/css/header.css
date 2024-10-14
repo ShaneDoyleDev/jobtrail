@@ -2,8 +2,8 @@ nav {
     height: 80px;
     width: 100%;
     background-color: #333;
+    display: flex;
 }
-
 
 nav ul {
     display: flex;
@@ -14,6 +14,15 @@ nav ul {
     gap: 50px;
     width: 90%;
     margin: auto;
+}
+
+nav ul.nav-left {
+    margin-left: 25px;
+}
+
+nav ul.nav-right {
+    justify-content:  flex-end;
+    margin-right: 25px;
 }
 
 nav ul li {
