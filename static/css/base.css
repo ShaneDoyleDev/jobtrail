@@ -129,6 +129,17 @@ html {
 .btn-login:hover {
   background-color: #0056b3;
 }
+
+.remember-me {
+  display: flex;
+  flex-direction: row;
+}
+
+.remember-me input[type="checkbox"] {
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
 .btn {
   background: var(--white);
   color: var(--text-color);
