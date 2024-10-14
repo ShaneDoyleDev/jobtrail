@@ -4,6 +4,7 @@
   padding-inline: 80px;
   height: 250px;
   background: linear-gradient(to top, #8676ff, #7563ff);
+  overflow: hidden;
 }
 
 .banner-content {
