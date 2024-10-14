@@ -4,5 +4,38 @@
 {% block title %}Application Dashboard{% endblock title %}
 
 {% block content %}
-<p>Dashboard</p>
+  <h2>Job Applications</h2>
+  <a href="{% url 'jobapplication_create' %}">Create New Application</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Job Title</th>
+        <th>Company Name</th>
+        <th>Date Last Follow-Up</th>
+        <th>Status</th>
+        <th>Details</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for job_application in job_applications %}
+      <tr>
+        <td><a href="{{ job_application.job_link_description }}" target="_blank">{{ job_application.job_title }}</a></td>
+        <td>{{ job_application.company_name }}</td>
+        <td>{{ job_application.date_last_followup }}</td>
+        <td>{{ job_application.status }}</td>
+        <td>
+          <a href="{% url 'jobapplication_detail' job_application.pk %}">View Details</a>
+        </td>
+        <td>
+          <a href="{% url 'jobapplication_update' job_application.pk %}">Edit</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6">No job applications found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}
