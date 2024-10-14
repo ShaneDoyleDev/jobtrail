@@ -9,6 +9,6 @@ urlpatterns = [
     path('profile/', include('profiles.urls')),
     path('accounts/', include('allauth.urls')),
     path('', include('home.urls')),
-] 
+]
 urlpatterns += static(settings.STATIC_URL, documents_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, documents_root=settings.MEDIA_ROOT)
