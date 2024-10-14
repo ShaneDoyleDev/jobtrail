@@ -15,6 +15,9 @@ from pathlib import Path
 from django.contrib.messages import constants as message_constants
 from dotenv import load_dotenv
 
+load_dotenv()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,7 +33,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", False)
 
-ALLOWED_HOSTS = ['127.0.0.1', '8000-shanedoyledev-jobtrail-c8eaclld72l.ws.codeinstitute-ide.net']
+ALLOWED_HOSTS = ['127.0.0.1', '8000-shanedoyledev-jobtrail-c8eaclld72l.ws.codeinstitute-ide.net' 'job-trail-1781474a8917.herokuapp.com']
 
 # Application definition
 
@@ -164,11 +167,9 @@ USE_TZ = True
 FILE_UPLOAD_MAX_MEMORY_SIZE = 2621440  # 2.5 MB
 
 CLOUDINARY_STORAGE = {
-
     'CLOUD_NAME': os.getenv("CLOUDINARY_CLOUD_NAME", ""),
     'API_KEY': os.getenv("CLOUDINARY_API_KEY", ""),
     'API_SECRET': os.getenv("CLOUDINARY_SECRET_KEY", ""),
-    
 }
 
 
@@ -180,7 +181,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 if not DEBUG:
-    
     STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
