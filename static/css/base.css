@@ -43,3 +43,13 @@ html {
   background-color: lightyellow;
   padding: 10px;
 }
+
+.btn {
+  background: var(--white);
+  color: var(--text-color);
+  padding-inline: 16px;
+  padding-block: 12px;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+}
