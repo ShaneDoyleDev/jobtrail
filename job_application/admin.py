@@ -1,9 +1,14 @@
 from django.contrib import admin
-from job_application.models import JobApplication
+from .models import Tag, JobApplication
 
-# Register your models here.
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
 class JobApplicationAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('job_title', 'company_name', 'user', 'status')
+    filter_horizontal = ('tags',)  # Allows easier management of many-to-many relationships
+
 
 # Register the model with the custom admin configuration
 admin.site.register(JobApplication, JobApplicationAdmin)
+admin.site.register(Tag, TagAdmin)

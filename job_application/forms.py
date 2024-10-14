@@ -1,8 +1,14 @@
-from django.forms import ModelForm
-from .models import JobApplication
-from django.forms import DateInput, DateTimeInput, Textarea, URLInput
+from django.forms import CheckboxSelectMultiple, ModelForm, ModelMultipleChoiceField, SelectMultiple, DateInput, DateTimeInput, Textarea, URLInput, ValidationError
+from .models import JobApplication, Tag
+from django import forms
 
 class JobApplicationForm(ModelForm):
+    
+    tags = forms.ModelMultipleChoiceField(
+            widget=forms.CheckboxSelectMultiple, 
+            queryset=Tag.objects.all(), 
+            required=False)
+    
     class Meta:
         model = JobApplication
         fields = [
@@ -23,6 +29,8 @@ class JobApplicationForm(ModelForm):
             'next_stage_prep',
             'cv',
             'cover_letter',
+            'tags',
+            'salary',
             ]
         
         widgets = {
@@ -34,3 +42,11 @@ class JobApplicationForm(ModelForm):
             'notes': Textarea(attrs={'rows': 3, 'placeholder': 'Additional notes about the application'}),
             'next_stage_prep': Textarea(attrs={'rows': 3, 'placeholder': 'Next stage preparation details'}),
         }
+        
+        def clean_tags(self):
+            tags = self.cleaned_data['tags']
+            allowed_tags = Tag.objects.values_list('name', flat=True)  # Fetch allowed tag names
+            for tag in tags:
+                if tag.name not in allowed_tags:
+                    raise ValidationError(f"The tag '{tag}' is not allowed.")
+            return tags

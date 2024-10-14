@@ -5,6 +5,13 @@ import datetime
 User = get_user_model()
 # Create your models here.
 
+class Tag(models.Model):
+    """Model to represent a Tag."""
+    name = models.CharField(max_length=30, unique=True)
+
+    def __str__(self):
+        return self.name
+
 class JobApplication(models.Model):
     STATUS_CHOICES = [
         ('not_applied', 'Not Applied Yet'),
@@ -28,8 +35,8 @@ class JobApplication(models.Model):
     job_link_description = models.URLField(max_length = 200)
     application_posted = models.DateField()
     date_applied = models.DateField(default=datetime.date.today)
-    cv = models.FileField(blank=True, null=True,)
-    cover_letter = models.FileField(blank=True, null=True,)
+    cv = models.FileField(blank=True, null=True)
+    cover_letter = models.FileField(blank=True, null=True)
     date_last_followup = models.DateField()
     recruiter_name = models.CharField(max_length= 80)
     recruiter_email = models.EmailField(max_length = 250)
@@ -45,3 +52,8 @@ class JobApplication(models.Model):
     notes = models.TextField()
     next_stage_date_time = models.DateTimeField()
     next_stage_prep = models.TextField()
+    tags = models.ManyToManyField(Tag, blank=True)
+    salary = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.job_title} at {self.company_name} ({self.user})"
