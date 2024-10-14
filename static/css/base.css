@@ -22,6 +22,7 @@ html {
   margin: 0;
   background: var(--background-color);
   color: var(--text-color);
+  scroll-behavior: smooth;
 }
 
 .alert-success {

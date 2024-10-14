@@ -4,6 +4,87 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-<p>Homepage</p>
+<header class="landing-page">
+    <h1 id="header-title" class="title">Streamline your job hunting process</h1>
+    <a href="#about">
+        <img id="header-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"alt="">
+    </a>
+</header>
+<section id="about">
+  <div class="image-block" style="background-image: url('https://gratisography.com/wp-content/uploads/2018/05/gratisography-346H-free-stock-photo-1170x780.jpg');"></div>
+  <div class="text-block">
+    <h1>Transform your brand</h1>
+
+    <p>We are a full-service creative agency specializing in helping brands grow fast.
+    Engage your clients through compelling visuals that do most of the marketing for you.</p>
+
+    <a href="#">Learn more</a>
+  </div>
+  <div class="image-block"style="background-image: url('https://gratisography.com/wp-content/uploads/2018/05/gratisography-346H-free-stock-photo-1170x780.jpg');"></div>
+  <div class="text-block">
+    <h1>Stand out to the right audience</h1>
+
+    <p>Using a collaborative formula of designers, researchers, photographers, videographers, and copywriters, we’ll build and extend your brand in digital places.</p>
+
+    <a href="#">Learn more</a>
+  </div>
+</section>
+  <section id="services">
+    <div class="service-block">
+      <div class="text-box">
+        <h1 style="color: #24554A;">Graphic design</h1>
+        <p style="color: #24554A;">Great design makes you memorable. We deliver artwork that underscores your brand message and captures potential clients’ attention.</p>
+      </div>
+    </div>
+    <div class="service-block">
+      <div class="text-box">
+        <h1 style="color: #052C3B;">Photography</h1>
+        <p style="color: #19536C;">Increase your credibility by getting the most stunning, high-quality photos that improve your business image.</p>
+      </div>
+
+    </div>
+  </section>
+  <section id="projects">
+    <h1 class="title">Client testimonials</h1>
+    <div class="client-testimonials">
+      <div class="container">
+        <img src="assets/images/image-emily.jpg" alt="">
+        <p class="review">We put our trust in Sunnyside and they delivered, making sure our needs were met and deadlines were always hit.</p>
+        <div class="person-details">
+          <h2 class="name">Emily R.</h2>
+          <p class="job-title">Marketing Director</h2>
+        </div>
+      </div>
+      <div class="container">
+        <img src="assets/images/image-thomas.jpg" alt="">
+        <p class="review">Sunnyside’s enthusiasm coupled with their keen interest in our brand’s success made it a satisfying and enjoyable experience.</p>
+        <div class="person-details">
+          <h2 class="name">Thomas S.</h2>
+          <p class="job-title">Chief Operating Officer</p>
+        </div>
+      </div>
+      <div class="container">
+        <img src="assets/images/image-jennie.jpg" alt="">
+        <p class="review">Incredible end result! Our sales increased over 400% when we worked with Sunnyside. Highly recommended!</p>
+        <div class="person-details">
+          <h2 class="name">Jennie F.</h2>
+          <p class="job-title">Business Owner</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="image-box-mobile">
+    <img class="image" src="assets/images/mobile/image-gallery-milkbottles.jpg" alt="">
+    <img class="image" src="assets/images/mobile/image-gallery-orange.jpg" alt="">
+    <img class="image" src="assets/images/mobile/image-gallery-cone.jpg" alt="">
+    <img class="image" src="assets/images/mobile/image-gallery-sugar-cubes.jpg" alt="">
+  </section>
+  <section class="image-box-desktop">
+    <img class="image" src="assets/images/desktop/image-gallery-milkbottles.jpg" alt="">
+    <img class="image" src="assets/images/desktop/image-gallery-orange.jpg" alt="">
+    <img class="image" src="assets/images/desktop/image-gallery-cone.jpg" alt="">
+    <img class="image" src="assets/images/desktop/image-gallery-sugarcubes.jpg" alt="">
+  </section>
+
 
 {% endblock %}
