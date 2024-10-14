@@ -35,6 +35,7 @@ settings_local.py
 .idea/
 *.swp
 *~
+.gitpod.yml
 
 # macOS specific files
 .DS_Store
