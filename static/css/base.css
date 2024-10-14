@@ -95,13 +95,13 @@ html {
 .account-form-group input[type="password"],
 .account-form-group input[type="email"],
 .account-form-group select {
-    font-size: 1rem;
-    padding: 10px;
-    height: 2.2rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 100%;
-    box-sizing: border-box;
+  font-size: 1rem;
+  padding: 10px;
+  height: 2.2rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .account-form-group .error {
@@ -119,7 +119,7 @@ html {
   width: 100%;
   padding: 10px;
   font-size: 1rem;
-  background-color: #007bff;
+  background-color: var(--accent-color);
   border: none;
   border-radius: 5px;
   color: white;
