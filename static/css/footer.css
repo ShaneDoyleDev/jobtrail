@@ -1,0 +1,51 @@
+.footer-end {
+    height: 60px;
+    width: 100%;
+    background-color: #333;
+}
+
+.footer-end ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 90%;
+    margin: auto;
+}
+
+.footer-end ul li {
+    list-style-type: none;
+}
+
+.footer-end ul li a, p {
+    position: relative;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    color: #d9d9d9;
+    font-size: 12px;
+    line-height: 1.5rem;
+    text-transform: uppercase;
+}
+
+
+.footer-end ul li a::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: #7563ff;
+    transition: all .3s;
+}
+
+.footer-end ul li a:hover::before {
+    width: 100%;
+    background-color: #7563ff;
+}
+
+.footer-end ul li a:hover {
+    color: #fff;
+}

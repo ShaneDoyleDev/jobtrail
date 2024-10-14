@@ -25,13 +25,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
+# Load environment variables from .env file
+load_dotenv()
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", False)
 
-ALLOWED_HOSTS = ['127.0.0.1', 'job-trail-1781474a8917.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '8000-shanedoyledev-jobtrail-c8eaclld72l.ws.codeinstitute-ide.net', 'job-trail-1781474a8917.herokuapp.com']
 
 # Application definition
 

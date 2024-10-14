@@ -1,12 +1,35 @@
-<a href="{% url 'home' %}">Home</a>
+<nav>
+    <ul class="nav-left">
+        <li>
+            <a href="#" class="home-link">Job<span class="home-link-tag">TRAIL</span></a>
+        </li>
+    </ul>
+    <ul class="nav-right">    
+        <li>
+            <a href="{% url 'home' %}">Dashboard</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+            <a href="{% url 'dashboard' %}">Dashboard</a> 
+        </li>
+        <li>
+            <a href="{% url 'profile_update' %}">Profile Details</a>
+        </li>
+        <li>
+            <a href="{% url 'jobapplication_create' %}">Create Job Application</a>
+        </li>
+        <li>
+            <a href="{% url 'account_logout' %}">Logout</a>
+        </li>
 
-{% if user.is_authenticated %}
-    <a href="{% url 'dashboard' %}">Dashboard</a>
-    <a href="{% url 'profile_update' %}">Profile Details</a>
-    <a href="{% url 'jobapplication_create' %}">Create Job Application</a>
-    <a href="{% url 'account_logout' %}">Logout</a>
-{% else %}
-    <a href="{% url 'account_signup' %}">Signup</a>
-    <a href="{% url 'account_login' %}">Login</a>
+        {% else %}
+        <li>
+            <a href="{% url 'account_signup' %}">Signup</a>
+        </li>
+        <li>
+            <a href="{% url 'account_login' %}">Login</a>
+        </li>
+    </ul>
+</nav>
 {% endif %}
 
