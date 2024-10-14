@@ -44,7 +44,6 @@ html {
   padding: 10px;
 }
 
-
 /* Account forms styling */
 
 .account-container {
@@ -129,4 +128,13 @@ html {
 
 .btn-login:hover {
   background-color: #0056b3;
+}
+.btn {
+  background: var(--white);
+  color: var(--text-color);
+  padding-inline: 16px;
+  padding-block: 12px;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
 }

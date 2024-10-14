@@ -1,0 +1,51 @@
+.banner-section {
+  position: relative;
+  padding-top: 80px;
+  padding-inline: 80px;
+  height: 250px;
+  background: linear-gradient(to top, #8676ff, #7563ff);
+}
+
+.banner-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  color: var(--white);
+  font-weight: normal;
+}
+
+.city-image {
+  top: 0;
+  position: absolute;
+}
+
+.metrics-section {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 80px;
+  gap: 20px;
+}
+
+.metrics-panel {
+  width: 250px;
+  background: var(--white);
+  padding-block: 20px;
+  padding-inline: 25px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  transform: translateY(-50px);
+}
+
+.metric-title {
+  font-size: 14px;
+}
+
+.metric-data {
+  font-size: 30px;
+}
+
+.chart-section {
+}

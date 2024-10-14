@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as message_constants
+import dj_database_url
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +31,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", False)
 
-ALLOWED_HOSTS = ['127.0.0.1',]
+ALLOWED_HOSTS = ['127.0.0.1', 'job-trail-1781474a8917.herokuapp.com']
 
 # Application definition
 
@@ -100,12 +104,17 @@ WSGI_APPLICATION = 'jobtrail.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if not DEBUG:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -161,11 +170,9 @@ USE_TZ = True
 FILE_UPLOAD_MAX_MEMORY_SIZE = 2621440  # 2.5 MB
 
 CLOUDINARY_STORAGE = {
-
     'CLOUD_NAME': os.getenv("CLOUDINARY_CLOUD_NAME", ""),
     'API_KEY': os.getenv("CLOUDINARY_API_KEY", ""),
     'API_SECRET': os.getenv("CLOUDINARY_SECRET_KEY", ""),
-    
 }
 
 
@@ -177,7 +184,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 if not DEBUG:
-    
     STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
