@@ -34,7 +34,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", False)
 
-ALLOWED_HOSTS = ['127.0.0.1', '8000-shanedoyledev-jobtrail-c8eaclld72l.ws.codeinstitute-ide.net', 'job-trail-1781474a8917.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '8000-shanedoyledev-jobtrail-c8eaclld72l.ws.codeinstitute-ide.net',
+                 'job-trail-1781474a8917.herokuapp.com']
 
 # Application definition
 
@@ -183,17 +184,14 @@ CLOUDINARY_STORAGE = {
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 if not DEBUG:
-    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
