@@ -71,7 +71,7 @@ class JobApplicationListView(ListView):
 
         # Query for the number of applications for the last 14 days
         applications_last_14_days = (
-            JobApplication.objects.filter(date_applied__gte=today - timedelta(days=15))
+            JobApplication.objects.filter(date_applied__gte=today - timedelta(days=14))
             .order_by('-date_applied')
             .values('date_applied')
             .annotate(count=Count('id'))
