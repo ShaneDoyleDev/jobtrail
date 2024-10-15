@@ -71,3 +71,10 @@ nav ul li a .home-link-tag {
 nav ul li a.home-link::before {
     content: none;
 }
+
+
+@media screen and (max-width: 1040px) {
+    nav ul.nav-right {
+        display: none;
+    }
+  }

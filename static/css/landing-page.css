@@ -24,6 +24,13 @@ header.landing-page h1{
   letter-spacing: .3rem;
 }
 
+@media screen and (max-width: 1040px) {
+  header.landing-page h1 {
+    width: 100%;
+  }
+}
+
+
 header.landing-page img {
   background: transparent;
 }
@@ -35,6 +42,19 @@ header.landing-page img {
 
 #about {
   background-color: #F8F8F8;
+}
+@media screen and (max-width: 1040px) {
+  #about .about-flex-box {
+    flex-direction: column;
+  }
+  #about .image-block {
+    height: 437px;
+  }
+  #about .about-block-reversed {
+    flex-direction: column-reverse;
+    background-position: center;
+  }
+  
 }
 
 #about .image-block {
@@ -52,6 +72,7 @@ header.landing-page img {
   transition: all .3s;
   background-color: #fff;
 }
+
 #about .text-block:hover {
   width: 133%;
 }
@@ -69,6 +90,7 @@ header.landing-page img {
   font-weight: 200;
   margin: 20px auto;
 }
+
 #about .text-block a {
   font-size: 15px;
   letter-spacing: 1px;
@@ -88,6 +110,15 @@ header.landing-page img {
   display: flex;
   justify-content: space-around;
   background-color: #fff;
+}
+
+@media screen and (max-width: 1040px) {
+  #services {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .price-box {
