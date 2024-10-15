@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block extra_cdn %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}
 
 {% block extra_css %}
@@ -49,25 +49,22 @@
     <div class="applications-section">
       <h2 class="applications-section-title">Job Applications</h2>
       <div class="search-bar-container">
-          <form method="GET" action="">
-              
-              
-              <!-- Date Range Filter Application Posted -->
-              <div class="date-filter">
-                  <label class="date-filter-title">Application Posted:</label>
-                  <div>
-                      <!-- Start Date Input with Label -->
-                      <label for="ap-start-date" class="date-label">Start:</label>
-                      <input type="date" id="ap-start-date" name="application_posted_start_date" class="date-input" value="{{ request.GET.application_posted_start_date }}">
-                  </div>
-                  
-                  <div>
-                      <!-- End Date Input with Label -->
-                      <label for="ap-end-date" class="date-label">End:</label>
-                      <input type="date" id="ap-end-date" name="application_posted_end_date" class="date-input" value="{{ request.GET.application_posted_end_date }}">
-                  </div>
-                  
-              </div>
+        <form method="GET" action="">
+          <!-- Date Range Filter Application Posted -->
+          <div class="date-filter">
+            <label class="date-filter-title">Application Posted:</label>
+            <div>
+              <!-- Start Date Input with Label -->
+              <label for="ap-start-date" class="date-label">Start:</label>
+              <input type="date" id="ap-start-date" name="application_posted_start_date" class="date-input" value="{{ request.GET.application_posted_start_date }}" />
+            </div>
+
+            <div>
+              <!-- End Date Input with Label -->
+              <label for="ap-end-date" class="date-label">End:</label>
+              <input type="date" id="ap-end-date" name="application_posted_end_date" class="date-input" value="{{ request.GET.application_posted_end_date }}" />
+            </div>
+          </div>
 
               <!-- Date Range Filter Date Applied -->
               <div class="date-filter">
@@ -119,27 +116,25 @@
       {% endif %}
       <div class="pagination">
         <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-    
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
-    
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
+          {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
         </span>
-    </div>
+      </div>
     </div>
   </div>
 {% endblock %}
 
 {% block extra_js %}
-<script>
+  <script>
   // Prepare data for the last 14 days
   const applicationsLast14Days = {{ applications_last_14_days|safe }};
   const labels14Days = Object.keys(applicationsLast14Days);
