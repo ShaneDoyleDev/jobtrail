@@ -15,4 +15,4 @@ class Profile(models.Model):
     follow_up_no_of_days = models.IntegerField(default=7)
 
     def __str__(self):
-        return self.username
+        return self.user.username

@@ -95,3 +95,120 @@
   font-size: 14px;
   font-weight: normal;
 }
+
+.pagination {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.pagination .step-links a {
+  color: #007bff;
+  text-decoration: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination .step-links a:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination .current-page {
+  padding: 10px 15px;
+  margin: 0 5px;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.pagination .first-page, 
+.pagination .last-page {
+  font-weight: bold;
+}
+
+.pagination .step-links {
+  display: inline-block;
+}
+
+.pagination .step-links a:disabled {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: #e9ecef;
+}
+
+.dashboard-bold {
+  font-weight: bold;
+}
+
+/* Dashboard Search Bar Styling */
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 250px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  margin-right: 20px;
+}
+
+.search-input:focus {
+  border-color: #007BFF;
+}
+
+/* Date Filter Section */
+.date-filter {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.date-filter-title {
+  font-weight: bold;
+  margin-right: 15px;
+  font-size: 16px;
+}
+
+.date-label {
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.date-input {
+  width: 150px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  margin-right: 15px;
+}
+
+.date-input:focus {
+  border-color: #007BFF;
+}
+
+/* Search Button Styling */
+.search-btn {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #0056b3;
+}
