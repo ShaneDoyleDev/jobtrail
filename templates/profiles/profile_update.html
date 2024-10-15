@@ -4,11 +4,28 @@
 {% block title %}Update Profile Details{% endblock title %}
 
 {% block content %}
-<p>Update Profile Details</p>
+<div class="account-container">
+<h1 class="account-heading">Update Profile Details</h1>
 
 <form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Submit</button>
-  </form>
+  {% csrf_token %}
+  <div class="account-form-group">
+      <label for="id_job_title">Job Title:</label>
+      {{ form.job_title }}
+  </div>
+  <div class="account-form-group">
+      <label for="id_start_date">Start Date:</label>
+      {{ form.start_date }}
+  </div>
+  <div class="account-form-group">
+      <label  for="id_reason_for_searching">Reason for Searching:</label>
+      {{ form.reason_for_searching }}
+  </div>
+  <div class="account-form-group">
+      <label  for="id_follow_up_no_of_days">Follow Up (No. of Days):</label>
+      {{ form.follow_up_no_of_days }}
+  </div>
+  <button class="btn-submit"type="submit">Submit</button>
+</form>
+</div>
 {% endblock %}
