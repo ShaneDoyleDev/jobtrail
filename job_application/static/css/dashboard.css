@@ -235,18 +235,11 @@
   color: #7563FF;
 }
 
-/* @media screen and (min-width: 768px) {
-  .date-filter,
-  .search-input,
-  .search-btn {
-    width: 400px;
-  }
+.search-clear {
+  display: flex;
+  align-items: end;
 }
 
-@media screen and (min-width: 1024px) {
-  .date-filter,
-  .search-input,
-  .search-btn {
-    width: 100%;
-  }
-} */
+.clear {
+  padding-left: 5px;
+}

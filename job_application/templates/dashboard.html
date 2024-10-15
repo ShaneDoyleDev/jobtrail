@@ -87,31 +87,36 @@
               <div class="date-filter">
               <!-- Search Input -->
               <input type="text" name="q" class="search-input" placeholder="Search applications..." value="{{ request.GET.q }}">
-      
+              <div class="search-clear">
+                <!-- Submit Button -->
+                <button type="submit" class="search-btn">Search</button>
+                <a class="clear" href="{% url 'dashboard' %}">Clear</a>
+              </div>
               
-              <!-- Submit Button -->
-              <button type="submit" class="search-btn">Search</button>
             </div>
           </form>
       </div>
-
-      {% for job_application in job_applications %}
-        <div class="application-item">
-          <div class="application-title">
-            <h3><span class="company-text"><a href="{% url 'jobapplication_detail' job_application.id %}">{{job_application.company_name}}</a></span> | {{job_application.job_title}}</h3>
+      {% if job_applications %}
+        {% for job_application in job_applications %}
+          <div class="application-item">
+            <div class="application-title">
+              <h3><span class="company-text"><a href="{% url 'jobapplication_detail' job_application.id %}">{{job_application.company_name}}</a></span> | {{job_application.job_title}}</h3>
+            </div>
+            <div class="application-details">
+              <span><span class="dashboard-bold">Status:</span> <span class="faded-text">{{job_application.get_status_display}}</span></span>
+              <span><span class="dashboard-bold">Salary:</span> <span class="faded-text">€{{job_application.salary}}</span></span>
+              <span><span class="dashboard-bold">Tags:</span> <span class="faded-text">
+                {% for tag in job_application.tags.all %}
+                <span style="color: {{ tag.color }}">{{ tag.name }}</span>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </span></span>
+              <span class="faded-text">{{job_application.date_applied}}</span>
+            </div>
           </div>
-          <div class="application-details">
-            <span><span class="dashboard-bold">Status:</span> <span class="faded-text">{{job_application.get_status_display}}</span></span>
-            <span><span class="dashboard-bold">Salary:</span> <span class="faded-text">€{{job_application.salary}}</span></span>
-            <span><span class="dashboard-bold">Tags:</span> <span class="faded-text">
-              {% for tag in job_application.tags.all %}
-              <span style="color: {{ tag.color }}">{{ tag.name }}</span>{% if not forloop.last %}, {% endif %}
-              {% endfor %}
-            </span></span>
-            <span class="faded-text">{{job_application.date_applied}}</span>
-          </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      {% else %}
+      <div class="application-item"><p class="company-text">No Applications Found</p></div>
+      {% endif %}
       <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
