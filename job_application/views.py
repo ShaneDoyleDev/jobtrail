@@ -83,12 +83,6 @@ class JobApplicationListView(ListView):
 
         # Store the count data in the context
         context['applications_last_14_days'] = applications_count
-        print(context)
-
-        return context
-
-    def get_context_data(self, **kwargs):
-        context= super().get_context_data(**kwargs)
 
         # Calculate metrics
         total_applications = JobApplication.objects.filter(user=self.request.user).count()
