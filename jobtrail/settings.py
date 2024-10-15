@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'django.contrib.sites',
     # Allauth apps
@@ -51,7 +52,6 @@ INSTALLED_APPS = [
     'allauth.account',
     # Cloudinary
     'cloudinary',
-    'cloudinary_storage',
     # For ColorField in model
     'colorfield',
     # Custom apps
