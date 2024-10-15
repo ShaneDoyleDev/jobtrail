@@ -31,12 +31,9 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", False)
 
-ALLOWED_HOSTS = ['127.0.0.1', 'job-trail-1781474a8917.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1',
+                 'job-trail-1781474a8917.herokuapp.com', 'localhost']
 
-CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:8000',
-    'https://localhost:8000',
-]
 
 # Application definition
 
