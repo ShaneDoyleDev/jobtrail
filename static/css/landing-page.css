@@ -87,7 +87,7 @@ header.landing-page img {
 #services {
   display: flex;
   justify-content: space-around;
-  background-color: #f8f8f8;
+  background-color: #fff;
 }
 
 .price-box {
@@ -96,7 +96,7 @@ header.landing-page img {
   height: 522px;
   border-radius: 20px;
   border: 1px solid #000;
-  background-color: #fff;
+  background-color: #f8f8f8;
   filter: drop-shadow(8px 8px #000);
   display: flex;
   flex-direction: column;
@@ -165,4 +165,282 @@ header.landing-page img {
   color: #f8f49d;
 }
 
+/* Contact Section */
+#contact {
+  /* Giving the section a size and background */
+  min-height: 100vh;
+  width: 100%;
+  background-color: #fff;
+  /* Positioning content inside the section */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#contact form {
+  /* sizing, shaping and backfround of the form */
+  max-width: 300px;
+  margin-bottom: 50px;
+  width: 100%;
+  padding: 25px;
+  border-radius: 10px;
+  /* positioning chiildren of the form */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+
+}
+
+#contact .form-item {
+  /* sizing the item */
+  width: 100%;
+  /* creating space between items */
+  margin-bottom: 40px;
+  /* setting position to allow the label element to be absolutely positioned relative to this */
+  position: relative;
+}
+#contact .name-group {
+  /* positioning chiildren of the form */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* creating space between items - fixes phone to laptop view as flex-direction changes*/
+  margin-bottom: 0px;
+}
+
+#contact .name-group .name-item {
+  /* sizing the item */
+  width: 100%;
+  /* Fixed issue of overlapping last name and First name. Not entirely sure how this works */
+  position: relative;
+  /* creating space between items - fixes phone to laptop view as flex-direction changes*/
+  margin-bottom: 40px;
+}
+
+#contact form input,
+#contact form textarea{
+  /* sizing, shaping and backgroun*/
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  /* border */
+  outline: 0;
+  border: 2px solid #000;
+  border-radius: 5px;
+  /* font styles */
+  font-size: 14px;
+  color: #000;
+}
+#contact form textarea {
+  /* restricts resizing to just up and down to keep it uniformed horizontally */
+  resize: vertical;
+}
+#contact form label {
+  /* sizing and shaping */
+  height: 100%;
+  padding: 10px;
+  /* font styles */
+  color: #6455ed;
+  /* positioning */
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* interactivity */
+  cursor: text;
+  transition: .3s;
+}
+#contact form button {
+  /* sizing shapping and backgound */
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0;
+  background-color: #f4d14d;
+  /* border */
+  border: none;
+  border-radius: 5px;
+  /* font styles */
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 1em;
+  /* makes this a relative parent to absolute before spuedo */
+  position: relative;
+
+}
+
+#contact form button:hover,
+#contact form button:focus {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+#contact form button:hover {
+  transform: translateY(-1px);
+}
+
+#contact form button:active {
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+#contact form input:focus~label,
+#contact form input:valid~label,
+#contact form textarea:focus~label,
+#contact form textarea:valid~label  {
+  /* pushes label above input/textarea box */
+  top: -30px;
+  /* Font Styles */
+  font-size: 12px;
+  color: #7563FF;
+}
+@media screen and (min-width: 768px) {
+  #contact form {
+    max-width: 600px;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+  }
+  #contact form button,
+  #contact .form-item {
+    width: 400px;
+  }
+}
+/* Tablet horizontal */
+@media screen and (min-width: 1024px) {
+  /* make form larger and appear on background */
+  #contact form {
+    max-width: 600px;
+    background-image: none;
+    border-radius: 0;
+  }
+
+  /* change name inputs to be beside eachother */
+  #contact .name-group {
+      flex-direction: row;
+  }
+  #contact .name-group .name-item {
+      width: 47%;
+  }
+  #contact form button,
+    #contact .form-item {
+      width: 100%;
+    }
+}
+/* footer Section */
+.landing-page-footer .footer-box {
+  /* positioning */
+  margin-top: 50px;
+  /* positiong child elements of this elemnt */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.landing-page-footer .footer-box-item {
+  /* sizing */
+  width: 60%;
+  /* positiong child elements of this elemnt */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  /* positioning */
+  margin-bottom: 50px;
+}
+.landing-page-footer .footer-content-title{
+  margin-bottom: 20px;
+}
+
+.landing-page-footer .footer-content {
+  /* font */
+  text-align: left;
+  font-weight: 300;
+  letter-spacing: .1em;
+  line-height: 1.4em;
+  color: #333;
+}
+.landing-page-footer .footer-box-item h2 {
+  /* font */
+  font-size: 24px;
+  text-align: left;
+  /* positioning */
+  margin-bottom: 1em;
+}
+.landing-page-footer .footer-box-item ul {
+  /* font */
+  text-align: left;
+}
+.landing-page-footer .footer-box-item li {
+  /* font */
+  text-align: left;
+  font-size: 12px;
+  list-style-type: square;
+  list-style-position: inside;
+  line-height: 2.5em;
+}
+.landing-page-footer .footer-box-item a {
+  /* font */
+  text-decoration: none;
+  color: #000;
+  /* making the elemnt relative so absolute can be applied to the before */
+  position: relative;
+}
+.landing-page-footer .footer-box-item ul li a::before {
+  /* makes it exist */
+  content: "";
+  /* positionig */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  /* sizing */
+  width: 0;
+  height: 2px;
+  /* background */
+  background: #000;
+  /* animation */
+  transition: .3s;
+}
+
+.landing-page-footer .footer-box-item a:hover::before {
+  /* sizing */
+  width: 100%;
+}
+
+/* tablet Horizontal */
+@media screen and (min-width: 1024px) {
+  .landing-page-footer .footer-box {
+    /* positioning */
+    margin-top: 75px;
+    /* changing to horrizontal for larger screen sizes*/
+    flex-direction: row;
+    /* sizing */
+    height: 300px;
+  }
+  .landing-page-footer .footer-about-me {
+    /* font */
+    line-height: 1.2em;
+  }
+  .landing-page-footer .footer-box-item {
+    /* sizing */
+    width: 20%;
+    height: 300px;
+    /* font */
+    align-items: flex-start;
+    /* shifting content to the left */
+    justify-content: flex-start;
+  }
+}
+/* Desktop Horizontal */
+@media screen and (min-width: 1200px) {
+  .landing-page-footer .footer-about-me {
+    /* font */
+    line-height: 1.4em;
+  }
+}
 

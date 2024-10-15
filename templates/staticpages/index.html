@@ -79,46 +79,98 @@
   </div>
 </section>
 
-  <section id="projects">
-    <h1 class="title">Client testimonials</h1>
-    <div class="client-testimonials">
-      <div class="container">
-        <img src="assets/images/image-emily.jpg" alt="">
-        <p class="review">We put our trust in Sunnyside and they delivered, making sure our needs were met and deadlines were always hit.</p>
-        <div class="person-details">
-          <h2 class="name">Emily R.</h2>
-          <p class="job-title">Marketing Director</h2>
-        </div>
+<!-- Contact -->
+<section id="contact">
+  <h1 class="section-heading">Contact</h1>
+  <!-- Form -->
+  <form action="index.html" method="post">
+    <!-- Name section -->
+    <div class="form-item name-group">
+      <div class="name-item">
+        <input type="text" name="fname" id="fname" required>
+        <label for="fname"><i class="fa-solid fa-user"></i> First name</label>
       </div>
-      <div class="container">
-        <img src="assets/images/image-thomas.jpg" alt="">
-        <p class="review">Sunnyside’s enthusiasm coupled with their keen interest in our brand’s success made it a satisfying and enjoyable experience.</p>
-        <div class="person-details">
-          <h2 class="name">Thomas S.</h2>
-          <p class="job-title">Chief Operating Officer</p>
-        </div>
-      </div>
-      <div class="container">
-        <img src="assets/images/image-jennie.jpg" alt="">
-        <p class="review">Incredible end result! Our sales increased over 400% when we worked with Sunnyside. Highly recommended!</p>
-        <div class="person-details">
-          <h2 class="name">Jennie F.</h2>
-          <p class="job-title">Business Owner</p>
-        </div>
+      <div class="name-item">
+        <input type="text" name="lname" id="lname" required>
+        <label for="lname"><i class="fa-solid fa-user"></i> Last name</label>
       </div>
     </div>
-  </section>
-  <section class="image-box-mobile">
-    <img class="image" src="assets/images/mobile/image-gallery-milkbottles.jpg" alt="">
-    <img class="image" src="assets/images/mobile/image-gallery-orange.jpg" alt="">
-    <img class="image" src="assets/images/mobile/image-gallery-cone.jpg" alt="">
-    <img class="image" src="assets/images/mobile/image-gallery-sugar-cubes.jpg" alt="">
-  </section>
-  <section class="image-box-desktop">
-    <img class="image" src="assets/images/desktop/image-gallery-milkbottles.jpg" alt="">
-    <img class="image" src="assets/images/desktop/image-gallery-orange.jpg" alt="">
-    <img class="image" src="assets/images/desktop/image-gallery-cone.jpg" alt="">
-    <img class="image" src="assets/images/desktop/image-gallery-sugarcubes.jpg" alt="">
+    <!-- Mobile -->
+    <div class="form-item">
+      <input type="tel" name="mobile" id="mobile" pattern="[0-9]{10}" required>
+      <label for="mobile"><i class="fa-solid fa-phone"></i> Mobile Number </label>
+    </div>
+    <!-- Email Address -->
+    <div class="form-item">
+      <input type="email" name="email" id="email" required>
+      <label for="email"><i class="fa-solid fa-envelope"></i> Email address</label>
+    </div>
+    <!-- Message box -->
+    <div class="form-item">
+      <textarea name="message" id="message" rows="8" required></textarea>
+      <label for="message"><i class="fa-solid fa-message"></i> Write your Message</label>
+    </div>
+    <!-- Submit button -->
+    <button type="submit" name="submit"><span class="text">Submit</span></button>
+  </form>
+</section>
+
+  <!-- Footer -->
+  <section class="landing-page-footer">
+    <div class="footer-box">
+      <div class="footer-box-item">
+        <h2 class="footer-content-title">"Change your job application process for life."</h2>
+        <p class="footer-content">
+          Take the stress out of job hunting with our intuitive job application tracker. Easily manage your applications, set reminders for follow-ups, and track your progress—all in one place. Stay organized and focus on what matters: landing your next opportunity! </p>
+      </div>
+      <div class="footer-box-item">
+        <h2>Need Help?</h2>
+        <p class="footer-content">Need help? We’re here for you. Visit our Help Center or reach out to our support team anytime.</p>
+        <ul>
+          <li> 
+            <a href="#" target="_blank" aria-label="">Help Center:</a> 
+              Follow the link to a FAQ page or support articles covering common questions.
+          </li>
+          <li>
+            <a href="#contact" aria-label="">Contact Us: </a>
+             Contact us diectly using the form above 
+          </li>
+        </ul>
+      </div>
+      <div class="footer-box-item">
+        <h2>Stay Connected</h2>
+        <ul>
+          <li>
+            <a href="#" target="_blank" aria-label="Open a new tab to partimenti.org">"Never miss an update.</a>
+               Join our community and stay informed with the latest job hunting tips, industry insights, and app updates."
+          </li>
+          <li>
+            <a href="#" target="_blank" aria-label="Open a new tab to improv planet">Newsletter Sign-up:</a> 
+              Offer a quick sign-up form for users to receive tips, updates, and relevant job hunting resources.
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-box-item">
+        <h2>Features & Benefits</h2>
+        <p class="footer-content">"Discover what sets us apart. Our tools are designed to simplify your job search and maximize your success."</p>
+        <ul>
+          <li>
+            <a href="" target="_blank" aria-label="Open a new tab to the metropole hotel website">Key Features:</a>
+              Organise your appliications and keep track of what stage you are at in each process.
+          </li>
+          <li>
+            <a href="" target="_blank" aria-label="Open a new tab to the springfort hall hotel website">User Benefits:</a>
+            Maintaing you applications and linking your CV's to them helps you stay ontop of your Intervies
+          </li>
+        </ul>
+        
+
+
+ 
+
+      </div>
+    </div>
   </section>
 
 
