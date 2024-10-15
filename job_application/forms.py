@@ -1,11 +1,10 @@
-from django.forms import CheckboxSelectMultiple, ModelForm, ModelMultipleChoiceField, SelectMultiple, DateInput, DateTimeInput, Textarea, URLInput, ValidationError
+from django.forms import CheckboxSelectMultiple, ModelForm, ModelMultipleChoiceField, DateInput, DateTimeInput, Textarea, URLInput, ValidationError
 from .models import JobApplication, Tag
-from django import forms
 
 class JobApplicationForm(ModelForm):
     
-    tags = forms.ModelMultipleChoiceField(
-            widget=forms.CheckboxSelectMultiple, 
+    tags = ModelMultipleChoiceField(
+            widget=CheckboxSelectMultiple, 
             queryset=Tag.objects.all(), 
             required=False)
     

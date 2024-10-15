@@ -67,23 +67,28 @@ class JobApplicationListView(ListView):
         date_list = [today - timedelta(days=i) for i in range(14)]
         
         # Prepare a dictionary to hold counts for each date initialized to zero
-        applications_count = {date.strftime('%Y-%m-%d'): 0 for date in date_list}
-
+        applications_count = {date.strftime('%m-%d'): 0 for date in date_list}
         # Query for the number of applications for the last 14 days
         applications_last_14_days = (
-            JobApplication.objects.filter(date_applied__gte=today - timedelta(days=14))
+            JobApplication.objects.filter(date_applied__gte=today - timedelta(days=15))
             .values('date_applied')
             .annotate(count=Count('id'))
         )
 
         # Fill in the counts for the corresponding dates
         for application in applications_last_14_days:
-            applications_count[application['date_applied'].strftime('%Y-%m-%d')] = application['count']
+            print(application)
+            applications_count[application['date_applied'].strftime('%m-%d')] = application['count']
 
-        # Store the count data in the context
-        context['applications_last_14_days'] = applications_count
-        print(context)
+        # Reverse the dictionary for labels and data
+        labels_reversed = list(applications_count.keys())[::-1]
+        data_reversed = [applications_count[label] for label in labels_reversed]
 
+        # Store the reversed count data in the context
+        context['applications_last_14_days'] = {
+            'labels': labels_reversed,
+            'data': data_reversed,
+        }
         return context
 
 

@@ -129,8 +129,8 @@
 <script>
   // Prepare data for the last 14 days
   const applicationsLast14Days = {{ applications_last_14_days|safe }};
-  const labels14Days = Object.keys(applicationsLast14Days);
-  const data14Days = labels14Days.map(date => applicationsLast14Days[date]);
+  const labels14Days = applicationsLast14Days.labels;
+  const data14Days = applicationsLast14Days.data;
 
   // Create the chart for last 14 days
   const ctx14 = document.getElementById('applications14DaysChart').getContext('2d');

@@ -53,14 +53,14 @@
   padding-bottom: 100px;
 }
 
-/* .chart-section {
+.chart-section {
   background-color: #fff;
   height: 250px;
   width: 70%;
   margin: auto;
   border-radius: var(--border-radius);
   margin-bottom: 50px;
-} */
+}
 
 .applications-section {
   font-size: 14px;
