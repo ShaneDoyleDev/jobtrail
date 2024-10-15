@@ -1,44 +1,47 @@
-{% extends "account/base_entrance.html" %}
-{% load allauth i18n %}
-{% block head_title %}
-    {% trans "Signup" %}
-{% endblock head_title %}
+{% extends "base.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% block title %}
+    {% trans "Sign Up" %}
+{% endblock title %}
 
 {% block content %}
-    <div class="signup-container">
-        <h1>{% trans "Sign Up" %}</h1>
-        
-        <!-- Sign In Link for existing users -->
-        <p>
-            {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}
-        </p>
+<div class="account-container">
+    <h1 class="account-heading">{% trans "Sign Up" %}</h1>
 
-        <!-- Regular Sign Up Form -->
-            {% url 'account_signup' as action_url %}
-            <form method="post" action="{{ action_url }}" class="signup-form">
-                {% csrf_token %}
+    <!-- Sign In Link for existing users -->
+    <p class="account-text">
+        {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}
+    </p>
 
-                <!-- Form Fields -->
-                {% for field in form %}
-                    <div class="form-group">
-                        {{ field.label_tag }}
-                        {{ field }}
-                        {% if field.help_text %}
-                            <small class="form-text text-muted">{{ field.help_text }}</small>
-                        {% endif %}
-                        {% for error in field.errors %}
-                            <div class="error">{{ error }}</div>
-                        {% endfor %}
-                    </div>
-                {% endfor %}
+    <!-- Regular Sign Up Form -->
+    <form method="post" action="{% url 'account_signup' %}" class="account-form">
+        {% csrf_token %}
 
-                {{ redirect_field }}
-                
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary">
-                    {% trans "Sign Up" %}
-                </button>
-            </form>
+        <!-- Flex container for form fields -->
+        <div class="account-form-fields">
+            <!-- Form Fields -->
+            {% for field in form %}
+                <div class="account-form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    
+                    {% for error in field.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
 
-    </div>
+        {{ redirect_field }}
+
+        <!-- Flex container for button -->
+        <div class="account-form-actions">
+            <button type="submit" class="btn-login">
+                {% trans "Sign Up" %}
+            </button>
+        </div>
+    </form>
+</div>
+
 {% endblock content %}
