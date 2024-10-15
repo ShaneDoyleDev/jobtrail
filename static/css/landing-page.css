@@ -43,19 +43,6 @@ header.landing-page img {
 #about {
   background-color: #F8F8F8;
 }
-@media screen and (max-width: 1040px) {
-  #about .about-flex-box {
-    flex-direction: column;
-  }
-  #about .image-block {
-    height: 437px;
-  }
-  #about .about-block-reversed {
-    flex-direction: column-reverse;
-    background-position: center;
-  }
-  
-}
 
 #about .image-block {
   width: 100%;
@@ -104,6 +91,21 @@ header.landing-page img {
 .text-container {
   width: 347px;
   text-align: left;
+}
+@media screen and (max-width: 1040px) {
+  #about .about-flex-box {
+    flex-direction: column;
+  }
+  #about .image-block {
+    height: 437px;
+  }
+  #about .about-block-reversed {
+    flex-direction: column-reverse;
+    background-position: center;
+  }
+  #about .text-block:hover {
+    width: 100%;
+  }
 }
 
 #services {
