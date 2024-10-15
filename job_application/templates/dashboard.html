@@ -42,54 +42,41 @@
 
     <div class="applications-section">
       <h2 class="applications-section-title">Job Applications</h2>
-      <ul>
-        <li>
-          <div class="application-item">
-            <div class="application-title">
-              <h3><span class="company-text">IBM</span> | Junior Frontend developer</h3>
-            </div>
-            <div class="application-details">
-              <span>Status: <span class="faded-text">Awaiting reply</span></span>
-              <span>Outcome: <span class="faded-text">Pending</span></span>
-              <span>Tags: <span class="faded-text">Remote, Contract</span></span>
-              <span class="faded-text">12/3/2024</span>
-            </div>
+
+      {% for job_application in job_applications %}
+        <div class="application-item">
+          <div class="application-title">
+            <h3><span class="company-text">{{job_application.company_name}}</span> | {{job_application.job_title}}</h3>
           </div>
-          <div class="application-item">
-            <div class="application-title">
-              <h3><span class="company-text">IBM</span> | Junior Frontend developer</h3>
-            </div>
-            <div class="application-details">
-              <span>Status: <span class="faded-text">Awaiting reply</span></span>
-              <span>Outcome: <span class="faded-text">Pending</span></span>
-              <span>Tags: <span class="faded-text">Remote, Contract</span></span>
-              <span class="faded-text">12/3/2024</span>
-            </div>
+          <div class="application-details">
+            <span><span class="dashboard-bold">Status:</span> <span class="faded-text">{{job_application.get_status_display}}</span></span>
+            <span><span class="dashboard-bold">Salary:</span> <span class="faded-text">€{{job_application.salary}}</span></span>
+            <span><span class="dashboard-bold">Tags:</span> <span class="faded-text">
+              {% for tag in job_application.tags.all %}
+              <span style="color: {{ tag.color }}">{{ tag.name }}</span>{% if not forloop.last %}, {% endif %}
+              {% endfor %}
+            </span></span>
+            <span class="faded-text">{{job_application.date_applied}}</span>
           </div>
-          <div class="application-item">
-            <div class="application-title">
-              <h3><span class="company-text">IBM</span> | Junior Frontend developer</h3>
-            </div>
-            <div class="application-details">
-              <span>Status: <span class="faded-text">Awaiting reply</span></span>
-              <span>Outcome: <span class="faded-text">Pending</span></span>
-              <span>Tags: <span class="faded-text">Remote, Contract</span></span>
-              <span class="faded-text">12/3/2024</span>
-            </div>
-          </div>
-          <div class="application-item">
-            <div class="application-title">
-              <h3><span class="company-text">IBM</span> | Junior Frontend developer</h3>
-            </div>
-            <div class="application-details">
-              <span>Status: <span class="faded-text">Awaiting reply</span></span>
-              <span>Outcome: <span class="faded-text">Pending</span></span>
-              <span>Tags: <span class="faded-text">Remote, Contract</span></span>
-              <span class="faded-text">12/3/2024</span>
-            </div>
-          </div>
-        </li>
-      </ul>
+        </div>
+      {% endfor %}
+      <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
     </div>
   </div>
 {% endblock %}

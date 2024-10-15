@@ -14,6 +14,7 @@ class JobApplicationListView(ListView):
     model = JobApplication
     template_name = 'dashboard.html'
     context_object_name = 'job_applications'
+    paginate_by = 12
 
     def get_queryset(self):
         return JobApplication.objects.filter(user=self.request.user)
