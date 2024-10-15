@@ -11,6 +11,8 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  z-index: 10;
+  position: relative;
 }
 
 .title {
@@ -21,6 +23,7 @@
 .city-image {
   top: 0;
   position: absolute;
+  z-index: 1;
 }
 
 .metrics-section {
@@ -28,6 +31,8 @@
   justify-content: space-between;
   padding-inline: 80px;
   gap: 20px;
+  position: relative;
+  z-index: 4;
 }
 
 .metrics-panel {
@@ -90,6 +95,10 @@
 .company-text {
   color: var(--accent-color);
 }
+
+.company-text a {
+  color: inherit;
+} 
 
 .application-title h3 {
   font-size: 14px;
