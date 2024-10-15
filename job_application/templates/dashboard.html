@@ -129,18 +129,19 @@
 <script>
   // Prepare data for the last 14 days
   const applicationsLast14Days = {{ applications_last_14_days|safe }};
-  const labels14Days = applicationsLast14Days.labels;
-  const data14Days = applicationsLast14Days.data;
+  const labels14Days = Object.keys(applicationsLast14Days);
+  const data14Days = labels14Days.map(date => applicationsLast14Days[date]);
+  const reversedData14Days = data14Days.reverse()
 
   // Create the chart for last 14 days
   const ctx14 = document.getElementById('applications14DaysChart').getContext('2d');
   const applications14DaysChart = new Chart(ctx14, {
       type: 'line',
       data: {
-          labels: labels14Days,
+          labels: labels14Days.reverse(),
           datasets: [{
               label: 'Applications Last 14 Days',
-              data: data14Days,
+              data: data14Days.reverse(),
               borderColor: 'rgba(117, 99, 255, 1)',
               backgroundColor: 'rgba(117, 99, 255, 0.2)',
               borderWidth: 1,
