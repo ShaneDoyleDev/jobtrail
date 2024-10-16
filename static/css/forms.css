@@ -26,14 +26,6 @@ a.home-link:hover::before {
     background-color: #7563ff;
 }
 
-a.home-link:hover {
-    color: #fff;
-}
-
-a.home-link:hover {
-    color: #d9d9d9;
-}
-
 a .home-link-tag {
     color: #7563ff;
 }

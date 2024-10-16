@@ -22,6 +22,7 @@ hamburger.addEventListener("click", () => {
             lis[i].classList.add('hidden')
             lis[i].classList.remove('active')
         }
+        hamburger.classList.add('active');
         isOn = false;
     }
 }) 

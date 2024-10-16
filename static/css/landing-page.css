@@ -1,5 +1,5 @@
 
-header.landing-page {
+section.landing-page-header {
   height: calc(100dvh - 80px);
   width: 100%;
   background-image: url("../images/header-bg.png");
@@ -14,7 +14,7 @@ header.landing-page {
   gap: 40px;
 }
 
-header.landing-page h1{
+section.landing-page-header h1{
   font-size: 50px;
   font-weight: 900;
   color: #f8f49d;
@@ -26,13 +26,13 @@ header.landing-page h1{
 }
 
 @media screen and (max-width: 1040px) {
-  header.landing-page h1 {
+  section.landing-page-header h1 {
     width: 100%;
   }
 }
 
 
-header.landing-page img {
+section.landing-page-header img {
   background: transparent;
 }
 
@@ -96,6 +96,9 @@ header.landing-page img {
 @media screen and (max-width: 1040px) {
   #about .about-flex-box {
     flex-direction: column;
+  }
+  #about .about-flex-box-reverse {
+    flex-direction: column-reverse;
   }
   #about .image-block {
     height: 437px;
@@ -188,6 +191,8 @@ header.landing-page img {
   color: #fff;
   font-weight: 800;
   font-size: 14px;
+  margin: 0;
+  text-align: center;
 }
 .price {
   font-size: 24px;

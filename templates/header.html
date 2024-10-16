@@ -2,12 +2,12 @@
 <nav>
     <ul class="nav-left">
         <li>
-            <a href="#" class="home-link">Job<span class="home-link-tag">TRAIL</span></a>
+            <a href="{% url 'home' %}" class="home-link">Job<span class="home-link-tag">TRAIL</span></a>
         </li>
     </ul>
     <ul id='menu' class="nav-right">    
         <li class="hidden">
-            <a href="{% url 'home' %}">Dashboard</a>
+            <a href="{% url 'dashboard' %}">Dashboard</a>
         </li>
         {% if user.is_authenticated %}
         <li  class="hidden">
@@ -19,13 +19,10 @@
         <li class="hidden">
             <a href="{% url 'account_logout' %}">Logout</a>
         </li>
-        <li class="hidden">
-            <i class="fa-solid fa-burger"></i>
+        <li id='hamburger' class="hamburger-menu">
+            <i class="fa-solid fa-burger" style="color: white;"></i>
         </li>
         {% else %}
-        <li class="hidden">
-            <a href="{% url 'account_signup' %}">Signup</a>
-        </li>
         <li class="hidden">
             <a href="{% url 'account_login' %}">Login</a>
         </li>

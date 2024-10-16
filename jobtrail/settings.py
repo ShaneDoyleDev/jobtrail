@@ -40,6 +40,11 @@ ALLOWED_HOSTS = [
                     'job-trail-1781474a8917.herokuapp.com', 
                 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://8000-shanedoyledev-jobtrail-c8eaclld72l.ws.codeinstitute-ide.net',
+    'https://8000-shanedoyledev-jobtrail-c8eaclld72l.ws.codeinstitute-ide.net',
+]
+
 # Application definition
 
 INSTALLED_APPS = [
