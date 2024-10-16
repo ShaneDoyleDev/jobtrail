@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "forms-base.html" %}
 {% load allauth i18n %}
 
 {% block title %}
@@ -6,34 +6,32 @@
 {% endblock title %}
 
 {% block content %}
-<div class="account-container">
-    <h1>
-        {% trans "Passkey Sign Up" %}
-    </h1>
+<h1>
+    {% trans "Passkey Sign Up" %}
+</h1>
 
-    {% url 'account_login' as login_url %}
-    <p>
-        {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}
-    </p>
+{% url 'account_login' as login_url %}
+<p>
+    {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}
+</p>
 
-    {% url 'account_signup_by_passkey' as action_url %}
-    <form method="post" action="{{ action_url }}">
-        {% csrf_token %}
-        {{ redirect_field }}
-        {% element fields form=form unlabeled=True %}
+{% url 'account_signup_by_passkey' as action_url %}
+<form method="post" action="{{ action_url }}">
+    {% csrf_token %}
+    {{ redirect_field }}
+    {% element fields form=form unlabeled=True %}
 
-        <div class="form-actions">
-            <button type="submit" class="btn btn-prominent">
-                {% trans "Sign Up" %}
-            </button>
-        </div>
-    </form>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-prominent">
+            {% trans "Sign Up" %}
+        </button>
+    </div>
+</form>
 
-    <hr>
+<hr>
 
-    {% url 'signup_url' as signup_url %}
-    <a href="{{ signup_url }}" class="btn-login">
-        {% trans "Other options" %}
-    </a>
-</div>
+{% url 'signup_url' as signup_url %}
+<a href="{{ signup_url }}" class="btn-login">
+    {% trans "Other options" %}
+</a>
 {% endblock content %}

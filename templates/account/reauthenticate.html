@@ -1,24 +1,22 @@
-{% extends "base.html" %}
+{% extends "forms-base.html" %}
 {% load allauth %}
 {% load i18n %}
 
 {% block reauthenticate_content %}
-<div class="account-container">
-    <p>
-        {% blocktranslate %}Enter your password:{% endblocktranslate %}
-    </p>
+<p>
+    {% blocktranslate %}Enter your password:{% endblocktranslate %}
+</p>
 
-    {% url 'account_reauthenticate' as action_url %}
-    <form method="post" action="{{ action_url }}">
-        {% csrf_token %}
-        {{ redirect_field }}
-        {% element fields form=form unlabeled=True %}
+{% url 'account_reauthenticate' as action_url %}
+<form method="post" action="{{ action_url }}">
+    {% csrf_token %}
+    {{ redirect_field }}
+    {% element fields form=form unlabeled=True %}
 
-        <div class="form-actions">
-            <button type="submit" class="btn-login">
-                {% trans "Confirm" %}
-            </button>
-        </div>
-    </form>
-</div>
+    <div class="form-actions">
+        <button type="submit" class="btn-login">
+            {% trans "Confirm" %}
+        </button>
+    </div>
+</form>
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "forms-base.html" %}
 {% load i18n %}
 {% load allauth %}
 
@@ -7,27 +7,25 @@
 {% endblock title %}
 
 {% block content %}
-<div class="account-container">
-    <h1>
-        {% trans "Verify Your Email Address" %}
-    </h1>
-    <p>
-        {% blocktrans %}
-            This part of the site requires us to verify that you are who you claim to be. 
-            For this purpose, we require that you verify ownership of your email address.
-        {% endblocktrans %}
-    </p>
-    <p>
-        {% blocktrans %}
-            We have sent an email to you for verification. Please click on the link inside that email. 
-            If you do not see the verification email in your main inbox, check your spam folder. 
-            Otherwise, contact us if you do not receive it within a few minutes.
-        {% endblocktrans %}
-    </p>
-    <p>
-        {% blocktrans %}
-            <strong>Note:</strong> you can still <a href="{{ email_url }}">change your email address</a>.
-        {% endblocktrans %}
-    </p>
-</div>
+<h1>
+    {% trans "Verify Your Email Address" %}
+</h1>
+<p>
+    {% blocktrans %}
+        This part of the site requires us to verify that you are who you claim to be. 
+        For this purpose, we require that you verify ownership of your email address.
+    {% endblocktrans %}
+</p>
+<p>
+    {% blocktrans %}
+        We have sent an email to you for verification. Please click on the link inside that email. 
+        If you do not see the verification email in your main inbox, check your spam folder. 
+        Otherwise, contact us if you do not receive it within a few minutes.
+    {% endblocktrans %}
+</p>
+<p>
+    {% blocktrans %}
+        <strong>Note:</strong> you can still <a href="{{ email_url }}">change your email address</a>.
+    {% endblocktrans %}
+</p>
 {% endblock content %}
