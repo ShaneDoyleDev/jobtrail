@@ -76,7 +76,7 @@ nav ul.nav-right li.hamburger-menu {
     display: none;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (max-width: 1070px) {
     nav ul.nav-right li.hidden {
         display: none;
     }

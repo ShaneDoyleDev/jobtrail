@@ -23,24 +23,34 @@ window.addEventListener('DOMContentLoaded', event => {
             localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
         });
     }
+})
 
-});// Call the dataTables jQuery plugin
-$(document).ready(function() {
-  $('#dataTable').DataTable();
-});
 
-// Call the dataTables jQuery plugin
-$(document).ready(function() {
-    $('#dataTable').DataTable();
-});
+const hamburger = document.getElementById('hamburger');
+const menu = document.getElementById('menu');
+var lis = document.querySelectorAll('#menu li');
+let isOn = false;
 
-window.addEventListener('DOMContentLoaded', event => {
-    // Simple-DataTables
-    // https://github.com/fiduswriter/Simple-DataTables/wiki
 
-    const datatablesSimple = document.getElementById('datatablesSimple');
-    if (datatablesSimple) {
-        new simpleDatatables.DataTable(datatablesSimple);
+
+hamburger.addEventListener("click", () => {
+    console.log('i love hamburgers')
+    if (!isOn) {
+        console.log('Turning on')
+        menu.classList.add("nav-right-mobile-active");
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].classList.add('active')
+            lis[i].classList.remove('hidden')
+        }
+        isOn = true;
     }
-});
-
+    else {
+        menu.classList.remove("nav-right-mobile-active");
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].classList.add('hidden')
+            lis[i].classList.remove('active')
+        }
+        hamburger.classList.add('active');
+        isOn = false;
+    }
+}) 

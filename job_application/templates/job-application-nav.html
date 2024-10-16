@@ -1,17 +1,22 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark job-application-nav-bar" style="display: flex;
-justify-content: space-between;">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark job-application-nav-bar nav-right-mobile-active hidden">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="{% url 'home' %}">JobTRAIL</a>
+    <a class="navbar-brand ps-3" href="{% url 'home' %}">JOB<span class="home-link-tag">TRAIL<span></a>
     <!-- Navbar-->
-    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{% url 'profile_update' %}">Profile</a></li>
-                <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
-            </ul>
-        </li>
+    <ul id="menu" class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 ">
+            <li class="hidden">
+                <a href="#about">About Us</a>
+            </li>
+            <li  class="hidden">
+                <a href="#services">Services</a>
+            </li>
+            <li class="hidden">
+                <a href="#contact">Contact Us</a>
+            </li>
+            <li class="hidden">
+                <a href="{% url 'dashboard' %}">Log out</a>
+            </li>
+            <li id='hamburger' class="hamburger-menu hidden">
+                <i class="fa-solid fa-burger" style="color: white;"></i>
+            </li>
     </ul>
 </nav>
