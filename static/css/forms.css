@@ -1,3 +1,49 @@
+a.home-link {
+    position: relative;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    line-height: 1.5rem;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+a.home-link::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background-color: #7563ff;
+    transition: all .3s;
+}
+
+a.home-link:hover::before {
+    width: 100%;
+    background-color: #7563ff;
+}
+
+a.home-link:hover {
+    color: #fff;
+}
+
+a.home-link:hover {
+    color: #d9d9d9;
+}
+
+a .home-link-tag {
+    color: #7563ff;
+}
+
+a.home-link::before {
+    content: none;
+}
+
+
+
 .form-flex-box {
     display: flex;
     justify-content: center;

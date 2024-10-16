@@ -18,10 +18,17 @@
     {% endblock %}
   </head>
   <body>
-
-    {% block content %}
-    {% endblock %}
-
+    <div class="form-flex-box">
+      <div class="form-component-box">
+        <div class="form-component-form account-container forms-container">
+          <div class="forms-container">
+            <a href="#" class="home-link">Job<span class="home-link-tag">TRAIL</span></a>
+            {% block content %}
+            {% endblock %}
+          </div>
+        <div class="form-component-bg-image">
+      </div>
+    </div>
     <script src="https://kit.fontawesome.com/f8d980d35b.js" crossorigin="anonymous"></script>
   </body>
 </html>
