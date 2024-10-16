@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "forms-base.html" %}
 {% load i18n %}
 {% load allauth account %}
 {% block title %}
@@ -6,42 +6,41 @@
 {% endblock title %}
 
 {% block content %}
-<div class="account-container">
-    <h1 class="account-heading">{% trans "Sign Up" %}</h1>
+<h1 class="account-heading">{% trans "Sign Up" %}</h1>
 
-    <!-- Sign In Link for existing users -->
-    <p class="account-text">
-        {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}
-    </p>
+<!-- Regular Sign Up Form -->
+<form method="post" action="{% url 'account_signup' %}" class="account-form">
+    {% csrf_token %}
 
-    <!-- Regular Sign Up Form -->
-    <form method="post" action="{% url 'account_signup' %}" class="account-form">
-        {% csrf_token %}
+    <!-- Flex container for form fields -->
+    <div class="account-form-fields">
+        <!-- Form Fields -->
+        {% for field in form %}
+            <div class="account-form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                
+                {% for error in field.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
 
-        <!-- Flex container for form fields -->
-        <div class="account-form-fields">
-            <!-- Form Fields -->
-            {% for field in form %}
-                <div class="account-form-group">
-                    {{ field.label_tag }}
-                    {{ field }}
-                    
-                    {% for error in field.errors %}
-                        <div class="error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-            {% endfor %}
-        </div>
+    {{ redirect_field }}
 
-        {{ redirect_field }}
+    <!-- Flex container for button -->
+    <div class="account-form-actions">
+        <button type="submit" class="btn-login">
+            {% trans "Sign Up" %}
+        </button>
+    </div>
+</form>
 
-        <!-- Flex container for button -->
-        <div class="account-form-actions">
-            <button type="submit" class="btn-login">
-                {% trans "Sign Up" %}
-            </button>
-        </div>
-    </form>
-</div>
+<!-- Sign In Link for existing users -->
+<p class="account-text">
+    {% blocktranslate %}Already have an account? <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}
+</p>
+
 
 {% endblock content %}

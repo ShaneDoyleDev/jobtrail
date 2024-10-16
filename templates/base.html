@@ -5,22 +5,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
     <title>
       JobTrail -{% block title %}
 
       {% endblock %}
     </title>
-
+    
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <link rel="stylesheet" href="{% static 'css/header.css' %}" />
     <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
     <link rel="stylesheet" href="{% static 'css/landing-page.css' %}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {% block extra_css %}
-
-    {% endblock %}
-    {% block extra_cdn %}
 
     {% endblock %}
   </head>
@@ -29,13 +25,13 @@
       {% include 'header.html' %}
     </header>
 
-    {% if messages %}
+    <!-- {% if messages %}
       <ul class="messages">
         {% for message in messages %}
           <li class="{{ message.tags }}">{{ message }}</li>
         {% endfor %}
       </ul>
-    {% endif %}
+    {% endif %} -->
 
     {% block content %}
 
@@ -44,8 +40,11 @@
     <footer>
       {% include 'footer.html' %}
     </footer>
-    {% block extra_js %}
-
-    {% endblock %}
+    <!-- CDNS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f8d980d35b.js" crossorigin="anonymous"></script>
+    <!-- Custom Scripts -->
+    <script src="{% static 'js/index.js' %}" crossorigin="anonymous"></script>
+    
   </body>
 </html>

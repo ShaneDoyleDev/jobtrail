@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "forms-base.html" %}
 {% load i18n %}
 {% load allauth account %}
 
@@ -7,30 +7,28 @@
 {% endblock title %}
 
 {% block content %}
-<div class="account-container">
-    <h1>
-        {% translate "Mail me a sign-in code" %}
-    </h1>
-    <p>
-        {% blocktranslate %}You will receive an email containing a special code for a password-free sign-in.{% endblocktranslate %}
-    </p>
+<h1>
+    {% translate "Mail me a sign-in code" %}
+</h1>
+<p>
+    {% blocktranslate %}You will receive an email containing a special code for a password-free sign-in.{% endblocktranslate %}
+</p>
 
-    {% url 'account_request_login_code' as login_url %}
-    <form method="post" action="{{ login_url }}">
-        {% csrf_token %}
-        {{ redirect_field }}
-        {% element fields form=form unlabeled=True %}
+{% url 'account_request_login_code' as login_url %}
+<form method="post" action="{{ login_url }}">
+    {% csrf_token %}
+    {{ redirect_field }}
+    {% element fields form=form unlabeled=True %}
 
-        <div class="form-actions">
-            <button type="submit" class="btn-login">
-                {% translate "Request Code" %}
-            </button>
-        </div>
-    </form>
+    <div class="form-actions">
+        <button type="submit" class="btn-login">
+            {% translate "Request Code" %}
+        </button>
+    </div>
+</form>
 
-    {% url 'account_login' as login_url %}
-    <a href="{{ login_url }}" class="link">
-        {% translate "Other sign-in options" %}
-    </a>
-</div>
+{% url 'account_login' as login_url %}
+<a href="{{ login_url }}" class="link">
+    {% translate "Other sign-in options" %}
+</a>
 {% endblock content %}

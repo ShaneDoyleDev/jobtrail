@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "forms-base.html" %}
 {% load i18n %}
 {% load allauth %}
 
@@ -7,12 +7,12 @@
 {% endblock title %}
 
 {% block content %}
-<div class="account-container">
-    <h1>
-        {% trans "Sign Up Closed" %}
-    </h1>
-    <p>
-        {% trans "We are sorry, but the sign up is currently closed." %}
-    </p>
-</div>
+
+<h1>
+    {% trans "Sign Up Closed" %}
+</h1>
+<p>
+    {% trans "We are sorry, but the sign up is currently closed." %}
+</p>
+
 {% endblock content %}

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "forms-base.html" %}
 {% load allauth i18n %}
 
 {% block title %}
@@ -6,66 +6,65 @@
 {% endblock title %}
 
 {% block content %}
-<div class="account-container">
-    <h1 class="account-heading">{% trans "Email Addresses" %}</h1>
-    
-    {% if emailaddresses %}
-        <p>
-            {% trans 'The following email addresses are associated with your account:' %}
-        </p>
-        {% url 'account_email' as email_url %}
-        <form method="post" action="{{ email_url }}" class="account-form">
-            {% csrf_token %}
-            {% for radio in emailaddress_radios %}
-                {% with emailaddress=radio.emailaddress %}
-                    <div class="account-form-group">
-                        {% element field type="radio" checked=radio.checked name="email" value=emailaddress.email id=radio.id %}
-                            {% slot label %}
-                                {{ emailaddress.email }}
-                                {% if emailaddress.verified %}
-                                    <span class="badge badge-success">{% translate "Verified" %}</span>
-                                {% else %}
-                                    <span class="badge badge-warning">{% translate "Unverified" %}</span>
-                                {% endif %}
-                                {% if emailaddress.primary %}
-                                    <span class="badge badge-primary">{% translate "Primary" %}</span>
-                                {% endif %}
-                            {% endslot %}
-                        {% endelement %}
-                    </div>
-                {% endwith %}
-            {% endfor %}
-            <div class="account-form-actions">
-                <button type="submit" name="action_primary" class="btn-login">
-                    {% trans 'Make Primary' %}
-                </button>
-                <button type="submit" name="action_send" class="btn-login">
-                    {% trans 'Re-send Verification' %}
-                </button>
-                <button type="submit" name="action_remove" class="btn-login">
-                    {% trans 'Remove' %}
-                </button>
-            </div>
-        </form>
-    {% else %}
-        {% include "account/snippets/warn_no_email.html" %}
-    {% endif %}
-    
-    {% if can_add_email %}
-        <h2>{% trans "Add Email Address" %}</h2>
-        {% url 'account_email' as action_url %}
-        <form method="post" action="{{ action_url }}" class="account-form account-form-group">
-            {% csrf_token %}
-            {% element fields form=form %}
-            {% endelement %}
-            <div class="account-form-actions">
-                <button name="action_add" type="submit" class="btn-login">
-                    {% trans "Add Email" %}
-                </button>
-            </div>
-        </form>
-    {% endif %}
-</div>
+
+<h1 class="account-heading">{% trans "Email Addresses" %}</h1>
+
+{% if emailaddresses %}
+    <p>
+        {% trans 'The following email addresses are associated with your account:' %}
+    </p>
+    {% url 'account_email' as email_url %}
+    <form method="post" action="{{ email_url }}" class="account-form">
+        {% csrf_token %}
+        {% for radio in emailaddress_radios %}
+            {% with emailaddress=radio.emailaddress %}
+                <div class="account-form-group">
+                    {% element field type="radio" checked=radio.checked name="email" value=emailaddress.email id=radio.id %}
+                        {% slot label %}
+                            {{ emailaddress.email }}
+                            {% if emailaddress.verified %}
+                                <span class="badge badge-success">{% translate "Verified" %}</span>
+                            {% else %}
+                                <span class="badge badge-warning">{% translate "Unverified" %}</span>
+                            {% endif %}
+                            {% if emailaddress.primary %}
+                                <span class="badge badge-primary">{% translate "Primary" %}</span>
+                            {% endif %}
+                        {% endslot %}
+                    {% endelement %}
+                </div>
+            {% endwith %}
+        {% endfor %}
+        <div class="account-form-actions">
+            <button type="submit" name="action_primary" class="btn-login">
+                {% trans 'Make Primary' %}
+            </button>
+            <button type="submit" name="action_send" class="btn-login">
+                {% trans 'Re-send Verification' %}
+            </button>
+            <button type="submit" name="action_remove" class="btn-login">
+                {% trans 'Remove' %}
+            </button>
+        </div>
+    </form>
+{% else %}
+    {% include "account/snippets/warn_no_email.html" %}
+{% endif %}
+
+{% if can_add_email %}
+    <h2>{% trans "Add Email Address" %}</h2>
+    {% url 'account_email' as action_url %}
+    <form method="post" action="{{ action_url }}" class="account-form account-form-group">
+        {% csrf_token %}
+        {% element fields form=form %}
+        {% endelement %}
+        <div class="account-form-actions">
+            <button name="action_add" type="submit" class="btn-login">
+                {% trans "Add Email" %}
+            </button>
+        </div>
+    </form>
+{% endif %}
 {% endblock content %}
 
 {% block extra_body %}

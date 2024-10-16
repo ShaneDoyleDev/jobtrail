@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "forms-base.html" %}
 {% load i18n %}
 {% load allauth account %}
 {% block title %}
@@ -6,22 +6,22 @@
 {% endblock title %}
 
 {% block content %}
-<div class="account-container">
-    <h1 class="account-heading">{% trans "Sign Out" %}</h1>
 
-    <p class="account-text">{% trans 'Are you sure you want to sign out?' %}</p>
+<h1 class="account-heading">{% trans "Sign Out" %}</h1>
 
-    <!-- Sign Out Form -->
-    <form method="post" action="{% url 'account_logout' %}" class="account-form">
-        {% csrf_token %}
-        {{ redirect_field }}
+<p class="account-text">{% trans 'Are you sure you want to sign out?' %}</p>
 
-        <!-- Flex container for button -->
-        <div class="account-form-actions">
-            <button type="submit" class="btn-login">
-                {% trans 'Sign Out' %}
-            </button>
-        </div>
-    </form>
-</div>
+<!-- Sign Out Form -->
+<form method="post" action="{% url 'account_logout' %}" class="account-form">
+    {% csrf_token %}
+    {{ redirect_field }}
+
+    <!-- Flex container for button -->
+    <div class="account-form-actions">
+        <button type="submit" class="btn-login">
+            {% trans 'Sign Out' %}
+        </button>
+    </div>
+</form>
+
 {% endblock content %}

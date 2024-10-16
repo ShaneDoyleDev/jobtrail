@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "forms-base.html" %}
 {% load i18n %}
 {% load allauth %}
 
@@ -7,17 +7,17 @@
 {% endblock title %}
 
 {% block content %}
-<div class="account-container">
-    <h1>
-        {% trans "Verify Your Email Address" %}
-    </h1>
-    <p>
-        {% blocktrans %}
-            We have sent an email to you for verification. Follow the link provided to finalize the signup process. 
-            If you do not see the verification email in your main inbox, check your spam folder. 
-            Please contact us if you do not receive the verification email within a few minutes.
-        {% endblocktrans %}
-    </p>
-</div>
+
+<h1>
+    {% trans "Verify Your Email Address" %}
+</h1>
+<p>
+    {% blocktrans %}
+        We have sent an email to you for verification. Follow the link provided to finalize the signup process. 
+        If you do not see the verification email in your main inbox, check your spam folder. 
+        Please contact us if you do not receive the verification email within a few minutes.
+    {% endblocktrans %}
+</p>
+
     
 {% endblock content %}

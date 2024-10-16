@@ -1,35 +1,33 @@
+
 <nav>
     <ul class="nav-left">
         <li>
-            <a href="#" class="home-link">Job<span class="home-link-tag">TRAIL</span></a>
+            <a href="{% url 'home' %}" class="home-link">Job<span class="home-link-tag">TRAIL</span></a>
         </li>
     </ul>
-    <ul class="nav-right">    
-        <li>
-            <a href="{% url 'home' %}">Home</a>
+    <ul id='menu' class="nav-right">        
+        <li class="hidden">
+            <a href="#about">About Us</a>
         </li>
-        {% if user.is_authenticated %}
-        <li>
-            <a href="{% url 'dashboard' %}">Dashboard</a> 
+        <li  class="hidden">
+            <a href="#services">Services</a>
         </li>
-        <li>
-            <a href="{% url 'account_set_password' %}">Password Reset</a>
-        </li>
-        <li>
-            <a href="{% url 'profile_update' %}">Profile Details</a>
-        </li>
-        <li>
-            <a href="{% url 'account_logout' %}">Logout</a>
+        <li class="hidden">
+            <a href="#contact">Contact Us</a>
         </li>
 
-        {% else %}
-        <li>
-            <a href="{% url 'account_signup' %}">Signup</a>
+        {% if user.is_authenticated %}
+        <li class="hidden">
+            <a href="{% url 'dashboard' %}">Log in</a>
         </li>
-        <li>
-            <a href="{% url 'account_login' %}">Login</a>
+        {% else %}
+        <li class="hidden">
+            <a href="{% url 'account_login' %}">Log in</a>
+        </li>
+        {% endif %}
+        <li id='hamburger' class="hamburger-menu">
+            <i class="fa-solid fa-burger" style="color: white;"></i>
         </li>
     </ul>
 </nav>
-{% endif %}
 

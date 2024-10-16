@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "forms-base.html" %}
 {% load i18n %}
 {% load allauth %}
 {% block title %}
@@ -6,11 +6,9 @@
 {% endblock title %}
 
 {% block content %}
-<div class="account-container">
-    <h1 class="account-heading">{% trans "Account Inactive" %}</h1>
+<h1 class="account-heading">{% trans "Account Inactive" %}</h1>
 
-    <p class="account-text">
-        {% trans "This account is inactive." %}
-    </p>
-</div>
+<p class="account-text">
+    {% trans "This account is inactive." %}
+</p>
 {% endblock content %}
