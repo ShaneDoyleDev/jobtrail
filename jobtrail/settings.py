@@ -158,7 +158,7 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 # Optional, but recommended
-LOGIN_REDIRECT_URL = '/profile/update/'
+LOGIN_REDIRECT_URL = '/job-application/dashboard/'
 LOGOUT_REDIRECT_URL = '/'
 
 if DEBUG:

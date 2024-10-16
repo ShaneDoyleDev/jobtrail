@@ -15,9 +15,16 @@
         <li class="hidden">
             <a href="#contact">Contact Us</a>
         </li>
+
+        {% if user.is_authenticated %}
+        <li class="hidden">
+            <a href="{% url 'dashboard' %}">Log in</a>
+        </li>
+        {% else %}
         <li class="hidden">
             <a href="{% url 'account_login' %}">Log in</a>
         </li>
+        {% endif %}
         <li id='hamburger' class="hamburger-menu">
             <i class="fa-solid fa-burger" style="color: white;"></i>
         </li>

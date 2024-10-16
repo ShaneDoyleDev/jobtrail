@@ -16,7 +16,7 @@ from datetime import timedelta
 
 class JobApplicationListView(ListView):
     model = JobApplication
-    template_name = 'dashboard.html'
+    template_name = 'dashboard-orig.html'
     context_object_name = 'job_applications'
     paginate_by = 12
 
