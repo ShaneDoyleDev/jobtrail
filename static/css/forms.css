@@ -1,0 +1,46 @@
+.form-flex-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100dvh;
+}
+
+.form-component-box {
+    display: flex;
+    width: 85%;
+    height: 85dvh;
+    max-width: 1200px;
+}
+
+.form-component-form {
+    width: 50%;
+    margin: 0;
+    max-width: none;
+
+}
+
+.form-component-bg-image {
+    width: 50%;
+    background-image: url('../images/form-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.forms-container {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.account-form {
+    gap: 20px;
+}
+
+.forms-container h1{
+    width: 100%;
+    text-align: left;
+}
