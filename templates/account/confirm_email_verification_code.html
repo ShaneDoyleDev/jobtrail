@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "forms-base.html" %}
 {% load i18n %}
 {% load allauth account %}
 {% block title %}
@@ -6,63 +6,61 @@
 {% endblock title %}
 
 {% block content %}
-<div class="account-container">
-    <h1 class="account-heading">{% trans "Enter Email Verification Code" %}</h1>
+<h1 class="account-heading">{% trans "Enter Email Verification Code" %}</h1>
 
-    {% setvar email_link %}
-        <a href="mailto:{{ email }}">{{ email }}</a>
-    {% endsetvar %}
+{% setvar email_link %}
+    <a href="mailto:{{ email }}">{{ email }}</a>
+{% endsetvar %}
 
-    <p class="account-text">
-        {% blocktranslate %}We’ve sent a code to {{ email_link }}. The code expires shortly, so please enter it soon.{% endblocktranslate %}
-    </p>
+<p class="account-text">
+    {% blocktranslate %}We’ve sent a code to {{ email_link }}. The code expires shortly, so please enter it soon.{% endblocktranslate %}
+</p>
 
-    <!-- Email Verification Form -->
-    <form method="post" action="{% url 'account_email_verification_sent' %}" class="account-form">
-        {% csrf_token %}
+<!-- Email Verification Form -->
+<form method="post" action="{% url 'account_email_verification_sent' %}" class="account-form">
+    {% csrf_token %}
 
-        <!-- Flex container for form fields -->
-        <div class="account-form-fields">
-            <!-- Form Fields (unlabeled) -->
-            {% for field in form %}
-                <div class="account-form-group">
-                    {{ field }}
-                    {% if field.help_text %}
-                        <small class="account-form-text">{{ field.help_text }}</small>
-                    {% endif %}
-                    {% for error in field.errors %}
-                        <div class="error">{{ error }}</div>
-                    {% endfor %}
-                </div>
-            {% endfor %}
-        </div>
+    <!-- Flex container for form fields -->
+    <div class="account-form-fields">
+        <!-- Form Fields (unlabeled) -->
+        {% for field in form %}
+            <div class="account-form-group">
+                {{ field }}
+                {% if field.help_text %}
+                    <small class="account-form-text">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
 
-        {{ redirect_field }}
+    {{ redirect_field }}
 
-        <!-- Flex container for actions -->
-        <div class="account-form-actions">
-            <button type="submit" class="btn-login">
-                {% trans "Confirm" %}
+    <!-- Flex container for actions -->
+    <div class="account-form-actions">
+        <button type="submit" class="btn-login">
+            {% trans "Confirm" %}
+        </button>
+
+        {% if cancel_url %}
+            <a href="{{ cancel_url }}" class="btn-login">
+                {% trans "Cancel" %}
+            </a>
+        {% else %}
+            <button type="submit" form="logout-from-stage" class="btn-login">
+                {% trans "Cancel" %}
             </button>
+        {% endif %}
+    </div>
+</form>
 
-            {% if cancel_url %}
-                <a href="{{ cancel_url }}" class="btn-login">
-                    {% trans "Cancel" %}
-                </a>
-            {% else %}
-                <button type="submit" form="logout-from-stage" class="btn-login">
-                    {% trans "Cancel" %}
-                </button>
-            {% endif %}
-        </div>
+<!-- Logout form if no cancel_url -->
+{% if not cancel_url %}
+    <form id="logout-from-stage" method="post" action="{% url 'account_logout' %}">
+        <input type="hidden" name="next" value="{% url 'account_login' %}">
+        {% csrf_token %}
     </form>
-
-    <!-- Logout form if no cancel_url -->
-    {% if not cancel_url %}
-        <form id="logout-from-stage" method="post" action="{% url 'account_logout' %}">
-            <input type="hidden" name="next" value="{% url 'account_login' %}">
-            {% csrf_token %}
-        </form>
-    {% endif %}
-</div>
+{% endif %}
 {% endblock content %}

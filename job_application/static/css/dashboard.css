@@ -1,3 +1,31 @@
+:root {
+  --accent-color: #7563ff;
+  --background-color: #f2f2f2;
+  --white: #ffffff;
+  --text-color: #333333;
+  --text-color-faded: #8f8f8f;
+  --border-color: #d9d9d9;
+  --font-family: "Poppins", sans-serif;
+  --border-radius: 5px;
+  --box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  background: var(--background-color);
+  color: var(--text-color);
+  scroll-behavior: smooth;
+}
+
 .banner-section {
   position: relative;
   padding-top: 80px;
@@ -10,9 +38,9 @@
 .banner-content {
   width: 100%;
   display: flex;
-  justify-content: space-between;
   z-index: 10;
   position: relative;
+  justify-content: flex-end;
 }
 
 .title {
@@ -65,6 +93,7 @@
   margin: auto;
   border-radius: var(--border-radius);
   margin-bottom: 50px;
+  height: 100%;
 }
 
 .applications-section {
@@ -74,6 +103,7 @@
   max-width: 1200px;
   overflow: hidden;
   margin: auto;
+  background-color: #fff;
 }
 
 .applications-section-title {
@@ -171,7 +201,6 @@
 
 .date-filter-title {
   /* Font styles */
-  color: #6455ed;
   font-size: 14px;
   width: 130px;
 }
@@ -250,3 +279,118 @@
 .clear {
   padding-left: 5px;
 }
+
+main {
+  position: absolute;
+  top: 48px;
+  left: 225px;
+  width: calc(100dvw - 225px);
+  background-color: #fff;
+}
+.btn {
+  background-color: var(--white) !important;
+}
+.home-link-tag {
+  color: #7563ff;
+}
+.hidden {
+  display: none;
+}
+.date-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 991px) {
+  nav.nav-right-mobile-active {
+    justify-content: space-between;
+  }
+  
+  main {
+    left: 0;;
+    width: calc(100dvw);
+  }
+
+  nav ul li a {
+    position: relative;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    color: #d9d9d9;
+    font-size: 18px;
+    line-height: 1.5rem;
+    text-transform: uppercase;
+}
+  nav ul.nav-right li.hidden {
+      display: none;
+  }
+  nav ul.nav-right li.active {
+      display: block;
+  }
+  #hamburger {
+      display: block;
+      font-size: 24px;
+      color: #fff;
+  }
+  #menu {
+    flex-direction: column;
+  }
+  nav ul.nav-right-mobile-active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      position: absolute;
+      top: 55px;
+      background: #333;
+      width: 100%;
+      height: 400px;
+  }
+  #hamburger-menu {
+      display: block;
+  }
+}
+
+@media screen and (max-width: 728px) {
+  .metrics-section {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  .banner-content {
+    justify-content: center;
+  }
+  .chart {
+    display: none;
+  }
+  .application-item {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .dashboard-content {
+    padding-inline: 20px;
+  }
+  .date-filter {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .seans-speciality {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+  }
+  .applications-section-title {
+    text-align: center;
+  }
+  .pagination {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+}
+

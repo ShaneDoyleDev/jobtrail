@@ -1,0 +1,22 @@
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark job-application-nav-bar nav-right-mobile-active hidden">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="{% url 'home' %}">JOB<span class="home-link-tag">TRAIL<span></a>
+    <!-- Navbar-->
+    <ul id="menu" class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 ">
+            <li class="hidden">
+                <a href="#about">About Us</a>
+            </li>
+            <li  class="hidden">
+                <a href="#services">Services</a>
+            </li>
+            <li class="hidden">
+                <a href="#contact">Contact Us</a>
+            </li>
+            <li class="hidden">
+                <a href="{% url 'dashboard' %}">Log out</a>
+            </li>
+            <li id='hamburger' class="hamburger-menu hidden">
+                <i class="fa-solid fa-burger" style="color: white;"></i>
+            </li>
+    </ul>
+</nav>

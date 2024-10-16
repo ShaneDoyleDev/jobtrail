@@ -34,8 +34,16 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", False)
 
-ALLOWED_HOSTS = ['127.0.0.1', '8000-shanedoyledev-jobtrail-c8eaclld72l.ws.codeinstitute-ide.net',
-                 'job-trail-1781474a8917.herokuapp.com']
+ALLOWED_HOSTS = [
+                    '127.0.0.1', 
+                    '8000-shanedoyledev-jobtrail-c8eaclld72l.ws.codeinstitute-ide.net',
+                    'job-trail-1781474a8917.herokuapp.com', 
+                ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://8000-shanedoyledev-jobtrail-c8eaclld72l.ws.codeinstitute-ide.net',
+    'https://8000-shanedoyledev-jobtrail-c8eaclld72l.ws.codeinstitute-ide.net',
+]
 
 # Application definition
 
@@ -151,7 +159,7 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 # Optional, but recommended
-LOGIN_REDIRECT_URL = '/profile/update/'
+LOGIN_REDIRECT_URL = '/job-application/dashboard/'
 LOGOUT_REDIRECT_URL = '/'
 
 if DEBUG:

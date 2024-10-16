@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "forms-base.html" %}
 {% load allauth %}
 {% load i18n %}
 {% block title %}
@@ -6,28 +6,27 @@
 {% endblock title %}
 
 {% block content %}
-<div class="account-container">
-    <h1 class="account-heading">{% trans "Confirm Access" %}</h1>
+<h1 class="account-heading">{% trans "Confirm Access" %}</h1>
 
-    <p class="account-text">
-        {% blocktranslate %}Please reauthenticate to safeguard your account.{% endblocktranslate %}
-    </p>
+<p class="account-text">
+    {% blocktranslate %}Please reauthenticate to safeguard your account.{% endblocktranslate %}
+</p>
 
-    <!-- Reauthentication form content placeholder -->
-    {% block reauthenticate_content %}{% endblock %}
+<!-- Reauthentication form content placeholder -->
+{% block reauthenticate_content %}{% endblock %}
 
-    {% if reauthentication_alternatives %}
-        <hr class="account-divider">
+{% if reauthentication_alternatives %}
+    <hr class="account-divider">
 
-        <h2 class="account-heading-secondary">{% trans "Alternative options" %}</h2>
+    <h2 class="account-heading-secondary">{% trans "Alternative options" %}</h2>
 
-        <div class="account-form-actions">
-            {% for alt in reauthentication_alternatives %}
-                <a href="{{ alt.url }}" class="btn-login">
-                    {{ alt.description }}
-                </a>
-            {% endfor %}
-        </div>
-    {% endif %}
-</div>
+    <div class="account-form-actions">
+        {% for alt in reauthentication_alternatives %}
+            <a href="{{ alt.url }}" class="btn-login">
+                {{ alt.description }}
+            </a>
+        {% endfor %}
+    </div>
+{% endif %}
+
 {% endblock content %}
