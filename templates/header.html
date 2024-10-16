@@ -9,7 +9,7 @@
             <a href="{% url 'home' %}">Home</a>
         </li>
         <li>
-            <a href="{% url 'create_cv' %}">CV</a>
+            <a href="{% url 'generate_pdf' %}">CV</a>
         </li>
         {% if user.is_authenticated %}
         <li>
