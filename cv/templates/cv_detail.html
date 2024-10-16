@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Display CV
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/cv_styles.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="cv-container">
+    <h1>{{ cv.contact_details.name }}</h1>
+
+    <div class="contact-details">
+      <h2>Contact Details</h2>
+      <p>Email: {{ cv.contact_details.email }}</p>
+      <p>Phone: {{ cv.contact_details.phone_number }}</p>
+      <p>Location: {{ cv.contact_details.location }}</p>
+      <p>
+        LinkedIn: <a href="{{ cv.contact_details.linkedin_profile }}">{{ cv.contact_details.linkedin_profile }}</a>
+      </p>
+    </div>
+
+    <div class="personal-profile">
+      <h2>Personal Profile</h2>
+      <p>{{ cv.personal_profile.description }}</p>
+    </div>
+
+    <div class="education">
+      <h2>Education</h2>
+      <ul>
+        {% for item in cv.education_items.all %}
+          <li>{{ item.school }} in {{ item.area_of_study }} ({{ item.start_year }} - {{ item.end_year|default:'Present' }})</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="work-experience">
+      <h2>Work Experience</h2>
+      <ul>
+        {% for job in cv.jobs.all %}
+          <li>{{ job.job_title }} at {{ job.company }} ({{ job.start_date }} - {{ job.end_date|default:'Present' }})</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="projects">
+      <h2>Projects</h2>
+      <ul>
+        {% for project in cv.projects.all %}
+          <li>
+            {{ project.project_name }} - {{ project.description }}{% if project.live_link %}
+              (<a href="{{ project.live_link }}">Live Link</a>)
+            {% endif %}
+            {% if project.github_link %}
+              | <a href="{{ project.github_link }}">GitHub Link</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="skills">
+      <h2>Technical Skills</h2>
+      <ul>
+        {% for skill in cv.technical_skills.all %}
+          <li>{{ skill.skill }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="soft-skills">
+      <h2>Soft Skills</h2>
+      <ul>
+        {% for skill in cv.soft_skills.all %}
+          <li>{{ skill.group_name }} - {{ skill.short_description }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="hackathons">
+      <h2>Hackathons</h2>
+      <ul>
+        {% for hackathon in cv.hackathon_items.all %}
+          <li>
+            {{ hackathon.competition_name }} ({{ hackathon.year_month }}) - {{ hackathon.role }} | <a href="{{ hackathon.github_link }}">GitHub Link</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}

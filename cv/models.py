@@ -1,142 +1,136 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator, RegexValidator
 
 
 # Contact Details
 class ContactDetails(models.Model):
-    name = models.CharField(max_length=255)
-    linkedin_profile = models.URLField()
-    email = models.EmailField()
-    phone_number = models.CharField(max_length=15)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="contact_details")
+    name = models.CharField(max_length=255, verbose_name="Full Name")
+    linkedin_profile = models.URLField(verbose_name="LinkedIn Profile", blank=True)
+    email = models.EmailField(verbose_name="Email Address")
+    phone_number = models.CharField(
+        max_length=15, 
+        validators=[RegexValidator(r'^\+?1?\d{9,15}$')], 
+        verbose_name="Phone Number"
+    )
     location = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user'], name='unique_contact_details_per_user')
+        ]
 
 
 # Personal Profile
 class PersonalProfile(models.Model):
-    description = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="personal_profiles")
+    description = models.TextField(verbose_name="Profile Description")
 
     def __str__(self):
         return self.description[:50]
 
 
-class Education(models.Model):
-
-    pass
-
 # Education
 class EducationItem(models.Model):
-    education = models.ForeignKey(Education, on_delete=models.CASCADE, related_name='items', null=True, blank=True)
-    start_year = models.IntegerField()
-    end_year = models.IntegerField()
-    school = models.CharField(max_length=255)
-    area_of_study = models.CharField(max_length=255)
-    result = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="education_items")
+    start_year = models.IntegerField(
+        validators=[MinValueValidator(1900), MaxValueValidator(2100)], 
+        verbose_name="Start Year"
+    )
+    end_year = models.IntegerField(
+        validators=[MinValueValidator(1900), MaxValueValidator(2100)], 
+        verbose_name="End Year", blank=True, null=True
+    )
+    school = models.CharField(max_length=255, verbose_name="School Name")
+    area_of_study = models.CharField(max_length=255, verbose_name="Area of Study")
+    result = models.CharField(max_length=100, verbose_name="Result")
 
     def __str__(self):
         return f"{self.school} ({self.start_year} - {self.end_year})"
-    
-
-class Hackathons(models.Model):
-
-    pass
 
 
 # Hackathons
 class HackathonItem(models.Model):
-    hackathons = models.ForeignKey(Hackathons, on_delete=models.CASCADE, related_name='items', null=True, blank=True)
-    year_month = models.DateField()
-    github_link = models.URLField()
-    hosts = models.CharField(max_length=255)
-    competition_name = models.CharField(max_length=255)
-    role = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="hackathon_items")
+    year_month = models.DateField(verbose_name="Year/Month")
+    github_link = models.URLField(verbose_name="GitHub Link")
+    hosts = models.CharField(max_length=255, verbose_name="Host Organization")
+    competition_name = models.CharField(max_length=255, verbose_name="Competition Name")
+    role = models.CharField(max_length=255, verbose_name="Role")
 
     def __str__(self):
         return f"{self.competition_name} ({self.year_month})"
 
 
-class TechnicalSkills(models.Model):
-    group_name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.group_name
-    
 # Technical Skills
 class TechnicalSkill(models.Model):
-    technical_skills = models.ForeignKey(TechnicalSkills, on_delete=models.CASCADE, related_name='items', null=True, blank=True)
-    skill = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="technical_skills")
+    skill = models.CharField(max_length=255, verbose_name="Skill")
 
     def __str__(self):
         return self.skill
 
 
-class Projects(models.Model):
-
-    pass
-
-
 # Projects
 class Project(models.Model):
-    projects = models.ForeignKey(Projects, on_delete=models.CASCADE, related_name='items', null=True, blank=True)
-    project_name = models.CharField(max_length=255)
-    live_link = models.URLField()
-    github_link = models.URLField()
-    skills = models.ManyToManyField(TechnicalSkill, null=True, blank=True)
-    description = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="projects")
+    project_name = models.CharField(max_length=255, verbose_name="Project Name")
+    live_link = models.URLField(verbose_name="Live Link", blank=True)
+    github_link = models.URLField(verbose_name="GitHub Link", blank=True)
+    skills = models.ManyToManyField(TechnicalSkill, blank=True)
+    description = models.TextField(verbose_name="Project Description")
 
     def __str__(self):
         return self.project_name
 
 
-
-class ProfessionalExperience(models.Model):
-
-    pass
-
-
+# Professional Experience
 class Job(models.Model):
-    professional_experience = models.ForeignKey(ProfessionalExperience, on_delete=models.CASCADE, related_name='items', null=True, blank=True)
-    job_title = models.CharField(max_length=255)
-    company = models.CharField(max_length=255)
-    start_date = models.DateField()
-    end_date = models.DateField(null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="jobs")
+    job_title = models.CharField(max_length=255, verbose_name="Job Title")
+    company = models.CharField(max_length=255, verbose_name="Company Name")
+    start_date = models.DateField(verbose_name="Start Date")
+    end_date = models.DateField(verbose_name="End Date", null=True, blank=True)
 
     def __str__(self):
-        return self.job_title
-    
-# Professional Experience
+        return f"{self.job_title} at {self.company}"
+
+
+# Job Bullet Points
 class JobBulletPoint(models.Model):
-    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='items', null=True, blank=True)
-    jbp = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="job_bullet_points")
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='bullet_points')
+    jbp = models.TextField(verbose_name="Description")
 
     def __str__(self):
         return self.jbp[:50]
 
 
-class SoftSkills(models.Model):
-
-    pass
-
 # Soft Skills
 class SoftSkill(models.Model):
-    soft_skills = models.ForeignKey(SoftSkills, on_delete=models.CASCADE, related_name='items', null=True, blank=True)
-    group_name = models.CharField(max_length=255)
-    short_description = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="soft_skills")
+    group_name = models.CharField(max_length=255, verbose_name="Skill Group")
+    short_description = models.TextField(verbose_name="Description")
 
     def __str__(self):
         return self.group_name
 
+
 # Full CV
 class CV(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="cv")
     contact_details = models.OneToOneField(ContactDetails, on_delete=models.CASCADE)
     personal_profile = models.OneToOneField(PersonalProfile, on_delete=models.CASCADE)
-    education = models.OneToOneField(Education, on_delete=models.CASCADE)
-    hackathons = models.OneToOneField(Hackathons, on_delete=models.CASCADE)
-    technical_skills = models.OneToOneField(TechnicalSkills, on_delete=models.CASCADE)
-    projects = models.OneToOneField(Projects, on_delete=models.CASCADE)
-    professional_experience = models.OneToOneField(ProfessionalExperience, on_delete=models.CASCADE)
-    soft_skills = models.OneToOneField(SoftSkills, on_delete=models.CASCADE)
+    education_items = models.ManyToManyField(EducationItem, blank=True)
+    hackathon_items = models.ManyToManyField(HackathonItem, blank=True)
+    technical_skills = models.ManyToManyField(TechnicalSkill, blank=True)
+    projects = models.ManyToManyField(Project, blank=True)
+    jobs = models.ManyToManyField(Job, blank=True)
+    soft_skills = models.ManyToManyField(SoftSkill, blank=True)
 
     def __str__(self):
         return f"CV of {self.contact_details.name}"

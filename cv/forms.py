@@ -1,42 +1,72 @@
+# forms.py
 from django import forms
-from django.forms import inlineformset_factory
-from .models import CV, ContactDetails, PersonalProfile, Education, EducationItem, Hackathons, HackathonItem, TechnicalSkills, TechnicalSkill, Projects, Project, Job, JobBulletPoint, ProfessionalExperience, SoftSkills, SoftSkill
+from django.forms import modelformset_factory
+from .models import CV, ContactDetails, PersonalProfile, EducationItem, HackathonItem, TechnicalSkill, Project, Job, SoftSkill
 
-# Individual Forms
+
 class ContactDetailsForm(forms.ModelForm):
     class Meta:
         model = ContactDetails
-        fields = '__all__'
+        fields = ['name', 'linkedin_profile', 'email', 'phone_number', 'location']
+
 
 class PersonalProfileForm(forms.ModelForm):
     class Meta:
         model = PersonalProfile
-        fields = '__all__'
+        fields = ['description']
 
-# Formsets for related models
-EducationItemFormset = inlineformset_factory(Education, EducationItem, fields='__all__', extra=1, can_delete=True)
+
+class EducationItemForm(forms.ModelForm):
+    class Meta:
+        model = EducationItem
+        fields = ['start_year', 'end_year', 'school', 'area_of_study', 'result']
+
+
+class HackathonItemForm(forms.ModelForm):
+    class Meta:
+        model = HackathonItem
+        fields = ['year_month', 'github_link', 'hosts', 'competition_name', 'role']
+
+
+class TechnicalSkillForm(forms.ModelForm):
+    class Meta:
+        model = TechnicalSkill
+        fields = ['skill']
+
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['project_name', 'live_link', 'github_link', 'skills', 'description']
+
+
+class JobForm(forms.ModelForm):
+    class Meta:
+        model = Job
+        fields = ['job_title', 'company', 'start_date', 'end_date']
+
+
+class SoftSkillForm(forms.ModelForm):
+    class Meta:
+        model = SoftSkill
+        fields = ['group_name', 'short_description']
+
+
+# Formsets for ManyToMany fields
+EducationFormSet = modelformset_factory(EducationItem, form=EducationItemForm, extra=1, can_delete=True)
+HackathonFormSet = modelformset_factory(HackathonItem, form=HackathonItemForm, extra=1, can_delete=True)
+TechnicalSkillFormSet = modelformset_factory(TechnicalSkill, form=TechnicalSkillForm, extra=1, can_delete=True)
+ProjectFormSet = modelformset_factory(Project, form=ProjectForm, extra=1, can_delete=True)
+JobFormSet = modelformset_factory(Job, form=JobForm, extra=1, can_delete=True)
+SoftSkillFormSet = modelformset_factory(SoftSkill, form=SoftSkillForm, extra=1, can_delete=True)
+
 # HackathonItem Formset with custom DateInput widget for the year_month field
-HackathonItemFormset = inlineformset_factory(
-    Hackathons, HackathonItem, 
-    fields='__all__', 
-    extra=1, 
-    can_delete=True,
-    widgets={
-        'year_month': forms.DateInput(attrs={'type': 'date'}),
-    }
-)
-TechnicalSkillFormset = inlineformset_factory(TechnicalSkills, TechnicalSkill, fields='__all__', extra=1, can_delete=True)
-ProjectFormset = inlineformset_factory(Projects, Project, fields='__all__', extra=1, can_delete=True)
-# Job Formset with custom DateInput widget for the start and end date field
-JobFormset = inlineformset_factory(
-    Hackathons, HackathonItem, 
-    fields='__all__', 
-    extra=1, 
-    can_delete=True,
-    widgets={
-        'start_date': forms.DateInput(attrs={'type': 'date'}),
-        'end_date': forms.DateInput(attrs={'type': 'date'}),
-    }
-)
-JobBulletPointFormset = inlineformset_factory(Job, JobBulletPoint, fields='__all__', extra=3, can_delete=True)
-SoftSkillFormset = inlineformset_factory(SoftSkills, SoftSkill, fields='__all__', extra=1, can_delete=True)
+# HackathonItemFormset = inlineformset_factory(
+#     Hackathons, HackathonItem, 
+#     fields='__all__', 
+#     extra=1, 
+#     can_delete=True,
+#     widgets={
+#         'year_month': forms.DateInput(attrs={'type': 'date'}),
+#     }
+# )
