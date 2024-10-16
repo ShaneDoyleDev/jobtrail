@@ -100,10 +100,10 @@ class JobApplicationListView(ListView):
         offer_rate = (total_offers / total_applications) * 100 if total_applications > 0 else 0
 
         # Add metrics to context
-        context['total_applications'] = total_applications
-        context['interviews_scheduled'] = interviews_scheduled
-        context['response_rate'] = response_rate
-        context['offer_rate'] = offer_rate
+        context['total_applications'] = round(total_applications, 2)
+        context['interviews_scheduled'] = round(interviews_scheduled, 2)
+        context['response_rate'] = round(response_rate, 2)
+        context['offer_rate'] = round(offer_rate, 2)
 
         return context
 
