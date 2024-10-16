@@ -67,8 +67,7 @@ class HackathonItem(models.Model):
 
 
 # Technical Skills
-class TechnicalSkill(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="technical_skills")
+class ProjectSkill(models.Model):
     skill = models.CharField(max_length=255, verbose_name="Skill")
 
     def __str__(self):
@@ -81,12 +80,11 @@ class Project(models.Model):
     project_name = models.CharField(max_length=255, verbose_name="Project Name")
     live_link = models.URLField(verbose_name="Live Link", blank=True)
     github_link = models.URLField(verbose_name="GitHub Link", blank=True)
-    skills = models.ManyToManyField(TechnicalSkill, blank=True)
+    skills = models.ManyToManyField(ProjectSkill, blank=True)
     description = models.TextField(verbose_name="Project Description")
 
     def __str__(self):
         return self.project_name
-
 
 # Professional Experience
 class Job(models.Model):
@@ -95,19 +93,12 @@ class Job(models.Model):
     company = models.CharField(max_length=255, verbose_name="Company Name")
     start_date = models.DateField(verbose_name="Start Date")
     end_date = models.DateField(verbose_name="End Date", null=True, blank=True)
+    bullet_point_1 = models.CharField(max_length=70)
+    bullet_point_2 = models.CharField(max_length=70)
+    bullet_point_3 = models.CharField(max_length=70)
 
     def __str__(self):
         return f"{self.job_title} at {self.company}"
-
-
-# Job Bullet Points
-class JobBulletPoint(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="job_bullet_points")
-    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='bullet_points')
-    jbp = models.TextField(verbose_name="Description")
-
-    def __str__(self):
-        return self.jbp[:50]
 
 
 # Soft Skills
@@ -127,7 +118,7 @@ class CV(models.Model):
     personal_profile = models.OneToOneField(PersonalProfile, on_delete=models.CASCADE)
     education_items = models.ManyToManyField(EducationItem, blank=True)
     hackathon_items = models.ManyToManyField(HackathonItem, blank=True)
-    technical_skills = models.ManyToManyField(TechnicalSkill, blank=True)
+    technical_skills = models.ManyToManyField(ProjectSkill, blank=True)
     projects = models.ManyToManyField(Project, blank=True)
     jobs = models.ManyToManyField(Job, blank=True)
     soft_skills = models.ManyToManyField(SoftSkill, blank=True)

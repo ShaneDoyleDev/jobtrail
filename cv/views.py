@@ -6,10 +6,10 @@ from django.shortcuts import render, redirect
 from django.forms import modelformset_factory
 # views.py
 from django.shortcuts import render, redirect
-from .models import CV, ContactDetails, PersonalProfile, EducationItem, HackathonItem, TechnicalSkill, Project, Job, SoftSkill
+from .models import CV, ContactDetails, PersonalProfile, EducationItem, HackathonItem, ProjectSkill, Project, Job, SoftSkill
 from .forms import (
     ContactDetailsForm, PersonalProfileForm, EducationFormSet, HackathonFormSet,
-    TechnicalSkillFormSet, ProjectFormSet, JobFormSet, SoftSkillFormSet
+    ProjectFormSet, JobFormSet, SoftSkillFormSet
 )
 
 
@@ -38,7 +38,7 @@ def create_cv(request):
         # Formsets
         education_formset = EducationFormSet(request.POST, prefix='education')
         hackathon_formset = HackathonFormSet(request.POST, prefix='hackathon')
-        skill_formset = TechnicalSkillFormSet(request.POST, prefix='skills')
+        skill_formset = ProjectSkillFormSet(request.POST, prefix='skills')
         project_formset = ProjectFormSet(request.POST, prefix='projects')
         job_formset = JobFormSet(request.POST, prefix='jobs')
         soft_skill_formset = SoftSkillFormSet(request.POST, prefix='softskills')
@@ -81,7 +81,6 @@ def create_cv(request):
         profile_form = PersonalProfileForm()
         education_formset = EducationFormSet(queryset=EducationItem.objects.none(), prefix='education')
         hackathon_formset = HackathonFormSet(queryset=HackathonItem.objects.none(), prefix='hackathon')
-        skill_formset = TechnicalSkillFormSet(queryset=TechnicalSkill.objects.none(), prefix='skills')
         project_formset = ProjectFormSet(queryset=Project.objects.none(), prefix='projects')
         job_formset = JobFormSet(queryset=Job.objects.none(), prefix='jobs')
         soft_skill_formset = SoftSkillFormSet(queryset=SoftSkill.objects.none(), prefix='softskills')
@@ -91,7 +90,6 @@ def create_cv(request):
         'profile_form': profile_form,
         'education_formset': education_formset,
         'hackathon_formset': hackathon_formset,
-        'skill_formset': skill_formset,
         'project_formset': project_formset,
         'job_formset': job_formset,
         'soft_skill_formset': soft_skill_formset,

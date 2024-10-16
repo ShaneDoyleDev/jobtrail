@@ -4,10 +4,9 @@ from .models import (
     PersonalProfile,
     EducationItem,
     HackathonItem,
-    TechnicalSkill,
+    ProjectSkill,
     Project,
     Job,
-    JobBulletPoint,
     SoftSkill,
     CV,
 )
@@ -33,10 +32,9 @@ class HackathonItemAdmin(admin.ModelAdmin):
     search_fields = ('competition_name', 'hosts')
     list_filter = ('user', 'year_month')
 
-class TechnicalSkillAdmin(admin.ModelAdmin):
-    list_display = ('user', 'skill')
+class ProjectSkillAdmin(admin.ModelAdmin):
+    list_display = ('skill',)
     search_fields = ('skill',)
-    list_filter = ('user',)
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('user', 'project_name', 'description')
@@ -47,11 +45,6 @@ class JobAdmin(admin.ModelAdmin):
     list_display = ('user', 'job_title', 'company', 'start_date', 'end_date')
     search_fields = ('job_title', 'company')
     list_filter = ('user', 'start_date', 'end_date')
-
-class JobBulletPointAdmin(admin.ModelAdmin):
-    list_display = ('user', 'job', 'jbp')
-    search_fields = ('jbp',)
-    list_filter = ('user', 'job')
 
 class SoftSkillAdmin(admin.ModelAdmin):
     list_display = ('user', 'group_name')
@@ -68,10 +61,9 @@ admin.site.register(ContactDetails, ContactDetailsAdmin)
 admin.site.register(PersonalProfile, PersonalProfileAdmin)
 admin.site.register(EducationItem, EducationItemAdmin)
 admin.site.register(HackathonItem, HackathonItemAdmin)
-admin.site.register(TechnicalSkill, TechnicalSkillAdmin)
+admin.site.register(ProjectSkill, ProjectSkillAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Job, JobAdmin)
-admin.site.register(JobBulletPoint, JobBulletPointAdmin)
 admin.site.register(SoftSkill, SoftSkillAdmin)
 admin.site.register(CV, CVAdmin)
 

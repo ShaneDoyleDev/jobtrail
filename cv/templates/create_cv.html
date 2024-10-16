@@ -101,22 +101,6 @@
     </div>
     <button type="button" id="add-hackathon">Add Hackathon</button>
 
-    <!-- Technical Skills -->
-    <h3>Technical Skills</h3>
-    <div id="skills-formset">
-        {{ skill_formset.management_form }}
-        {% for form in skill_formset %}
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="id_skills-{{ forloop.counter0 }}-skill">Skill:</label>
-                    {{ form.skill }}
-                </div>
-                <button type="button" class="remove-form">Remove</button>
-            </div>
-        {% endfor %}
-    </div>
-    <button type="button" id="add-skill">Add Skill</button>
-
     <!-- Projects -->
     <h3>Projects</h3>
     <div id="projects-formset">
@@ -171,6 +155,18 @@
                 <div class="form-group">
                     <label for="id_jobs-{{ forloop.counter0 }}-end_date">End Date:</label>
                     {{ form.end_date }}
+                </div>
+                <div class="form-group">
+                    <label for="id_jobs-{{ forloop.counter0 }}-bullet_point_1">Bullet Point 1:</label>
+                    {{ form.bullet_point_1 }}
+                </div>
+                <div class="form-group">
+                    <label for="id_jobs-{{ forloop.counter0 }}-bullet_point_2">Bullet Point 2:</label>
+                    {{ form.bullet_point_2 }}
+                </div>
+                <div class="form-group">
+                    <label for="id_jobs-{{ forloop.counter0 }}-bullet_point_3">Bullet Point 3:</label>
+                    {{ form.bullet_point_3 }}
                 </div>
 
                 <button type="button" class="remove-form">Remove</button>
