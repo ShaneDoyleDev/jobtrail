@@ -2,7 +2,7 @@
 section.landing-page-header {
   height: calc(100dvh - 80px);
   width: 100%;
-  background-image: url("../images/header-bg.png");
+  background-image: url("/static/images/header-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -147,7 +147,7 @@ section.landing-page-header img {
 }
 .price-image {
   height: 200px;
-  background: url("../images/header-bg.png");
+  background: url("/static/images/header-bg.png");
   background-size: cover;
   border-radius: 10px;
   margin-top: 10px;

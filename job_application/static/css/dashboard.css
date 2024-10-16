@@ -1,0 +1,279 @@
+:root {
+  --accent-color: #7563ff;
+  --background-color: #f2f2f2;
+  --white: #ffffff;
+  --text-color: #333333;
+  --text-color-faded: #8f8f8f;
+  --border-color: #d9d9d9;
+  --font-family: "Poppins", sans-serif;
+  --border-radius: 5px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  background: var(--background-color);
+  color: var(--text-color);
+  scroll-behavior: smooth;
+}
+
+.banner-section {
+  position: relative;
+  padding-top: 80px;
+  padding-inline: 80px;
+  height: 250px;
+  background: linear-gradient(to top, #8676ff, #7563ff);
+  overflow: hidden;
+}
+
+.banner-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+  position: relative;
+}
+
+.title {
+  color: var(--white);
+  font-weight: normal;
+}
+
+.city-image {
+  top: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.metrics-section {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 80px;
+  gap: 20px;
+  position: relative;
+  z-index: 4;
+}
+
+.metrics-panel {
+  width: 250px;
+  background: var(--white);
+  padding-block: 20px;
+  padding-inline: 25px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  transform: translateY(-50px);
+}
+
+.metric-title {
+  font-size: 14px;
+}
+
+.metric-data {
+  font-size: 30px;
+}
+
+.dashboard-content {
+  padding-inline: 80px;
+  padding-bottom: 100px;
+}
+
+.chart-section {
+  background-color: #fff;
+  height: 250px;
+  width: 70%;
+  margin: auto;
+  border-radius: var(--border-radius);
+  margin-bottom: 50px;
+}
+
+.applications-section {
+  font-size: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  max-width: 1200px;
+  overflow: hidden;
+  margin: auto;
+}
+
+.applications-section-title {
+  color: var(--text-color-faded);
+  font-size: 14px;
+  font-weight: normal;
+  padding: 10px;
+}
+
+.application-item {
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  background: var(--white);
+  padding: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.company-text {
+  color: var(--accent-color);
+}
+
+.company-text a {
+  color: inherit;
+}
+
+.application-title h3 {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.no-applications-message {
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+  color: var(--text-color-faded);
+}
+
+.pagination {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.pagination .step-links a {
+  color: #007bff;
+  text-decoration: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination .step-links a:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination .current-page {
+  padding: 10px 15px;
+  margin: 0 5px;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.pagination .first-page,
+.pagination .last-page {
+  font-weight: bold;
+}
+
+.pagination .step-links {
+  display: inline-block;
+}
+
+.pagination .step-links a:disabled {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: #e9ecef;
+}
+
+.dashboard-bold {
+  font-weight: bold;
+}
+/* Date and Search Filter Form */
+.date-filter {
+  /* Sizing and layout */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-evenly;
+  margin-bottom: 1rem;
+}
+
+.date-filter-title {
+  /* Font styles */
+  color: #6455ed;
+  font-size: 14px;
+  width: 130px;
+}
+
+.date-label {
+  /* Styling and positioning for date input labels */
+  font-size: 14px;
+  color: #6455ed;
+}
+
+.date-input {
+  /* Date input field styling */
+  padding: 10px;
+  background: transparent;
+  border: 2px solid #000;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #000;
+  outline: 0;
+}
+
+.search-input {
+  /* Search input field styling */
+  padding: 10px;
+  background: transparent;
+  border: 2px solid #000;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #000;
+  outline: 0;
+}
+
+.search-btn {
+  /* Submit button styling */
+  display: inline-block;
+  padding: 10px;
+  background-color: #f4d14d;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-btn:hover,
+.search-btn:focus {
+  transform: translateY(-1px);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.search-btn:active {
+  transform: translateY(0);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+}
+
+/* Input label interaction - similar to the contact form */
+.date-input:focus ~ label,
+.date-input:valid ~ label,
+.search-input:focus ~ label,
+.search-input:valid ~ label {
+  top: -30px;
+  font-size: 12px;
+  color: #7563ff;
+}
+
+.search-clear {
+  display: flex;
+  align-items: end;
+}
+
+.clear {
+  padding-left: 5px;
+}

@@ -1,0 +1,133 @@
+/* Detailed Job Application Page Styles */
+.detailed-application {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Container for the heading and edit button */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* Page title (Job Application Details) */
+.page-title {
+    font-size: 24px;
+    margin: 0;
+    color: #2b2b2b;
+    font-weight: 600;
+}
+
+/* Edit Job Application button styling */
+.edit-application-btn {
+    background-color: #f4d14d;
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+}
+
+.edit-application-btn:hover {
+    background-color: #e2bf3e;
+    cursor: pointer;
+}
+
+.edit-application-btn:active {
+    background-color: #c5a732;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 2px 8px;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #4a4a4a;
+    border-bottom: 2px solid #6455ed;
+    padding-bottom: 5px;
+    margin-top: 40px;
+}
+
+p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+p strong {
+    color: #6455ed;
+}
+
+a {
+    color: #6455ed;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.document-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #f4d14d;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.document-link:hover {
+    color: #d4b93d;
+}
+
+.back-link {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.back-link a {
+    color: #fff;
+    background-color: #6455ed;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.back-link a:hover {
+    background-color: #574ecc;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .detailed-application {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    .page-title {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 13px;
+    }
+
+    .back-link a {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
