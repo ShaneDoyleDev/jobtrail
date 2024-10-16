@@ -5,30 +5,22 @@
             <a href="{% url 'home' %}" class="home-link">Job<span class="home-link-tag">TRAIL</span></a>
         </li>
     </ul>
-    <ul id='menu' class="nav-right">    
+    <ul id='menu' class="nav-right">        
         <li class="hidden">
-            <a href="{% url 'dashboard' %}">Dashboard</a>
+            <a href="#about">About Us</a>
         </li>
-        {% if user.is_authenticated %}
         <li  class="hidden">
-            <a href="{% url 'profile_update' %}">Profile Details</a>
+            <a href="#services">Services</a>
         </li>
         <li class="hidden">
-            <a href="{% url 'jobapplication_create' %}">Create Job Application</a>
+            <a href="#contact">Contact Us</a>
         </li>
         <li class="hidden">
-            <a href="{% url 'account_logout' %}">Logout</a>
-        </li>
-        <li id='hamburger' class="hamburger-menu">
-            <i class="fa-solid fa-burger" style="color: white;"></i>
-        </li>
-        {% else %}
-        <li class="hidden">
-            <a href="{% url 'account_login' %}">Login</a>
+            <a href="{% url 'account_login' %}">Log in</a>
         </li>
         <li id='hamburger' class="hamburger-menu">
             <i class="fa-solid fa-burger" style="color: white;"></i>
         </li>
     </ul>
 </nav>
-{% endif %}
+
