@@ -95,7 +95,7 @@
       {% for job_application in job_applications %}
         <div class="application-item">
           <div class="application-title">
-            <h3><span class="company-text">{{job_application.company_name}}</span> | {{job_application.job_title}}</h3>
+            <h3><span class="company-text"><a href="{% url 'jobapplication_detail' job_application.id %}">{{job_application.company_name}}</a></span> | {{job_application.job_title}}</h3>
           </div>
           <div class="application-details">
             <span><span class="dashboard-bold">Status:</span> <span class="faded-text">{{job_application.get_status_display}}</span></span>
