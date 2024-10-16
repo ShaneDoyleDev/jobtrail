@@ -7,6 +7,7 @@
   --border-color: #d9d9d9;
   --font-family: "Poppins", sans-serif;
   --border-radius: 5px;
+  --box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 * {
@@ -92,6 +93,7 @@ html {
   margin: auto;
   border-radius: var(--border-radius);
   margin-bottom: 50px;
+  height: 100%;
 }
 
 .applications-section {
@@ -101,6 +103,7 @@ html {
   max-width: 1200px;
   overflow: hidden;
   margin: auto;
+  background-color: #fff;
 }
 
 .applications-section-title {
@@ -277,3 +280,12 @@ html {
 .clear {
   padding-left: 5px;
 }
+
+main {
+  position: absolute;
+  top: 48px;
+  left: 225px;
+  width: calc(100dvw - 225px);
+  background-color: #fff;
+}
+
