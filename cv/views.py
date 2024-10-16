@@ -7,7 +7,7 @@ from .models import CV, Education, Hackathons, TechnicalSkills, Projects, Profes
 
 def generate_pdf(request):
     # Get the template and pass any context data you want to render
-    template = get_template('pdf_template.html')
+    template = get_template('create_pdf.html')
     context = {'name': 'John Doe', 'items': ['Item 1', 'Item 2']}
     html_content = template.render(context)
 
