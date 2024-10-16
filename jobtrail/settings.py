@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'job_application',
     'profiles',
     'home',
+    'cv',
 ]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
