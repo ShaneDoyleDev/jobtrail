@@ -1,0 +1,44 @@
+{% extends 'job-application-base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/list.css' %}" />
+{% endblock %}
+
+{% block title %}Projects{% endblock title %}
+{% block dashboard_content %}
+<h2>Projects</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Project Name</th>
+            <th>Description</th>
+            <th>Live Link</th>
+            <th>GitHub Link</th>
+            <th>Skills</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for project in projects %}
+        <tr>
+            <td>{{ project.project_name }}</td>
+            <td>{{ project.description }}</td>
+            <td><a href="{{ project.live_link }}" target="_blank">Live</a></td>
+            <td><a href="{{ project.github_link }}" target="_blank">View</a></td>
+            <td>
+                {% for skill in project.skills.all %}
+                    {{ skill.skill }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+            <td><a href="{% url 'project_edit' project.id %}">Edit</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No project details available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

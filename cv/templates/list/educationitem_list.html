@@ -1,0 +1,42 @@
+{% extends 'job-application-base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/list.css' %}" />
+{% endblock %}
+
+
+{% block title %}Education{% endblock title %}
+{% block dashboard_content %}
+<h2>Education</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Start Year</th>
+        <th>End Year</th>
+        <th>School</th>
+        <th>Area Of Study</th>
+        <th>Results</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in education_items %}
+      <tr>
+        <td>{{ item.start_year }}</td>
+        <td>{{ item.end_year }}</td>
+        <td>{{ item.school }}</td>
+        <td>{{ item.area_of_study }}</td>
+        <td>{{ item.results }}</td>
+        <td><a href="{% url 'education_item_edit' item.id %}">Edit</a></td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">No Education details available.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

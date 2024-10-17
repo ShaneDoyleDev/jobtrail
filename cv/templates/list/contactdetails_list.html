@@ -1,0 +1,39 @@
+{% extends 'job-application-base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/list.css' %}" />
+{% endblock %}
+
+
+{% block title %}Create CV{% endblock title %}
+<h2>Contact Details</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Location</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for contact in contact_details %}
+      <tr>
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.email }}</td>
+        <td>{{ contact.phone_number }}</td>
+        <td>{{ contact.location }}</td>
+        <td><a href="{% url 'contact-details-list' contact.id %}">Log in</a></td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">No contact details available.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% block dashboard_content %}
+{% endblock %}

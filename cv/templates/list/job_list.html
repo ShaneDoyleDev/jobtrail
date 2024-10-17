@@ -1,0 +1,46 @@
+{% extends 'job-application-base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/list.css' %}" />
+{% endblock %}
+
+{% block title %}Professional Experience{% endblock title %}
+{% block dashboard_content %}
+<h2>Professional Experience</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>Company Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Responsibilities</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for job in jobs %}
+        <tr>
+            <td>{{ job.job_title }}</td>
+            <td>{{ job.company }}</td>
+            <td>{{ job.start_date|date:"Y-m-d" }}</td>
+            <td>{{ job.end_date|date:"Y-m-d" }}</td>
+            <td>
+                <ul>
+                    <li>{{ job.bullet_point_1 }}</li>
+                    <li>{{ job.bullet_point_2 }}</li>
+                    <li>{{ job.bullet_point_3 }}</li>
+                </ul>
+            </td>
+            <td><a href="{% url 'job_edit' job.id %}">Edit</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No professional experience details available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

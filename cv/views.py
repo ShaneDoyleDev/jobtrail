@@ -11,7 +11,8 @@ from .forms import (
     ProjectFormSet, JobFormSet, ProjectSkillForm, SoftSkillForm, SoftSkillFormSet
 )
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def generate_pdf(request):
@@ -139,11 +140,11 @@ def create_contact(request):
 #     template_name = 'inidvidual/abstract_form.html'
 #     success_url = reverse_lazy('dashboard')
 
-# class ContactDetailsUpdateView(DynamicTitleMixin, UpdateView):
-#     model = ContactDetails
-#     form_class = ContactDetailsForm
-#     template_name = 'inidvidual/abstract_form.html'
-#     success_url = reverse_lazy('dashboard')
+class ContactDetailsUpdateView(DynamicTitleMixin, UpdateView):
+    model = ContactDetails
+    form_class = ContactDetailsForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')
 
 
 # Personal Profile Views
@@ -277,3 +278,82 @@ class SoftSkillUpdateView(DynamicTitleMixin, UpdateView):
     form_class = SoftSkillForm
     template_name = 'inidvidual/abstract_form.html'
     success_url = reverse_lazy('dashboard')
+
+
+class ContactDetailsListView(LoginRequiredMixin, ListView):
+    model = ContactDetails
+    template_name = 'list/contactdetails_list.html'
+    context_object_name = 'contact_details'
+
+    def get_queryset(self):
+        return self.request.user.contact_details.all()
+
+
+class PersonalProfileListView(LoginRequiredMixin, ListView):
+    model = PersonalProfile
+    template_name = 'list/personalprofile_list.html'
+    context_object_name = 'personal_profiles'
+
+    def get_queryset(self):
+        return self.request.user.personal_profiles.all()
+
+
+class EducationItemListView(LoginRequiredMixin, ListView):
+    model = EducationItem
+    template_name = 'list/educationitem_list.html'
+    context_object_name = 'education_items'
+
+    def get_queryset(self):
+        return self.request.user.education_items.all()
+
+
+class HackathonItemListView(LoginRequiredMixin, ListView):
+    model = HackathonItem
+    template_name = 'list/hackathonitem_list.html'
+    context_object_name = 'hackathon_items'
+
+    def get_queryset(self):
+        return self.request.user.hackathon_items.all()
+
+
+class ProjectSkillListView(LoginRequiredMixin, ListView):
+    model = ProjectSkill
+    template_name = 'list/projectskill_list.html'
+    context_object_name = 'project_skills'
+
+
+class ProjectListView(LoginRequiredMixin, ListView):
+    model = Project
+    template_name = 'list/project_list.html'
+    context_object_name = 'projects'
+
+    def get_queryset(self):
+        return self.request.user.projects.all()
+
+
+class JobListView(LoginRequiredMixin, ListView):
+    model = Job
+    template_name = 'list/job_list.html'
+    context_object_name = 'jobs'
+
+    def get_queryset(self):
+        return self.request.user.jobs.all()
+
+
+class SoftSkillListView(LoginRequiredMixin, ListView):
+    model = SoftSkill
+    template_name = 'list/softskill_list.html'
+    context_object_name = 'soft_skills'
+
+    def get_queryset(self):
+        return self.request.user.soft_skills.all()
+
+
+class CVListView(LoginRequiredMixin, ListView):
+    model = CV
+    template_name = 'list/cv_list.html'
+    context_object_name = 'cvs'
+
+    def get_queryset(self):
+        cvs = CV.objects.filter(user=self.request.user)
+        return cvs

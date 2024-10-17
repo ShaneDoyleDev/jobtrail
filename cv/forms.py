@@ -12,7 +12,7 @@ class ContactDetailsForm(forms.ModelForm):
 class PersonalProfileForm(forms.ModelForm):
     class Meta:
         model = PersonalProfile
-        fields = ['description']
+        fields = ['name', 'description']
 
 
 class EducationItemForm(forms.ModelForm):

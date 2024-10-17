@@ -1,0 +1,40 @@
+{% extends 'job-application-base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/list.css' %}" />
+{% endblock %}
+
+{% block title %}Hackathons{% endblock title %}
+{% block dashboard_content %}
+<h2>Hackathons</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Year/Month</th>
+            <th>Competition Name</th>
+            <th>Host Organization</th>
+            <th>Role</th>
+            <th>GitHub Link</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in hackathon_items %}
+        <tr>
+            <td>{{ item.year_month|date:"F Y" }}</td>
+            <td>{{ item.competition_name }}</td>
+            <td>{{ item.hosts }}</td>
+            <td>{{ item.role }}</td>
+            <td><a href="{{ item.github_link }}" target="_blank">View</a></td>
+            <td><a href="{% url 'hackathon_item_edit' item.id %}">Edit</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No Hackathon details available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator, RegexValidator
-
+from django.utils import timezone
 
 # Contact Details
 class ContactDetails(models.Model):
@@ -27,6 +27,7 @@ class ContactDetails(models.Model):
 # Personal Profile
 class PersonalProfile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="personal_profiles")
+    name = models.CharField(max_length=255, verbose_name="Job Title", null=True, blank=True)
     description = models.TextField(verbose_name="Profile Description")
 
     def __str__(self):
@@ -121,6 +122,9 @@ class CV(models.Model):
     projects = models.ManyToManyField(Project, blank=True)
     jobs = models.ManyToManyField(Job, blank=True)
     soft_skills = models.ManyToManyField(SoftSkill, blank=True)
+    soft_skills = models.ManyToManyField(SoftSkill, blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"CV of {self.contact_details.name}"
+
