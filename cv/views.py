@@ -27,13 +27,19 @@ def generate_pdf(request):
     response['Content-Disposition'] = 'attachment; filename="report.pdf"'
     return response
 
-
 def create_cv(request):
-    contact_details, created = ContactDetails.objects.get_or_create(user=request.user)
+    # Fetch or create ContactDetails and CV instances for the current user
+    contact_details, _ = ContactDetails.objects.get_or_create(user=request.user)
+    
+    # Check if the user already has a CV
+    try:
+        cv = CV.objects.get(user=request.user)
+    except CV.DoesNotExist:
+        cv = None
+    
     if request.method == 'POST':
-        
         contact_form = ContactDetailsForm(request.POST, instance=contact_details)
-        profile_form = PersonalProfileForm(request.POST)
+        profile_form = PersonalProfileForm(request.POST, instance=cv.personal_profile if cv else None)
 
         # Formsets
         education_formset = EducationFormSet(request.POST, prefix='education')
@@ -41,30 +47,11 @@ def create_cv(request):
         project_formset = ProjectFormSet(request.POST, prefix='projects')
         job_formset = JobFormSet(request.POST, prefix='jobs')
         soft_skill_formset = SoftSkillFormSet(request.POST, prefix='softskills')
-        
-        # Log form errors for debugging
-        if not contact_form.is_valid():
-            print("Contact Form Errors: ", contact_form.errors)
-        if not profile_form.is_valid():
-            print("Profile Form Errors: ", profile_form.errors)
-        if not education_formset.is_valid():
-            print("Education Formset Errors: ", education_formset.errors)
-        if not hackathon_formset.is_valid():
-            print("Hackathon Formset Errors: ", hackathon_formset.errors)
-        if not project_formset.is_valid():
-            print("Project Formset Errors: ", project_formset.errors)
-        if not job_formset.is_valid():
-            print("Job Formset Errors: ", job_formset.errors)
-        if not soft_skill_formset.is_valid():
-            print("Soft Skill Formset Errors: ", soft_skill_formset.errors)
 
-        
-        print(contact_form.is_valid(), profile_form.is_valid(), education_formset.is_valid(), hackathon_formset.is_valid(),
-             project_formset.is_valid(), job_formset.is_valid(), soft_skill_formset.is_valid())
-
-        if profile_form.is_valid() and all(
-            [education_formset.is_valid(),
-             project_formset.is_valid(), soft_skill_formset.is_valid()]
+        if contact_form.is_valid() and profile_form.is_valid() and all(
+            formset.is_valid() for formset in [
+                education_formset, hackathon_formset, project_formset, job_formset, soft_skill_formset
+            ]
         ):
             contact_details = contact_form.save(commit=False)
             contact_details.user = request.user
@@ -74,12 +61,18 @@ def create_cv(request):
             personal_profile.user = request.user
             personal_profile.save()
 
-            # Create the CV instance
-            cv = CV.objects.create(
-                user=request.user,
-                contact_details=contact_details,
-                personal_profile=personal_profile
-            )
+            # If the CV does not exist, create it
+            if not cv:
+                cv = CV.objects.create(
+                    user=request.user,
+                    contact_details=contact_details,
+                    personal_profile=personal_profile
+                )
+            else:
+                # Update the existing CV with the new contact details and personal profile
+                cv.contact_details = contact_details
+                cv.personal_profile = personal_profile
+                cv.save()
 
             # Save ManyToMany fields
             for formset, related_field in zip(
@@ -93,18 +86,15 @@ def create_cv(request):
                     related_field.add(instance)
 
             return redirect('cv_detail', id=cv.id)
-        
-        
-
     else:
-        # Initialize empty forms and formsets
+        # Pre-populate forms and formsets with existing data if available
         contact_form = ContactDetailsForm(instance=contact_details)
-        profile_form = PersonalProfileForm()
-        education_formset = EducationFormSet(queryset=EducationItem.objects.none(), prefix='education')
-        hackathon_formset = HackathonFormSet(queryset=HackathonItem.objects.none(), prefix='hackathon')
-        project_formset = ProjectFormSet(queryset=Project.objects.none(), prefix='projects')
-        job_formset = JobFormSet(queryset=Job.objects.none(), prefix='jobs')
-        soft_skill_formset = SoftSkillFormSet(queryset=SoftSkill.objects.none(), prefix='softskills')
+        profile_form = PersonalProfileForm(instance=cv.personal_profile if cv else None)
+        education_formset = EducationFormSet(queryset=EducationItem.objects.filter(user=request.user), prefix='education')
+        hackathon_formset = HackathonFormSet(queryset=HackathonItem.objects.filter(user=request.user), prefix='hackathon')
+        project_formset = ProjectFormSet(queryset=Project.objects.filter(user=request.user), prefix='projects')
+        job_formset = JobFormSet(queryset=Job.objects.filter(user=request.user), prefix='jobs')
+        soft_skill_formset = SoftSkillFormSet(queryset=SoftSkill.objects.filter(user=request.user), prefix='softskills')
 
     return render(request, 'create_cv.html', {
         'contact_form': contact_form,

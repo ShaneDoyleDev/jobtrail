@@ -63,6 +63,8 @@ INSTALLED_APPS = [
     'cloudinary',
     # For ColorField in model
     'colorfield',
+    # For Classes on form elements
+    'widget_tweaks',
     # Custom apps
     'job_application',
     'profiles',

@@ -1,5 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'job-application-base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/create_cv.css' %}" />
@@ -8,7 +9,7 @@
 
 {% block title %}Create CV{% endblock title %}
 
-{% block content %}
+{% block dashboard_content %}
 <div class="detailed-application">
 <div class="header-container">
     <h1 class="page-title">Create CV</h1>
@@ -17,32 +18,38 @@
     {% csrf_token %}
     
     <h3 class="section-title">Contact Details</h3>
-    <div class="form-group">
-        <label for="id_name" class="form-label">Full Name:</label>
-        <input type="text" name="name" maxlength="255" required="" id="id_name" class="form-input">
+    {% for field in contact_form %}
+    <!-- Add the custom label class here -->
+    <div class="mb-3">
+    <label class="form-label" for="{{ field.id_for_label }}">
+        {{ field.label }} 
+    
+    </label>
+    {{ field|add_class:"form-input" }}
+
+    <!-- For displaying field errors -->
+    {% if field.errors %}
+    <div class="alert alert-danger">{{ field.errors }}</div>
+    {% endif %}
     </div>
-    <div class="form-group">
-        <label for="id_linkedin_profile" class="form-label">LinkedIn Profile:</label>
-        <input type="url" name="linkedin_profile" maxlength="200" id="id_linkedin_profile" class="form-input">
-    </div>
-    <div class="form-group">
-        <label for="id_email" class="form-label">Email Address:</label>
-        <input type="email" name="email" maxlength="254" required="" id="id_email" class="form-input">
-    </div>
-    <div class="form-group">
-        <label for="id_phone_number" class="form-label">Phone Number:</label>
-        <input type="text" name="phone_number" maxlength="15" required="" id="id_phone_number" class="form-input">
-    </div>
-    <div class="form-group">
-        <label for="id_location" class="form-label">Location:</label>
-        <input type="text" name="location" maxlength="255" required="" id="id_location" class="form-input">
-    </div>
+    {% endfor %}
 
     <h3 class="section-title">Personal Profile</h3>
-    <div class="form-group">
-        <label for="id_description" class="form-label">Profile Description:</label>
-        <textarea name="description" cols="40" rows="10" required="" id="id_description" class="form-input"></textarea>
+    {% for field in profile_form %}
+    <!-- Add the custom label class here -->
+    <div class="mb-3">
+    <label class="form-label" for="{{ field.id_for_label }}">
+        {{ field.label }} 
+    
+    </label>
+    {{ field|add_class:"form-input" }}
+
+    <!-- For displaying field errors -->
+    {% if field.errors %}
+    <div class="alert alert-danger">{{ field.errors }}</div>
+    {% endif %}
     </div>
+    {% endfor %}
 
     <!-- Education -->
     <h3 class="section-title">Education</h3>
