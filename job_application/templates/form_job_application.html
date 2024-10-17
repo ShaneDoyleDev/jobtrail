@@ -7,95 +7,91 @@
 
 {% block dashboard_content %}
 <div class="account-container">
-  <h2>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Job Application</h2>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-      <div class="account-form-group">
-          <label for="id_job_title">Job Title:</label>
-          {{ form.job_title }}
-      </div>
-      
-      <div class="account-form-group">
-          <label for="id_job_link_description">Job Link Description:</label>
-          {{ form.job_link_description }}
-      </div>
-      
-      <div class="account-form-group">
-          <label for="id_application_posted">Application Posted:</label>
-          {{ form.application_posted }}
-      </div>
-      
-      <div class="account-form-group">
-          <label for="id_date_applied">Date Applied:</label>
-          {{ form.date_applied }}
-      </div>
-      
-      <div class="account-form-group">
-          <label for="id_date_last_followup">Date Last Follow-up:</label>
-          {{ form.date_last_followup }}
-      </div>
-      
-      <div class="account-form-group">
-          <label for="id_recruiter_name">Recruiter Name:</label>
-          {{ form.recruiter_name }}
-      </div>
-      
-      <div class="account-form-group">
-          <label for="id_recruiter_email">Recruiter Email:</label>
-          {{ form.recruiter_email }}
-      </div>
-      
-      <div class="account-form-group">
-          <label for="id_manager_name">Manager Name:</label>
-          {{ form.manager_name }}
-      </div>
-      
-      <div class="account-form-group">
-          <label for="id_manager_email">Manager Email:</label>
-          {{ form.manager_email }}
-      </div>
-      
-      <div class="account-form-group">
-          <label for="id_company_name">Company Name:</label>
-          {{ form.company_name }}
-      </div>
-      
-      <div class="account-form-group">
-          <label for="id_company_website">Company Website:</label>
-          {{ form.company_website }}
-      </div>
-      
-      <div class="account-form-group">
-          <label for="id_status">Status:</label>
-          {{ form.status }}
-      </div>
-      
-      <div class="account-form-group">
-          <label for="id_notes">Notes:</label>
-          {{ form.notes }}
-      </div>
-      
-      <div class="account-form-group">
-          <label for="id_next_stage_date_time">Next Stage Date & Time:</label>
-          {{ form.next_stage_date_time }}
-      </div>
-      
-      <div class="account-form-group">
-          <label for="id_next_stage_prep">Next Stage Prep:</label>
-          {{ form.next_stage_prep }}
-      </div>
-      
-      <div class=" account-form-group">
-        <label class="btn-cv" for="id_cv"><i class="fa fa-cloud-upload"></i> CV</label>
-        {{ form.cv }}
-    </div>
-    
-    <div class="btn-cv account-form-group">
-        <label for="id_cover_letter"><i class="fa fa-cloud-upload"></i> Cover Letter</label>
-        {{ form.cover_letter }}
-    </div>
-      
-      <button class="btn-submit" type="submit">Save</button>
-  </form>
+    <h2 class="form-title">{% if form.instance.pk %}Edit{% else %}Create{% endif %} Job Application</h2>
+    <form method="post" enctype="multipart/form-data" class="form-flex-box">
+        {% csrf_token %}
+        <div class="form-group-section">
+        <h2>Application Details</h2>
+            <div class="account-form-group">
+                <label for="id_job_title">Job Title</label>
+                {{ form.job_title }}
+            </div>
+            <div class="account-form-group">
+                <label for="id_job_link_description">Job Link Description</label>
+                {{ form.job_link_description }}
+            </div>
+            <div class="account-form-group">
+                <label for="id_application_posted">Application Posted</label>
+                {{ form.application_posted }}
+            </div>
+            <div class="account-form-group">
+                <label for="id_date_applied">Date Applied</label>
+                {{ form.date_applied }}
+            </div>
+            <div class="account-form-group">
+                <label for="id_date_last_followup">Date Last Follow-up</label>
+                {{ form.date_last_followup }}
+            </div>
+            <div class="account-form-group">
+                <label for="id_status">Status</label>
+                {{ form.status }}
+            </div>
+            <div class="btn-cv account-form-group">
+                <label for="id_cv" class="btn-label btn-class"><i class="fa fa-cloud-upload"></i> CV</label>
+                {{ form.cv }}
+            </div>           
+            <div class="btn-cv account-form-group">
+                <label for="id_cover_letter" class="btn-label btn-class"><i class="fa fa-cloud-upload"></i> Cover Letter</label>
+                {{ form.cover_letter }}
+            </div>
+        </div>
+        
+        <div class="form-group-section">
+            <h2>Contact Details</h2>
+            <div class="account-form-group">
+                <label for="id_company_name">Company Name</label>
+                {{ form.company_name }}
+            </div>
+            <div class="account-form-group">
+                <label for="id_company_website">Company Website</label>
+                {{ form.company_website }}
+            </div>
+            <div class="account-form-group">
+                <label for="id_recruiter_name">Recruiter Name</label>
+                {{ form.recruiter_name }}
+            </div>
+            <div class="account-form-group">
+                <label for="id_recruiter_email">Recruiter Email</label>
+                {{ form.recruiter_email }}
+            </div>
+            <div class="account-form-group">
+                <label for="id_manager_name">Manager Name</label>
+                {{ form.manager_name }}
+            </div>
+            <div class="account-form-group">
+                <label for="id_manager_email">Manager Email</label>
+                {{ form.manager_email }}
+            </div>
+        </div> 
+        
+        <div class="form-group-section">
+            <h2>Notes</h2>
+            <div class="account-form-group">
+                <label for="id_notes">Notes</label>
+                {{ form.notes }}
+            </div>
+            <div class="account-form-group">
+                <label for="id_next_stage_date_time">Next Stage Date & Time</label>
+                {{ form.next_stage_date_time }}
+            </div>
+            <div class="account-form-group">
+                <label for="id_next_stage_prep">Next Stage Prep</label>
+                {{ form.next_stage_prep }}
+            </div>
+        </div>
+        <div class="submit-btn-flex-box">
+            <button class="btn-submit" type="submit">Save</button>
+        </div>        
+    </form>
 </div>
 {% endblock %}

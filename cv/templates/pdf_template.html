@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ cv.contact_details.name }}'s CV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        h2 {
+            margin-top: 40px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .detail {
+            margin-bottom: 5px;
+        }
+        .detail-title {
+            font-weight: bold;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+        .item {
+            margin-left: 20px;
+        }
+        .date-range {
+            color: #7f8c8d;
+        }
+        .skills-list, .bullet-points, .education-list {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contact Details Section -->
+    <h1>{{ cv.contact_details.name }}'s CV</h1>
+    <div class="section" id="contact-details">
+        <h2>Contact Details</h2>
+        <p class="detail"><span class="detail-title">LinkedIn:</span> <a href="{{ cv.contact_details.linkedin_profile }}">{{ cv.contact_details.linkedin_profile }}</a></p>
+        <p class="detail"><span class="detail-title">Email:</span> <a href="mailto:{{ cv.contact_details.email }}">{{ cv.contact_details.email }}</a></p>
+        <p class="detail"><span class="detail-title">Phone:</span> {{ cv.contact_details.phone_number }}</p>
+        <p class="detail"><span class="detail-title">Location:</span> {{ cv.contact_details.location }}</p>
+    </div>
+
+    <!-- Personal Profile Section -->
+    <div class="section" id="personal-profile">
+        <h2>Personal Profile</h2>
+        <p>{{ cv.personal_profile.description }}</p>
+    </div>
+
+    <!-- Education Section -->
+    <div class="section" id="education">
+        <h2>Education</h2>
+        <ul class="education-list">
+            {% for item in cv.education.items.all %}
+            <li>
+                <strong>{{ item.school }}</strong>, {{ item.area_of_study }} ({{ item.start_year }} - {{ item.end_year }})<br>
+                <span class="date-range">Result: {{ item.result }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Hackathons Section -->
+    <div class="section" id="hackathons">
+        <h2>Hackathons</h2>
+        <ul>
+            {% for hackathon in cv.hackathons.items.all %}
+            <li>
+                <strong>{{ hackathon.competition_name }}</strong> ({{ hackathon.year_month|date:"F Y" }})<br>
+                Role: {{ hackathon.role }}<br>
+                Hosts: {{ hackathon.hosts }}<br>
+                GitHub: <a href="{{ hackathon.github_link }}">{{ hackathon.github_link }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Technical Skills Section -->
+    <div class="section" id="technical-skills">
+        <h2>Technical Skills</h2>
+        <ul class="skills-list">
+            {% for skill_group in cv.technical_skills.skills.all %}
+            <li>{{ skill_group.skill }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="section" id="projects">
+        <h2>Projects</h2>
+        <ul>
+            {% for project in cv.projects.items.all %}
+            <li>
+                <strong>{{ project.project_name }}</strong><br>
+                Description: {{ project.description }}<br>
+                Live Project: <a href="{{ project.live_link }}">{{ project.live_link }}</a><br>
+                GitHub: <a href="{{ project.github_link }}">{{ project.github_link }}</a><br>
+                <strong>Skills:</strong> 
+                <ul class="skills-list">
+                    {% for skill in project.skills.all %}
+                    <li>{{ skill.skill }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Professional Experience Section -->
+    <div class="section" id="experience">
+        <h2>Professional Experience</h2>
+        <ul>
+            {% for job in cv.professional_experience.jobs.all %}
+            <li>
+                <strong>{{ job.job_title }}</strong>, {{ job.company }}<br>
+                <span class="date-range">{{ job.start_date|date:"F Y" }} - {% if job.end_date %}{{ job.end_date|date:"F Y" }}{% else %}Present{% endif %}</span>
+                <ul class="bullet-points">
+                    {% for bullet in job.bullet_points.all %}
+                    <li>{{ bullet.jbp }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Soft Skills Section -->
+    <div class="section" id="soft-skills">
+        <h2>Soft Skills</h2>
+        <ul>
+            {% for skill in cv.soft_skills.items.all %}
+            <li>
+                <strong>{{ skill.group_name }}</strong><br>
+                {{ skill.short_description }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

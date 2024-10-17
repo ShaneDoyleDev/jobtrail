@@ -1,0 +1,314 @@
+{% extends 'job-application-base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/create_cv.css' %}" />
+{% endblock %}
+
+
+{% block title %}Create CV{% endblock title %}
+
+{% block dashboard_content %}
+<div class="detailed-application">
+<div class="header-container">
+    <h1 class="page-title">Create CV</h1>
+  </div>
+  <form method="POST" class="detailed-cv-form">
+    {% csrf_token %}
+    
+    <h3 class="section-title">Contact Details</h3>
+    {% for field in contact_form %}
+    <!-- Add the custom label class here -->
+    <div class="mb-3">
+    <label class="form-label" for="{{ field.id_for_label }}">
+        {{ field.label }} 
+    
+    </label>
+    {{ field|add_class:"form-input" }}
+
+    <!-- For displaying field errors -->
+    {% if field.errors %}
+    <div class="alert alert-danger">{{ field.errors }}</div>
+    {% endif %}
+    </div>
+    {% endfor %}
+
+    <h3 class="section-title">Personal Profile</h3>
+    {% for field in profile_form %}
+    <!-- Add the custom label class here -->
+    <div class="mb-3">
+    <label class="form-label" for="{{ field.id_for_label }}">
+        {{ field.label }} 
+    
+    </label>
+    {{ field|add_class:"form-input" }}
+
+    <!-- For displaying field errors -->
+    {% if field.errors %}
+    <div class="alert alert-danger">{{ field.errors }}</div>
+    {% endif %}
+    </div>
+    {% endfor %}
+
+    <!-- Education -->
+    <h3 class="section-title">Education</h3>
+    <div id="education-formset">
+        {{ education_formset.management_form }}
+        {% for form in education_formset %}
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="id_education-{{ forloop.counter0 }}-start_year" class="form-label">Start Year:</label>
+                    {{ form.start_year }}
+                </div>
+                <div class="form-group">
+                    <label for="id_education-{{ forloop.counter0 }}-end_year" class="form-label">End Year:</label>
+                    {{ form.end_year }}
+                </div>
+                <div class="form-group">
+                    <label for="id_education-{{ forloop.counter0 }}-school" class="form-label">School Name:</label>
+                    {{ form.school }}
+                </div>
+                <div class="form-group">
+                    <label for="id_education-{{ forloop.counter0 }}-area_of_study" class="form-label">Area of Study:</label>
+                    {{ form.area_of_study }}
+                </div>
+                <div class="form-group">
+                    <label for="id_education-{{ forloop.counter0 }}-result" class="form-label">Result:</label>
+                    {{ form.result }}
+                </div>
+
+                <button type="button" class="remove-form btn-danger">Remove</button>
+            </div>
+        {% endfor %}
+    </div>
+    <button type="button" id="add-education" class="btn-primary">Add Education</button>
+
+    <!-- Hackathons -->
+    <h3 class="section-title">Hackathons</h3>
+    <div id="hackathon-formset">
+        {{ hackathon_formset.management_form }}
+        {% for form in hackathon_formset %}
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="id_hackathon-{{ forloop.counter0 }}-year_month" class="form-label">Year/Month:</label>
+                    {{ form.year_month }}
+                </div>
+                <div class="form-group">
+                    <label for="id_hackathon-{{ forloop.counter0 }}-github_link" class="form-label">GitHub Link:</label>
+                    {{ form.github_link }}
+                </div>
+                <div class="form-group">
+                    <label for="id_hackathon-{{ forloop.counter0 }}-hosts" class="form-label">Host Organization:</label>
+                    {{ form.hosts }}
+                </div>
+                <div class="form-group">
+                    <label for="id_hackathon-{{ forloop.counter0 }}-competition_name" class="form-label">Competition Name:</label>
+                    {{ form.competition_name }}
+                </div>
+                <div class="form-group">
+                    <label for="id_hackathon-{{ forloop.counter0 }}-role" class="form-label">Role:</label>
+                    {{ form.role }}
+                </div>
+
+                <button type="button" class="remove-form btn-danger">Remove</button>
+            </div>
+        {% endfor %}
+    </div>
+    <button type="button" id="add-hackathon" class="btn-primary">Add Hackathon</button>
+
+    <!-- Projects -->
+    <h3 class="section-title">Projects</h3>
+    <div id="projects-formset">
+        {{ project_formset.management_form }}
+        {% for form in project_formset %}
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="id_projects-{{ forloop.counter0 }}-project_name" class="form-label">Project Name:</label>
+                    {{ form.project_name }}
+                </div>
+                <div class="form-group">
+                    <label for="id_projects-{{ forloop.counter0 }}-live_link" class="form-label">Live Link:</label>
+                    {{ form.live_link }}
+                </div>
+                <div class="form-group">
+                    <label for="id_projects-{{ forloop.counter0 }}-github_link" class="form-label">GitHub Link:</label>
+                    {{ form.github_link }}
+                </div>
+                <div class="form-group">
+                    <label for="id_projects-{{ forloop.counter0 }}-skills" class="form-label">Skills:</label>
+                    {{ form.skills }}
+                </div>
+                <div class="form-group">
+                    <label for="id_projects-{{ forloop.counter0 }}-description" class="form-label">Project Description:</label>
+                    {{ form.description }}
+                </div>
+
+                <button type="button" class="remove-form btn-danger">Remove</button>
+            </div>
+        {% endfor %}
+    </div>
+    <button type="button" id="add-project" class="btn-primary">Add Project</button>
+
+    <!-- Jobs -->
+    <h3 class="section-title">Jobs</h3>
+    <div id="jobs-formset">
+        {{ job_formset.management_form }}
+        {% for form in job_formset %}
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="id_jobs-{{ forloop.counter0 }}-job_title" class="form-label">Job Title:</label>
+                    {{ form.job_title }}
+                </div>
+                <div class="form-group">
+                    <label for="id_jobs-{{ forloop.counter0 }}-company" class="form-label">Company Name:</label>
+                    {{ form.company }}
+                </div>
+                <div class="form-group">
+                    <label for="id_jobs-{{ forloop.counter0 }}-start_date" class="form-label">Start Date:</label>
+                    {{ form.start_date }}
+                </div>
+                <div class="form-group">
+                    <label for="id_jobs-{{ forloop.counter0 }}-end_date" class="form-label">End Date:</label>
+                    {{ form.end_date }}
+                </div>
+                <div class="form-group">
+                    <label for="id_jobs-{{ forloop.counter0 }}-bullet_point_1" class="form-label">Bullet Point 1:</label>
+                    {{ form.bullet_point_1 }}
+                </div>
+                <div class="form-group">
+                    <label for="id_jobs-{{ forloop.counter0 }}-bullet_point_2" class="form-label">Bullet Point 2:</label>
+                    {{ form.bullet_point_2 }}
+                </div>
+                <div class="form-group">
+                    <label for="id_jobs-{{ forloop.counter0 }}-bullet_point_3" class="form-label">Bullet Point 3:</label>
+                    {{ form.bullet_point_3 }}
+                </div>
+
+                <button type="button" class="remove-form btn-danger">Remove</button>
+            </div>
+        {% endfor %}
+    </div>
+    <button type="button" id="add-job" class="btn-primary">Add Job</button>
+
+    <!-- Soft Skills -->
+    <h3 class="section-title">Soft Skills</h3>
+    <div id="softskills-formset">
+        {{ soft_skill_formset.management_form }}
+        {% for form in soft_skill_formset %}
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="id_softskills-{{ forloop.counter0 }}-group_name" class="form-label">Skill Group:</label>
+                    {{ form.group_name }}
+                </div>
+                <div class="form-group">
+                    <label for="id_softskills-{{ forloop.counter0 }}-short_description" class="form-label">Description:</label>
+                    {{ form.short_description }}
+                </div>
+
+                <button type="button" class="remove-form btn-danger">Remove</button>
+            </div>
+        {% endfor %}
+    </div>
+    <button type="button" id="add-softskill" class="btn-primary">Add Soft Skill</button>
+
+    <button type="submit" class="btn-submit">Submit</button>
+</form>
+
+
+<script>
+    function cloneMore(selector, prefix) {
+        let newElement = $(selector).clone(true);  // Clone the last form in the formset
+        let total = $('#id_' + prefix + '-TOTAL_FORMS').val();  // Get the current total number of forms
+    
+        // Update the form elements in the newly cloned form
+        newElement.find(':input').each(function () {
+            // Check if the element has a 'name' attribute
+            let name = $(this).attr('name');
+            if (name) {
+                let newName = name.replace('-' + (total - 1) + '-', '-' + total + '-');
+                $(this).attr('name', newName);  // Update the name attribute
+            }
+    
+            // Check if the element has an 'id' attribute
+            let id = $(this).attr('id');
+            if (id) {
+                let newId = id.replace('-' + (total - 1) + '-', '-' + total + '-');
+                $(this).attr('id', newId);  // Update the id attribute
+            }
+    
+    
+            // Check if the element has an 'id' attribute
+            let for_tag = $(this).attr('for');
+            if (for_tag) {
+                let newFor = for_tag.replace('-' + (total - 1) + '-', '-' + total + '-');
+                $(this).attr('for', newFor);  // Update the id attribute
+            }
+    
+            // Clear the value (to avoid copying existing input values)
+            if ($(this).is('input[type="text"], input[type="number"], input[type="url"], textarea')) {
+                $(this).val('');  // Clear text, number, URL fields
+            } else if ($(this).is('input[type="checkbox"]')) {
+                $(this).prop('checked', false);  // Uncheck checkboxes
+            }
+        });
+    
+        total++;
+        $('#id_' + prefix + '-TOTAL_FORMS').val(total);  // Increment the TOTAL_FORMS count
+    
+        // Append the newly cloned form to the formset
+        $(selector).parent().append(newElement);
+    }
+    
+
+    $('#add-education').click(function () {
+        cloneMore('#education-formset .form-row:last', 'education');
+    });
+
+    $('#add-hackathon').click(function () {
+        cloneMore('#hackathon-formset .form-row:last', 'hackathon');
+    });
+
+    $('#add-skill').click(function () {
+        cloneMore('#skills-formset .form-row:last', 'skills');
+    });
+
+    $('#add-project').click(function () {
+        cloneMore('#projects-formset .form-row:last', 'projects');
+    });
+
+    $('#add-job').click(function () {
+        cloneMore('#jobs-formset .form-row:last', 'jobs');
+    });
+
+    $('#add-softskill').click(function () {
+        cloneMore('#softskills-formset .form-row:last', 'softskills');
+    });
+
+    function toggleRemoveButtons(formset) {
+        let totalForms = formset.find('.form-row').length;
+    
+        formset.find('.remove-form').each(function () {
+            if (totalForms === 1) {
+                $(this).prop('disabled', true);  // Disable remove button if only one form left
+            } else {
+                $(this).prop('disabled', false);  // Enable remove buttons otherwise
+            }
+        });
+    }
+    
+    // Call this function every time a form is added or removed
+    $(document).on('click', '.remove-form', function () {
+        let formset = $(this).closest('.form-row').parent();
+        let totalForms = formset.find('.form-row').length;
+    
+        if (totalForms > 1) {
+            $(this).parent().remove();
+            toggleRemoveButtons(formset);
+        }
+    });
+    
+
+    
+</script>
+{% endblock %}

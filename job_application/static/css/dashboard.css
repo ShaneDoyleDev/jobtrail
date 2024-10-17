@@ -288,8 +288,12 @@ main {
   background-color: #fff;
 }
 .account-container {
-  margin-top: 30px!important;
-  margin-bottom: 30px!important;
+  margin: 0;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .btn {
   background-color: var(--white) !important;

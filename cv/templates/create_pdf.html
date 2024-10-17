@@ -1,0 +1,21 @@
+<!-- templates/pdf_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1 { color: #333; }
+        .item { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Report for {{ name }}</h1>
+    <ul>
+        {% for item in items %}
+        <li class="item">{{ item }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

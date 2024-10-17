@@ -62,10 +62,13 @@ INSTALLED_APPS = [
     'cloudinary',
     # For ColorField in model
     'colorfield',
+    # For Classes on form elements
+    'widget_tweaks',
     # Custom apps
     'job_application',
     'profiles',
     'home',
+    'cv',
 ]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

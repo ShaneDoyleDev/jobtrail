@@ -10,6 +10,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('test/', include('home.urls')),
     path('', include('home.urls')),
+    path('cv/', include('cv.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, documents_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, documents_root=settings.MEDIA_ROOT)
