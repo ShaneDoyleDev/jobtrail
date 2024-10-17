@@ -1,4 +1,4 @@
-# forms.py
+import datetime
 from django import forms
 from django.forms import modelformset_factory
 from .models import CV, ContactDetails, PersonalProfile, EducationItem, HackathonItem, ProjectSkill, Project, Job, SoftSkill
@@ -29,10 +29,10 @@ class EducationItemForm(forms.ModelForm):
 
 class HackathonItemForm(forms.ModelForm):
     year_month = forms.DateField(
-        widget=forms.DateInput(attrs={'type': 'month'}),
+        widget=forms.DateInput(attrs={'type': 'date'}),
         label='Year and Month'
     )
-
+    
     class Meta:
         model = HackathonItem
         fields = ['year_month', 'github_link', 'hosts', 'competition_name', 'role']
@@ -52,11 +52,11 @@ class ProjectForm(forms.ModelForm):
 
 class JobForm(forms.ModelForm):
     start_date = forms.DateField(
-        widget=forms.DateInput(attrs={'type': 'month'}),
+        widget=forms.DateInput(attrs={'type': 'date'}),
         label='Start Date'
     )
     end_date = forms.DateField(
-        widget=forms.DateInput(attrs={'type': 'month'}),
+        widget=forms.DateInput(attrs={'type': 'date'}),
         label='End Date'
     )
 

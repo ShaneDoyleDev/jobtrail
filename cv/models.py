@@ -11,7 +11,6 @@ class ContactDetails(models.Model):
     email = models.EmailField(verbose_name="Email Address")
     phone_number = models.CharField(
         max_length=15, 
-        validators=[RegexValidator(r'^\+?1?\d{9,15}$')], 
         verbose_name="Phone Number"
     )
     location = models.CharField(max_length=255)

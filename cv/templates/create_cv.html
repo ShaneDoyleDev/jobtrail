@@ -1,202 +1,211 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/create_cv.css' %}" />
+{% endblock %}
+
+
 {% block title %}Create CV{% endblock title %}
 
 {% block content %}
-<form method="POST">
+<div class="detailed-application">
+<div class="header-container">
+    <h1 class="page-title">Create CV</h1>
+  </div>
+  <form method="POST" class="detailed-cv-form">
     {% csrf_token %}
     
-    <h3>Contact Details</h3>
+    <h3 class="section-title">Contact Details</h3>
     <div class="form-group">
-        <label for="id_name">Full Name:</label>
-        <input type="text" name="name" maxlength="255" required="" id="id_name">
+        <label for="id_name" class="form-label">Full Name:</label>
+        <input type="text" name="name" maxlength="255" required="" id="id_name" class="form-input">
     </div>
     <div class="form-group">
-        <label for="id_linkedin_profile">LinkedIn Profile:</label>
-        <input type="url" name="linkedin_profile" maxlength="200" id="id_linkedin_profile">
+        <label for="id_linkedin_profile" class="form-label">LinkedIn Profile:</label>
+        <input type="url" name="linkedin_profile" maxlength="200" id="id_linkedin_profile" class="form-input">
     </div>
     <div class="form-group">
-        <label for="id_email">Email Address:</label>
-        <input type="email" name="email" maxlength="254" required="" id="id_email">
+        <label for="id_email" class="form-label">Email Address:</label>
+        <input type="email" name="email" maxlength="254" required="" id="id_email" class="form-input">
     </div>
     <div class="form-group">
-        <label for="id_phone_number">Phone Number:</label>
-        <input type="text" name="phone_number" maxlength="15" required="" id="id_phone_number">
+        <label for="id_phone_number" class="form-label">Phone Number:</label>
+        <input type="text" name="phone_number" maxlength="15" required="" id="id_phone_number" class="form-input">
     </div>
     <div class="form-group">
-        <label for="id_location">Location:</label>
-        <input type="text" name="location" maxlength="255" required="" id="id_location">
+        <label for="id_location" class="form-label">Location:</label>
+        <input type="text" name="location" maxlength="255" required="" id="id_location" class="form-input">
     </div>
 
-    <h3>Personal Profile</h3>
+    <h3 class="section-title">Personal Profile</h3>
     <div class="form-group">
-        <label for="id_description">Profile Description:</label>
-        <textarea name="description" cols="40" rows="10" required="" id="id_description"></textarea>
+        <label for="id_description" class="form-label">Profile Description:</label>
+        <textarea name="description" cols="40" rows="10" required="" id="id_description" class="form-input"></textarea>
     </div>
 
     <!-- Education -->
-    <h3>Education</h3>
+    <h3 class="section-title">Education</h3>
     <div id="education-formset">
         {{ education_formset.management_form }}
         {% for form in education_formset %}
             <div class="form-row">
                 <div class="form-group">
-                    <label for="id_education-{{ forloop.counter0 }}-start_year">Start Year:</label>
+                    <label for="id_education-{{ forloop.counter0 }}-start_year" class="form-label">Start Year:</label>
                     {{ form.start_year }}
                 </div>
                 <div class="form-group">
-                    <label for="id_education-{{ forloop.counter0 }}-end_year">End Year:</label>
+                    <label for="id_education-{{ forloop.counter0 }}-end_year" class="form-label">End Year:</label>
                     {{ form.end_year }}
                 </div>
                 <div class="form-group">
-                    <label for="id_education-{{ forloop.counter0 }}-school">School Name:</label>
+                    <label for="id_education-{{ forloop.counter0 }}-school" class="form-label">School Name:</label>
                     {{ form.school }}
                 </div>
                 <div class="form-group">
-                    <label for="id_education-{{ forloop.counter0 }}-area_of_study">Area of Study:</label>
+                    <label for="id_education-{{ forloop.counter0 }}-area_of_study" class="form-label">Area of Study:</label>
                     {{ form.area_of_study }}
                 </div>
                 <div class="form-group">
-                    <label for="id_education-{{ forloop.counter0 }}-result">Result:</label>
+                    <label for="id_education-{{ forloop.counter0 }}-result" class="form-label">Result:</label>
                     {{ form.result }}
                 </div>
 
-                <button type="button" class="remove-form">Remove</button>
+                <button type="button" class="remove-form btn-danger">Remove</button>
             </div>
         {% endfor %}
     </div>
-    <button type="button" id="add-education">Add Education</button>
+    <button type="button" id="add-education" class="btn-primary">Add Education</button>
 
     <!-- Hackathons -->
-    <h3>Hackathons</h3>
+    <h3 class="section-title">Hackathons</h3>
     <div id="hackathon-formset">
         {{ hackathon_formset.management_form }}
         {% for form in hackathon_formset %}
             <div class="form-row">
                 <div class="form-group">
-                    <label for="id_hackathon-{{ forloop.counter0 }}-year_month">Year/Month:</label>
+                    <label for="id_hackathon-{{ forloop.counter0 }}-year_month" class="form-label">Year/Month:</label>
                     {{ form.year_month }}
                 </div>
                 <div class="form-group">
-                    <label for="id_hackathon-{{ forloop.counter0 }}-github_link">GitHub Link:</label>
+                    <label for="id_hackathon-{{ forloop.counter0 }}-github_link" class="form-label">GitHub Link:</label>
                     {{ form.github_link }}
                 </div>
                 <div class="form-group">
-                    <label for="id_hackathon-{{ forloop.counter0 }}-hosts">Host Organization:</label>
+                    <label for="id_hackathon-{{ forloop.counter0 }}-hosts" class="form-label">Host Organization:</label>
                     {{ form.hosts }}
                 </div>
                 <div class="form-group">
-                    <label for="id_hackathon-{{ forloop.counter0 }}-competition_name">Competition Name:</label>
+                    <label for="id_hackathon-{{ forloop.counter0 }}-competition_name" class="form-label">Competition Name:</label>
                     {{ form.competition_name }}
                 </div>
                 <div class="form-group">
-                    <label for="id_hackathon-{{ forloop.counter0 }}-role">Role:</label>
+                    <label for="id_hackathon-{{ forloop.counter0 }}-role" class="form-label">Role:</label>
                     {{ form.role }}
                 </div>
 
-                <button type="button" class="remove-form">Remove</button>
+                <button type="button" class="remove-form btn-danger">Remove</button>
             </div>
         {% endfor %}
     </div>
-    <button type="button" id="add-hackathon">Add Hackathon</button>
+    <button type="button" id="add-hackathon" class="btn-primary">Add Hackathon</button>
 
     <!-- Projects -->
-    <h3>Projects</h3>
+    <h3 class="section-title">Projects</h3>
     <div id="projects-formset">
         {{ project_formset.management_form }}
         {% for form in project_formset %}
             <div class="form-row">
                 <div class="form-group">
-                    <label for="id_projects-{{ forloop.counter0 }}-project_name">Project Name:</label>
+                    <label for="id_projects-{{ forloop.counter0 }}-project_name" class="form-label">Project Name:</label>
                     {{ form.project_name }}
                 </div>
                 <div class="form-group">
-                    <label for="id_projects-{{ forloop.counter0 }}-live_link">Live Link:</label>
+                    <label for="id_projects-{{ forloop.counter0 }}-live_link" class="form-label">Live Link:</label>
                     {{ form.live_link }}
                 </div>
                 <div class="form-group">
-                    <label for="id_projects-{{ forloop.counter0 }}-github_link">GitHub Link:</label>
+                    <label for="id_projects-{{ forloop.counter0 }}-github_link" class="form-label">GitHub Link:</label>
                     {{ form.github_link }}
                 </div>
                 <div class="form-group">
-                    <label for="id_projects-{{ forloop.counter0 }}-skills">Skills:</label>
+                    <label for="id_projects-{{ forloop.counter0 }}-skills" class="form-label">Skills:</label>
                     {{ form.skills }}
                 </div>
                 <div class="form-group">
-                    <label for="id_projects-{{ forloop.counter0 }}-description">Project Description:</label>
+                    <label for="id_projects-{{ forloop.counter0 }}-description" class="form-label">Project Description:</label>
                     {{ form.description }}
                 </div>
 
-                <button type="button" class="remove-form">Remove</button>
+                <button type="button" class="remove-form btn-danger">Remove</button>
             </div>
         {% endfor %}
     </div>
-    <button type="button" id="add-project">Add Project</button>
+    <button type="button" id="add-project" class="btn-primary">Add Project</button>
 
     <!-- Jobs -->
-    <h3>Jobs</h3>
+    <h3 class="section-title">Jobs</h3>
     <div id="jobs-formset">
         {{ job_formset.management_form }}
         {% for form in job_formset %}
             <div class="form-row">
                 <div class="form-group">
-                    <label for="id_jobs-{{ forloop.counter0 }}-job_title">Job Title:</label>
+                    <label for="id_jobs-{{ forloop.counter0 }}-job_title" class="form-label">Job Title:</label>
                     {{ form.job_title }}
                 </div>
                 <div class="form-group">
-                    <label for="id_jobs-{{ forloop.counter0 }}-company">Company Name:</label>
+                    <label for="id_jobs-{{ forloop.counter0 }}-company" class="form-label">Company Name:</label>
                     {{ form.company }}
                 </div>
                 <div class="form-group">
-                    <label for="id_jobs-{{ forloop.counter0 }}-start_date">Start Date:</label>
+                    <label for="id_jobs-{{ forloop.counter0 }}-start_date" class="form-label">Start Date:</label>
                     {{ form.start_date }}
                 </div>
                 <div class="form-group">
-                    <label for="id_jobs-{{ forloop.counter0 }}-end_date">End Date:</label>
+                    <label for="id_jobs-{{ forloop.counter0 }}-end_date" class="form-label">End Date:</label>
                     {{ form.end_date }}
                 </div>
                 <div class="form-group">
-                    <label for="id_jobs-{{ forloop.counter0 }}-bullet_point_1">Bullet Point 1:</label>
+                    <label for="id_jobs-{{ forloop.counter0 }}-bullet_point_1" class="form-label">Bullet Point 1:</label>
                     {{ form.bullet_point_1 }}
                 </div>
                 <div class="form-group">
-                    <label for="id_jobs-{{ forloop.counter0 }}-bullet_point_2">Bullet Point 2:</label>
+                    <label for="id_jobs-{{ forloop.counter0 }}-bullet_point_2" class="form-label">Bullet Point 2:</label>
                     {{ form.bullet_point_2 }}
                 </div>
                 <div class="form-group">
-                    <label for="id_jobs-{{ forloop.counter0 }}-bullet_point_3">Bullet Point 3:</label>
+                    <label for="id_jobs-{{ forloop.counter0 }}-bullet_point_3" class="form-label">Bullet Point 3:</label>
                     {{ form.bullet_point_3 }}
                 </div>
 
-                <button type="button" class="remove-form">Remove</button>
+                <button type="button" class="remove-form btn-danger">Remove</button>
             </div>
         {% endfor %}
     </div>
-    <button type="button" id="add-job">Add Job</button>
+    <button type="button" id="add-job" class="btn-primary">Add Job</button>
 
     <!-- Soft Skills -->
-    <h3>Soft Skills</h3>
+    <h3 class="section-title">Soft Skills</h3>
     <div id="softskills-formset">
         {{ soft_skill_formset.management_form }}
         {% for form in soft_skill_formset %}
             <div class="form-row">
                 <div class="form-group">
-                    <label for="id_softskills-{{ forloop.counter0 }}-group_name">Skill Group:</label>
+                    <label for="id_softskills-{{ forloop.counter0 }}-group_name" class="form-label">Skill Group:</label>
                     {{ form.group_name }}
                 </div>
                 <div class="form-group">
-                    <label for="id_softskills-{{ forloop.counter0 }}-short_description">Description:</label>
+                    <label for="id_softskills-{{ forloop.counter0 }}-short_description" class="form-label">Description:</label>
                     {{ form.short_description }}
                 </div>
 
-                <button type="button" class="remove-form">Remove</button>
+                <button type="button" class="remove-form btn-danger">Remove</button>
             </div>
         {% endfor %}
     </div>
-    <button type="button" id="add-softskill">Add Soft Skill</button>
+    <button type="button" id="add-softskill" class="btn-primary">Add Soft Skill</button>
 
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn-submit">Submit</button>
 </form>
 
 
@@ -292,6 +301,7 @@
         }
     });
     
+
     
 </script>
 {% endblock %}

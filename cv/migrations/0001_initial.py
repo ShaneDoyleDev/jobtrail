@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=255, verbose_name='Full Name')),
                 ('linkedin_profile', models.URLField(blank=True, verbose_name='LinkedIn Profile')),
                 ('email', models.EmailField(max_length=254, verbose_name='Email Address')),
-                ('phone_number', models.CharField(max_length=15, validators=[django.core.validators.RegexValidator('^\\+?1?\\d{9,15}$')], verbose_name='Phone Number')),
+                ('phone_number', models.CharField(max_length=15, verbose_name='Phone Number')),
                 ('location', models.CharField(max_length=255)),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='contact_details', to=settings.AUTH_USER_MODEL)),
             ],

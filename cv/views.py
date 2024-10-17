@@ -38,14 +38,33 @@ def create_cv(request):
         # Formsets
         education_formset = EducationFormSet(request.POST, prefix='education')
         hackathon_formset = HackathonFormSet(request.POST, prefix='hackathon')
-        skill_formset = ProjectSkillFormSet(request.POST, prefix='skills')
         project_formset = ProjectFormSet(request.POST, prefix='projects')
         job_formset = JobFormSet(request.POST, prefix='jobs')
         soft_skill_formset = SoftSkillFormSet(request.POST, prefix='softskills')
+        
+        # Log form errors for debugging
+        if not contact_form.is_valid():
+            print("Contact Form Errors: ", contact_form.errors)
+        if not profile_form.is_valid():
+            print("Profile Form Errors: ", profile_form.errors)
+        if not education_formset.is_valid():
+            print("Education Formset Errors: ", education_formset.errors)
+        if not hackathon_formset.is_valid():
+            print("Hackathon Formset Errors: ", hackathon_formset.errors)
+        if not project_formset.is_valid():
+            print("Project Formset Errors: ", project_formset.errors)
+        if not job_formset.is_valid():
+            print("Job Formset Errors: ", job_formset.errors)
+        if not soft_skill_formset.is_valid():
+            print("Soft Skill Formset Errors: ", soft_skill_formset.errors)
 
-        if contact_form.is_valid() and profile_form.is_valid() and all(
-            [education_formset.is_valid(), hackathon_formset.is_valid(), skill_formset.is_valid(),
-             project_formset.is_valid(), job_formset.is_valid(), soft_skill_formset.is_valid()]
+        
+        print(contact_form.is_valid(), profile_form.is_valid(), education_formset.is_valid(), hackathon_formset.is_valid(),
+             project_formset.is_valid(), job_formset.is_valid(), soft_skill_formset.is_valid())
+
+        if profile_form.is_valid() and all(
+            [education_formset.is_valid(),
+             project_formset.is_valid(), soft_skill_formset.is_valid()]
         ):
             contact_details = contact_form.save(commit=False)
             contact_details.user = request.user
@@ -64,8 +83,8 @@ def create_cv(request):
 
             # Save ManyToMany fields
             for formset, related_field in zip(
-                [education_formset, hackathon_formset, skill_formset, project_formset, job_formset, soft_skill_formset],
-                [cv.education_items, cv.hackathon_items, cv.technical_skills, cv.projects, cv.jobs, cv.soft_skills]
+                [education_formset, hackathon_formset, project_formset, job_formset, soft_skill_formset],
+                [cv.education_items, cv.hackathon_items, cv.projects, cv.jobs, cv.soft_skills]
             ):
                 instances = formset.save(commit=False)
                 for instance in instances:
@@ -73,7 +92,9 @@ def create_cv(request):
                     instance.save()
                     related_field.add(instance)
 
-            return redirect('cv_detail', pk=cv.pk)
+            return redirect('cv_detail', id=cv.id)
+        
+        
 
     else:
         # Initialize empty forms and formsets
