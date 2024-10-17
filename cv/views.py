@@ -4,13 +4,14 @@ from weasyprint import HTML
 from django.shortcuts import get_object_or_404, render, redirect
 from django.shortcuts import render, redirect
 from django.forms import modelformset_factory
-# views.py
 from django.shortcuts import render, redirect
 from .models import CV, ContactDetails, PersonalProfile, EducationItem, HackathonItem, ProjectSkill, Project, Job, SoftSkill
 from .forms import (
-    ContactDetailsForm, PersonalProfileForm, EducationFormSet, HackathonFormSet,
-    ProjectFormSet, JobFormSet, SoftSkillFormSet
+    ContactDetailsForm, EducationItemForm, HackathonItemForm, JobForm, PersonalProfileForm, EducationFormSet, HackathonFormSet, ProjectForm,
+    ProjectFormSet, JobFormSet, ProjectSkillForm, SoftSkillForm, SoftSkillFormSet
 )
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView
 
 
 def generate_pdf(request):
@@ -110,3 +111,134 @@ def create_cv(request):
 def cv_detail(request, id):
     cv = get_object_or_404(CV, id=id, user=request.user)  # Ensure the user is authenticated
     return render(request, 'cv_detail.html', {'cv': cv})
+
+class DynamicTitleMixin:
+    """Mixin to add a model_name context variable dynamically."""
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Pass the model name as a context variable
+        context['model_name'] = self.model._meta.verbose_name.title()  # Model name in title format
+        return context
+
+def create_contact(request):
+    contact_details, _ = ContactDetails.objects.get_or_create(user=request.user)
+    if request.method == 'POST':
+        form = ContactDetailsForm(request.POST, instance=contact_details)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')  # or wherever you want to redirect
+    else:
+        form = ContactDetailsForm(instance=contact_details)
+    return render(request, 'inidvidual/contact_form.html', {'form': form})
+
+
+# # Contact Details Views
+# class ContactDetailsCreateView(DynamicTitleMixin, CreateView):
+#     model = ContactDetails
+#     form_class = ContactDetailsForm
+#     template_name = 'inidvidual/abstract_form.html'
+#     success_url = reverse_lazy('dashboard')
+
+# class ContactDetailsUpdateView(DynamicTitleMixin, UpdateView):
+#     model = ContactDetails
+#     form_class = ContactDetailsForm
+#     template_name = 'inidvidual/abstract_form.html'
+#     success_url = reverse_lazy('dashboard')
+
+
+# Personal Profile Views
+class PersonalProfileCreateView(DynamicTitleMixin, CreateView):
+    model = PersonalProfile
+    form_class = PersonalProfileForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')
+
+class PersonalProfileUpdateView(DynamicTitleMixin, UpdateView):
+    model = PersonalProfile
+    form_class = PersonalProfileForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')
+
+
+# Education Item Views
+class EducationItemCreateView(DynamicTitleMixin, CreateView):
+    model = EducationItem
+    form_class = EducationItemForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')
+
+class EducationItemUpdateView(DynamicTitleMixin, UpdateView):
+    model = EducationItem
+    form_class = EducationItemForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')
+
+
+# Hackathon Item Views
+class HackathonItemCreateView(DynamicTitleMixin, CreateView):
+    model = HackathonItem
+    form_class = HackathonItemForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')
+
+class HackathonItemUpdateView(DynamicTitleMixin, UpdateView):
+    model = HackathonItem
+    form_class = HackathonItemForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')
+
+
+# Project Skill Views
+class ProjectSkillCreateView(DynamicTitleMixin, CreateView):
+    model = ProjectSkill
+    form_class = ProjectSkillForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')
+
+class ProjectSkillUpdateView(DynamicTitleMixin, UpdateView):
+    model = ProjectSkill
+    form_class = ProjectSkillForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')
+
+
+# Project Views
+class ProjectCreateView(DynamicTitleMixin, CreateView):
+    model = Project
+    form_class = ProjectForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')
+
+class ProjectUpdateView(DynamicTitleMixin, UpdateView):
+    model = Project
+    form_class = ProjectForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')
+
+
+# Job Views
+class JobCreateView(DynamicTitleMixin, CreateView):
+    model = Job
+    form_class = JobForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')
+
+class JobUpdateView(DynamicTitleMixin, UpdateView):
+    model = Job
+    form_class = JobForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')
+
+
+# Soft Skill Views
+class SoftSkillCreateView(DynamicTitleMixin, CreateView):
+    model = SoftSkill
+    form_class = SoftSkillForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')
+
+class SoftSkillUpdateView(DynamicTitleMixin, UpdateView):
+    model = SoftSkill
+    form_class = SoftSkillForm
+    template_name = 'inidvidual/abstract_form.html'
+    success_url = reverse_lazy('dashboard')

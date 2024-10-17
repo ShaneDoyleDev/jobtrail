@@ -1,0 +1,19 @@
+{% extends 'job-application-base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/create_cv.css' %}" />
+{% endblock %}
+
+
+{% block title %}{{ model_name }} Form{% endblock title %}
+
+{% block dashboard_content %}
+<h1>{{ model_name }} Form</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
