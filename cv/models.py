@@ -114,10 +114,10 @@ class SoftSkill(models.Model):
 # Full CV
 class CV(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="cv")
-    contact_details = models.OneToOneField(ContactDetails, on_delete=models.CASCADE)
-    personal_profile = models.OneToOneField(PersonalProfile, on_delete=models.CASCADE)
-    education_items = models.ManyToManyField(EducationItem, blank=True)
-    hackathon_items = models.ManyToManyField(HackathonItem, blank=True)
+    contact_details = models.OneToOneField(ContactDetails, on_delete=models.CASCADE, null=True, blank=True)
+    personal_profile = models.OneToOneField(PersonalProfile, on_delete=models.CASCADE, null=True, blank=True)
+    education_items = models.ManyToManyField(EducationItem, null=True, blank=True)
+    hackathon_items = models.ManyToManyField(HackathonItem, null=True, blank=True)
     technical_skills = models.ManyToManyField(ProjectSkill, blank=True)
     projects = models.ManyToManyField(Project, blank=True)
     jobs = models.ManyToManyField(Job, blank=True)

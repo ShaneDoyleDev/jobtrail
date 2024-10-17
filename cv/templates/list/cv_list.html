@@ -21,11 +21,12 @@
     </thead>
     <tbody>
       {% for cv in cvs %}
+
       <tr>
         <td>{{ cv.personal_profile.name }}</td>
         <td>{{ cv.created_at }}</td>
         
-        <td><a href="{% url 'cv_edit' item.id %}">Edit</a></td>
+        <td><a href="{% url 'cv_edit' cv.id %}">Edit</a></td>
       </tr>
       {% empty %}
       <tr>

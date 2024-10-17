@@ -15,6 +15,7 @@ def random_days(min_days, max_days):
     return random.randint(min_days, max_days)
 
 
+
 def create_users_profiles_tags_and_applications(apps, schema_editor):
     # Get the models
     User = apps.get_model('auth', 'User')

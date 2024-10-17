@@ -1,0 +1,74 @@
+{% extends 'job-application-base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/list.css' %}" />
+{% endblock %}
+
+
+{% block title %}CVs{% endblock title %}
+{% block dashboard_content %}
+<h2>Select Your CV Elements</h2>
+
+<form method="post">
+    {% csrf_token %}
+    
+    <h3>Personal Profile</h3>
+    <select name="personal_profile">
+        <option value="">-- Select Personal Profile --</option>
+        {% for profile in personal_profiles %}
+            <option value="{{ profile.id }}" {% if selected_personal_profile_id == profile.id %}selected{% endif %}>
+                {{ profile.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <h3>Education</h3>
+    {% for item in education_items %}
+        <div>
+            <input type="checkbox" name="education_items" value="{{ item.id }}" id="edu_{{ item.id }}"
+                {% if item.id in selected_education_ids %}checked{% endif %}>
+            <label for="edu_{{ item.id }}">{{ item }}</label>
+        </div>
+    {% endfor %}
+
+    <h3>Hackathons</h3>
+    {% for item in hackathon_items %}
+        <div>
+            <input type="checkbox" name="hackathon_items" value="{{ item.id }}" id="hack_{{ item.id }}"
+                {% if item.id in selected_hackathon_ids %}checked{% endif %}>
+            <label for="hack_{{ item.id }}">{{ item }}</label>
+        </div>
+    {% endfor %}
+
+    <h3>Projects</h3>
+    {% for item in projects %}
+        <div>
+            <input type="checkbox" name="projects" value="{{ item.id }}" id="proj_{{ item.id }}"
+                {% if item.id in selected_project_ids %}checked{% endif %}>
+            <label for="proj_{{ item.id }}">{{ item }}</label>
+        </div>
+    {% endfor %}
+
+    <h3>Jobs</h3>
+    {% for item in jobs %}
+        <div>
+            <input type="checkbox" name="jobs" value="{{ item.id }}" id="job_{{ item.id }}"
+                {% if item.id in selected_job_ids %}checked{% endif %}>
+            <label for="job_{{ item.id }}">{{ item }}</label>
+        </div>
+    {% endfor %}
+
+    <h3>Soft Skills</h3>
+    {% for item in soft_skills %}
+        <div>
+            <input type="checkbox" name="soft_skills" value="{{ item.id }}" id="soft_{{ item.id }}"
+                {% if item.id in selected_soft_skill_ids %}checked{% endif %}>
+            <label for="soft_{{ item.id }}">{{ item }}</label>
+        </div>
+    {% endfor %}
+
+    <button type="submit">Save CV Elements</button>
+</form>
+{% endblock %}
