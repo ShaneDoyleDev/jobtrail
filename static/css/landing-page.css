@@ -142,13 +142,14 @@ section.landing-page-header img {
 .content {
   width: 279px;
 }
+
 .price-image {
   height: 200px;
-  background: url("/static/images/header-bg.png");
   background-size: cover;
   border-radius: 10px;
   margin-top: 10px;
 }
+
 .content {
   padding: 24px 0;
 }
