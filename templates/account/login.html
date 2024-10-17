@@ -1,71 +1,65 @@
-{% extends "forms-base.html" %}
+{% extends 'forms-base.html' %}
 {% load i18n %}
 {% load allauth account %}
 {% block title %}
-    {% trans "Sign In" %}
-{% endblock title %}
+  {% trans 'Sign In' %}
+{% endblock %}
 
 {% block content %}
+  <h1 class="account-heading">{% trans 'Sign In' %}</h1>
 
-<h1 class="account-heading">{% trans "Sign In" %}</h1>
-
-<form method="post" action="{% url 'account_login' %}" class="account-form">
+  <form method="post" action="{% url 'account_login' %}" class="account-form">
     {% csrf_token %}
-    
+
     <!-- Flex container for form fields -->
     <div class="account-form-fields">
-        
-        <!-- Username Field -->
-        <div class="account-form-group">
-            {{ form.login.label_tag }}
-            {{ form.login }}
-            {% if form.login.help_text %}
-                <small class="account-form-text">{{ form.login.help_text }}</small>
-            {% endif %}
-            {% for error in form.login.errors %}
-                <div class="error">{{ error }}</div>
-            {% endfor %}
-        </div>
+      <!-- Username Field -->
+      <div class="account-form-group">
+        {{ form.login.label_tag }}
+        {{ form.login }}
+        {% if form.login.help_text %}
+          <small class="account-form-text">{{ form.login.help_text }}</small>
+        {% endif %}
+        {% for error in form.login.errors %}
+          <div class="error">{{ error }}</div>
+        {% endfor %}
+      </div>
 
-        <!-- Password Field -->
-        <div class="account-form-group">
-            {{ form.password.label_tag }}
-            {{ form.password }}
-            {% if form.password.help_text %}
-                <small class="account-form-text">{{ form.password.help_text }}</small>
-            {% endif %}
-            {% for error in form.password.errors %}
-                <div class="error">{{ error }}</div>
-            {% endfor %}
-        </div>
+      <!-- Password Field -->
+      <div class="account-form-group">
+        {{ form.password.label_tag }}
+        {{ form.password }}
+        {% if form.password.help_text %}
+          <small class="account-form-text">{{ form.password.help_text }}</small>
+        {% endif %}
+        {% for error in form.password.errors %}
+          <div class="error">{{ error }}</div>
+        {% endfor %}
+      </div>
 
-        <!-- Remember Me Field -->
-        <div class="account-form-group remember-me">
-            {{ form.remember.label_tag }}
-            {{ form.remember }}
-            {% if form.remember.help_text %}
-                <small class="account-form-text">{{ form.remember.help_text }}</small>
-            {% endif %}
-            {% for error in form.remember.errors %}
-                <div class="error">{{ error }}</div>
-            {% endfor %}
-        </div>
-
+      <!-- Remember Me Field -->
+      <div class="account-form-group remember-me">
+        {{ form.remember.label_tag }}
+        {{ form.remember }}
+        {% if form.remember.help_text %}
+          <small class="account-form-text">{{ form.remember.help_text }}</small>
+        {% endif %}
+        {% for error in form.remember.errors %}
+          <div class="error">{{ error }}</div>
+        {% endfor %}
+      </div>
     </div>
 
     {{ redirect_field }}
 
     <!-- Flex container for button -->
     <div class="account-form-actions">
-        <button type="submit" class="btn-login">
-            {% trans "Sign In" %}
-        </button>
+      <button type="submit" class="btn-login">{% trans 'Sign In' %}</button>
     </div>
-</form>
-<div>
+  </form>
+  <div>
     <p class="account-text">
-    {% blocktranslate %}Don't have an account? <a href="{{ signup_url }}">sign up</a>{% endblocktranslate %}
+      {% blocktranslate %}Don't have an account? <a href="{{ signup_url }}">sign up</a>{% endblocktranslate %}
     </p>
-</div>
-
-{% endblock content %}
+  </div>
+{% endblock %}

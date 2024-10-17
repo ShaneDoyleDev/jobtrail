@@ -334,6 +334,11 @@ section.landing-page-header img {
   font-size: 12px;
   color: #7563ff;
 }
+
+.hamburger-menu {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 768px) {
   #contact form {
     max-width: 600px;
