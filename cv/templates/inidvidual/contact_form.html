@@ -2,18 +2,24 @@
 {% load static %}
 {% load widget_tweaks %}
 
-{% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/create_cv.css' %}" />
-{% endblock %}
-
-
 {% block title %}Contact Details Form{% endblock title %}
 
 {% block dashboard_content %}
-<h1>Contact Details Form</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+    <div class="account-container" style="flex-direction: column;flex-direction: column; margin-left: 20px; margin-top: 20px;">
+      <h1 class="mb-4">Contact Details</h1>
+      <form method="post" class="needs-validation" class="form-flex-box" novalidate>
+          {% csrf_token %}
+          <div class="form-group-section" style="flex-direction: column;">
+              {{ form.as_p|safe }}
+          </div>
+          <button type="submit" class="btn-submit" style="
+            background-color: #7563FF;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            padding: 16px;
+            width: 100px;
+            height: 50px;">Submit</button>
+      </form>
+    </div>
 {% endblock %}
