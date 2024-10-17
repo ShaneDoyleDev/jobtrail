@@ -4,13 +4,14 @@
     <!-- Navbar-->
     <ul id="menu" class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 ">
             <li class="hidden">
-                <a href="#about">About Us</a>
-            </li>
-            <li  class="hidden">
-                <a href="#services">Services</a>
+                <a href="{% url 'dashboard' %}#job-applications">
+                    View Applications
+                </a>
             </li>
             <li class="hidden">
-                <a href="#contact">Contact Us</a>
+                <a href="{% url 'cv_list' %}#job-applications">
+                    View CV's
+                </a>
             </li>
             <li class="hidden">
                 <a href="{% url 'dashboard' %}">Log out</a>
