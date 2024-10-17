@@ -1,20 +1,18 @@
-
 section.landing-page-header {
   height: calc(100dvh - 80px);
   width: 100%;
-  background-image: url("/static/images/header-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   opacity: 1;
   gap: 40px;
 }
 
-section.landing-page-header h1{
+section.landing-page-header h1 {
   font-size: 50px;
   font-weight: 900;
   color: #f8f49d;
@@ -22,7 +20,7 @@ section.landing-page-header h1{
   text-transform: uppercase;
   width: 60%;
   line-height: 1.1;
-  letter-spacing: .3rem;
+  letter-spacing: 0.3rem;
 }
 
 @media screen and (max-width: 1040px) {
@@ -30,7 +28,6 @@ section.landing-page-header h1{
     width: 100%;
   }
 }
-
 
 section.landing-page-header img {
   background: transparent;
@@ -42,7 +39,7 @@ section.landing-page-header img {
 }
 
 #about {
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 }
 
 #about .image-block {
@@ -57,7 +54,7 @@ section.landing-page-header img {
   align-items: center;
   flex-direction: column;
   text-align: left;
-  transition: all .3s;
+  transition: all 0.3s;
   background-color: #fff;
 }
 
@@ -67,11 +64,11 @@ section.landing-page-header img {
 
 #about .text-block h1 {
   font-size: 32px;
-  color: #24303E;
+  color: #24303e;
   font-weight: 900;
 }
 #about .text-block p {
-  letter-spacing: -.15px;
+  letter-spacing: -0.15px;
   line-height: 22px;
   font-size: 14px;
   color: #808397;
@@ -83,7 +80,7 @@ section.landing-page-header img {
   font-size: 15px;
   letter-spacing: 1px;
   line-height: 25px;
-  color: #24303E;
+  color: #24303e;
   font-weight: 900;
   text-decoration: none;
   cursor: pointer;
@@ -183,7 +180,7 @@ section.landing-page-header img {
 }
 
 .buy-now-button:active {
-  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   transform: translateY(0);
 }
 
@@ -229,7 +226,6 @@ section.landing-page-header img {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-
 }
 
 #contact .form-item {
@@ -260,7 +256,7 @@ section.landing-page-header img {
 }
 
 #contact form input,
-#contact form textarea{
+#contact form textarea {
   /* sizing, shaping and backgroun*/
   width: 100%;
   padding: 10px;
@@ -289,7 +285,7 @@ section.landing-page-header img {
   left: 0;
   /* interactivity */
   cursor: text;
-  transition: .3s;
+  transition: 0.3s;
 }
 #contact form button {
   /* sizing shapping and backgound */
@@ -311,7 +307,6 @@ section.landing-page-header img {
   line-height: 1em;
   /* makes this a relative parent to absolute before spuedo */
   position: relative;
-
 }
 
 #contact form button:hover,
@@ -325,18 +320,18 @@ section.landing-page-header img {
 }
 
 #contact form button:active {
-  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   transform: translateY(0);
 }
-#contact form input:focus~label,
-#contact form input:valid~label,
-#contact form textarea:focus~label,
-#contact form textarea:valid~label  {
+#contact form input:focus ~ label,
+#contact form input:valid ~ label,
+#contact form textarea:focus ~ label,
+#contact form textarea:valid ~ label {
   /* pushes label above input/textarea box */
   top: -30px;
   /* Font Styles */
   font-size: 12px;
-  color: #7563FF;
+  color: #7563ff;
 }
 @media screen and (min-width: 768px) {
   #contact form {
@@ -361,15 +356,15 @@ section.landing-page-header img {
 
   /* change name inputs to be beside eachother */
   #contact .name-group {
-      flex-direction: row;
+    flex-direction: row;
   }
   #contact .name-group .name-item {
-      width: 47%;
+    width: 47%;
   }
   #contact form button,
-    #contact .form-item {
-      width: 100%;
-    }
+  #contact .form-item {
+    width: 100%;
+  }
 }
 /* footer Section */
 .landing-page-footer .footer-box {
@@ -392,7 +387,7 @@ section.landing-page-header img {
   /* positioning */
   margin-bottom: 50px;
 }
-.landing-page-footer .footer-content-title{
+.landing-page-footer .footer-content-title {
   margin-bottom: 20px;
 }
 
@@ -400,7 +395,7 @@ section.landing-page-header img {
   /* font */
   text-align: left;
   font-weight: 300;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   line-height: 1.4em;
   color: #333;
 }
@@ -443,7 +438,7 @@ section.landing-page-header img {
   /* background */
   background: #000;
   /* animation */
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .landing-page-footer .footer-box-item a:hover::before {
