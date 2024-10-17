@@ -13,6 +13,8 @@ from .forms import (
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
 
 
 def generate_pdf(request):
@@ -106,6 +108,75 @@ def create_cv(request):
         'project_formset': project_formset,
         'job_formset': job_formset,
         'soft_skill_formset': soft_skill_formset,
+    })
+
+def edit_cv(request, cv_id):
+    # Fetch the CV instance by ID or raise a 404 if it doesn't exist
+    cv = get_object_or_404(CV, id=cv_id, user=request.user)
+    contact_details = cv.contact_details
+
+    if request.method == 'POST':
+        contact_form = ContactDetailsForm(request.POST, instance=contact_details)
+        profile_form = PersonalProfileForm(request.POST, instance=cv.personal_profile)
+
+        # Formsets
+        education_formset = EducationFormSet(request.POST, prefix='education')
+        hackathon_formset = HackathonFormSet(request.POST, prefix='hackathon')
+        project_formset = ProjectFormSet(request.POST, prefix='projects')
+        job_formset = JobFormSet(request.POST, prefix='jobs')
+        soft_skill_formset = SoftSkillFormSet(request.POST, prefix='softskills')
+
+        # Validate forms and formsets
+        if contact_form.is_valid() and profile_form.is_valid() and all(
+            formset.is_valid() for formset in [
+                education_formset, hackathon_formset, project_formset, job_formset, soft_skill_formset
+            ]
+        ):
+            # Save contact details and personal profile
+            contact_details = contact_form.save(commit=False)
+            contact_details.user = request.user
+            contact_details.save()
+
+            personal_profile = profile_form.save(commit=False)
+            personal_profile.user = request.user
+            personal_profile.save()
+
+            # Update the existing CV with new data
+            cv.contact_details = contact_details
+            cv.personal_profile = personal_profile
+            cv.save()
+
+            # Save ManyToMany fields
+            for formset, related_field in zip(
+                [education_formset, hackathon_formset, project_formset, job_formset, soft_skill_formset],
+                [cv.education_items, cv.hackathon_items, cv.projects, cv.jobs, cv.soft_skills]
+            ):
+                instances = formset.save(commit=False)
+                for instance in instances:
+                    instance.user = request.user
+                    instance.save()
+                    related_field.add(instance)
+
+            return redirect('cv_detail', id=cv.id)  # Redirect to CV detail view after saving
+    else:
+        # Pre-populate forms and formsets with existing data
+        contact_form = ContactDetailsForm(instance=contact_details)
+        profile_form = PersonalProfileForm(instance=cv.personal_profile)
+        education_formset = EducationFormSet(queryset=EducationItem.objects.filter(user=request.user), prefix='education')
+        hackathon_formset = HackathonFormSet(queryset=HackathonItem.objects.filter(user=request.user), prefix='hackathon')
+        project_formset = ProjectFormSet(queryset=Project.objects.filter(user=request.user), prefix='projects')
+        job_formset = JobFormSet(queryset=Job.objects.filter(user=request.user), prefix='jobs')
+        soft_skill_formset = SoftSkillFormSet(queryset=SoftSkill.objects.filter(user=request.user), prefix='softskills')
+
+    return render(request, 'edit_cv.html', {
+        'contact_form': contact_form,
+        'profile_form': profile_form,
+        'education_formset': education_formset,
+        'hackathon_formset': hackathon_formset,
+        'project_formset': project_formset,
+        'job_formset': job_formset,
+        'soft_skill_formset': soft_skill_formset,
+        'cv': cv,  # Pass CV instance for context (optional)
     })
 
 
@@ -357,3 +428,82 @@ class CVListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         cvs = CV.objects.filter(user=self.request.user)
         return cvs
+
+@login_required
+def select_cv_elements(request):
+    user = request.user
+    cv, created = CV.objects.get_or_create(user=user)  # Get or create the user's CV
+
+    # Fetch user items
+    education_items = EducationItem.objects.filter(user=user)
+    hackathon_items = HackathonItem.objects.filter(user=user)
+    projects = Project.objects.filter(user=user)
+    jobs = Job.objects.filter(user=user)
+    soft_skills = SoftSkill.objects.filter(user=user)
+    personal_profiles = PersonalProfile.objects.filter(user=user)
+
+    # Prepare lists of selected IDs
+    selected_education_ids = list(cv.education_items.values_list('id', flat=True))
+    selected_hackathon_ids = list(cv.hackathon_items.values_list('id', flat=True))
+    selected_project_ids = list(cv.projects.values_list('id', flat=True))
+    selected_job_ids = list(cv.jobs.values_list('id', flat=True))
+    selected_soft_skill_ids = list(cv.soft_skills.values_list('id', flat=True))
+    selected_personal_profile_id = cv.personal_profile_id
+
+    if request.method == 'POST':
+        # Get selected items from the form
+        selected_personal_profile = request.POST.get('personal_profile')
+        selected_education = request.POST.getlist('education_items')
+        selected_hackathons = request.POST.getlist('hackathon_items')
+        selected_projects = request.POST.getlist('projects')
+        selected_jobs = request.POST.getlist('jobs')
+        selected_soft_skills = request.POST.getlist('soft_skills')
+
+        # Update the CV instance
+        if selected_personal_profile:
+            cv.personal_profile_id = selected_personal_profile
+
+        cv.education_items.clear()
+        for item_id in selected_education:
+            if item_id:
+                cv.education_items.add(item_id)
+
+        cv.hackathon_items.clear()
+        for item_id in selected_hackathons:
+            if item_id:
+                cv.hackathon_items.add(item_id)
+
+        cv.projects.clear()
+        for item_id in selected_projects:
+            if item_id:
+                cv.projects.add(item_id)
+
+        cv.jobs.clear()
+        for item_id in selected_jobs:
+            if item_id:
+                cv.jobs.add(item_id)
+
+        cv.soft_skills.clear()
+        for item_id in selected_soft_skills:
+            if item_id:
+                cv.soft_skills.add(item_id)
+
+        cv.save()
+        return redirect('cv_detail', cv.id)  # Redirect to CV detail view
+
+    context = {
+        'education_items': education_items,
+        'hackathon_items': hackathon_items,
+        'projects': projects,
+        'jobs': jobs,
+        'soft_skills': soft_skills,
+        'personal_profiles': personal_profiles,
+        'cv': cv,
+        'selected_education_ids': selected_education_ids,
+        'selected_hackathon_ids': selected_hackathon_ids,
+        'selected_project_ids': selected_project_ids,
+        'selected_job_ids': selected_job_ids,
+        'selected_soft_skill_ids': selected_soft_skill_ids,
+        'selected_personal_profile_id': selected_personal_profile_id,
+    }
+    return render(request, 'select_cv_elements.html', context)

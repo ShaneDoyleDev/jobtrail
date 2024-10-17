@@ -84,7 +84,7 @@ urlpatterns = [
     path("project/<int:pk>/edit/", ProjectUpdateView.as_view(), name="project_edit"),
     # Job
     path("job/new/", JobCreateView.as_view(), name="job_create"),
-    path("edit/<int:pk>/", ContactDetailsUpdateView.as_view(), name="cv_edit"),
+    path("edit/<int:cv_id>/", views.edit_cv, name="cv_edit"),
     path("job/new/", JobUpdateView.as_view(), name="job_edit"),
     # Soft Skill
     path("soft-skill/new/", SoftSkillCreateView.as_view(), name="soft_skill_create"),
@@ -115,5 +115,6 @@ urlpatterns = [
     path("projects/", ProjectListView.as_view(), name="project-list"),
     path("jobs/", JobListView.as_view(), name="job-list"),
     path("soft-skills/", SoftSkillListView.as_view(), name="soft-skill-list"),
-    path("cvs/", CVListView.as_view(), name="cv-list"),
+    path("cvs/", CVListView.as_view(), name="cv_list"),
+    path('select-cv-elements/', views.select_cv_elements, name='select_cv_elements'),
 ]
