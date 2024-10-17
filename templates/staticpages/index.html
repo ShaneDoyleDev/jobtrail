@@ -7,14 +7,14 @@
 <section class="landing-page-header" style="background-image: url('{% static "images/header-bg.png" %}');">
   <h1 id="header-title" class="title">Streamline your job hunting process</h1>
   <a href="#about">
-      <img id="header-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"alt="">
+      <img id="header-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}" alt="Scroll down arrow">
   </a>
 </section>
 <section id="about">
   <div class="about-flex-box">
     <div class="text-block">
       <h1 class="text-container">Transform your job application experience</h1>
-      <p class="text-container">Stream line your application process. We strive to deliver a software that not only makes managing you application easier but strives to deliver on a more scuccesfulf and smoother journey as a result.</p>
+      <p class="text-container">Streamline your application process. We strive to deliver software that not only makes managing your application easier but strives to deliver a more successful and smoother journey as a result.</p>
       <a class="text-container" href="#">Learn more</a>
     </div>
     <div class="image-block" style="background-image: url('https://plus.unsplash.com/premium_photo-1683121855240-5d3f67a5fdec?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVjcnVpdG1lbnR8ZW58MHx8MHx8fDA%3D');"></div>
@@ -30,7 +30,6 @@
 </section>
 
 <section id="services">
-  {% for service in services %}
     <div class="price-box">
       <div class="price-image" style="background-image: url('{% static "images/header-bg.png" %}');">
       </div>
@@ -46,7 +45,38 @@
         <p class="buy-now-button-text">Buy Now</p>
       </div>
     </div>
-  {% endfor %}
+
+     <div class="price-box">
+    <div class="price-image" style="background-image: url('{% static "images/header-bg.png" %}');">
+    </div>
+    <div class="content">
+      <h1 class="price">€9.99/<span>month</span></h1>
+      <ul>
+        <li>Migrate Applications from csv files</li>
+        <li>Create CV's from templates</li>
+        <li>Unlimited Applications</li>
+      </ul>
+    </div>
+    <div class="buy-now-button">
+      <p class="buy-now-button-text">Buy Now</p>
+    </div>
+  </div>
+
+  <div class="price-box">
+    <div class="price-image" style="background-image: url('{% static "images/header-bg.png" %}');">
+    </div>
+    <div class="content">
+      <h1 class="price">€24.99/<span>month</span></h1>
+      <ul>
+        <li>Automatically track applications</li>
+        <li>AI assistance with CV generation</li>
+        <li>Suggested Jobs to apply to</li>
+      </ul>
+    </div>
+    <div class="buy-now-button">
+      <p class="buy-now-button-text">Buy Now</p>
+    </div>
+  </div>
 </section>
 
 <!-- Contact -->
@@ -98,11 +128,11 @@
         <p class="footer-content">Need help? We’re here for you. Visit our Help Center or reach out to our support team anytime.</p>
         <ul>
           <li>
-            <a href="#" target="_blank" aria-label="">Help Center:</a>
+            Help Center
               Follow the link to a FAQ page or support articles covering common questions.
           </li>
           <li>
-            <a href="#contact" aria-label="">Contact Us: </a>
+            Contact Us:
              Contact us diectly using the form above
           </li>
         </ul>
@@ -111,11 +141,11 @@
         <h2>Stay Connected</h2>
         <ul>
           <li>
-            <a href="#" target="_blank" aria-label="Open a new tab to partimenti.org">"Never miss an update.</a>
-               Join our community and stay informed with the latest job hunting tips, industry insights, and app updates."
+           Never miss an update.
+               Join our community and stay informed with the latest job hunting tips, industry insights, and app updates.
           </li>
           <li>
-            <a href="#" target="_blank" aria-label="Open a new tab to improv planet">Newsletter Sign-up:</a>
+            Newsletter Sign-up
               Offer a quick sign-up form for users to receive tips, updates, and relevant job hunting resources.
             </a>
           </li>
@@ -123,7 +153,7 @@
       </div>
       <div class="footer-box-item">
         <h2>Features & Benefits</h2>
-        <p class="footer-content">"Discover what sets us apart. Our tools are designed to simplify your job search and maximize your success."</p>
+        <p class="footer-content">Discover what sets us apart. Our tools are designed to simplify your job search and maximize your success.</p>
         <ul>
           <li>
             <a href="" target="_blank" aria-label="Open a new tab to the metropole hotel website">Key Features:</a>
