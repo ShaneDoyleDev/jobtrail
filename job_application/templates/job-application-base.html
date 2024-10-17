@@ -14,17 +14,20 @@
         <!-- Custom styles -->
         <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" />
         <link href="{% static 'css/dashboard-nav.css' %}" rel="stylesheet" />    
+        {% block extra_css %}
+        {% endblock %}
     </head>
     <body class="sb-nav-fixed">
 
         {% include 'job-application-nav.html' %}
         <div id="layoutSidenav">
             <div id="layoutSidenav_content">
+                
                 {% include 'job-application-side-bar.html' %}
-
-                {% block dashboard_content %}
-
-                {% endblock %}
+                <main>
+                    {% block dashboard_content %}
+                    {% endblock %}
+                </main>
             </div>
         </div>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>

@@ -1,7 +1,11 @@
-{% extends "base.html" %}
+{% extends "job-application-base.html" %}
 {% load static %}
 
-{% block content %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+{% endblock %}
+
+{% block dashboard_content %}
 <div class="account-container">
   <h2>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Job Application</h2>
   <form method="post" enctype="multipart/form-data">
@@ -94,5 +98,4 @@
       <button class="btn-submit" type="submit">Save</button>
   </form>
 </div>
-  <a href="{% url 'dashboard' %}">Back to List</a>
 {% endblock %}
