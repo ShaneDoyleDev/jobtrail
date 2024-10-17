@@ -60,7 +60,7 @@ a.home-link::before {
 
 .form-component-bg-image {
     width: 50%;
-    background-image: url('../images/form-bg.png');
+    
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -72,6 +72,10 @@ a.home-link::before {
     align-items: center;
     flex-direction: column;
     gap: 20px;
+}
+.account-container {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
 .account-form {

@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseNotFound
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -112,7 +113,6 @@ class JobApplicationDetailView(DetailView):
     model = JobApplication
     template_name = 'detailed_job_application.html'
     context_object_name = 'job_application'
-
 
 class JobApplicationCreateView(CreateView):
     model = JobApplication

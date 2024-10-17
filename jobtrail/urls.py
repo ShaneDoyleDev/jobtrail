@@ -8,6 +8,7 @@ urlpatterns = [
     path('job-application/', include('job_application.urls')),
     path('profile/', include('profiles.urls')),
     path('accounts/', include('allauth.urls')),
+    path('test/', include('home.urls')),
     path('', include('home.urls')),
     path('cv/', include('cv.urls')),
 ]

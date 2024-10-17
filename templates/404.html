@@ -1,0 +1,10 @@
+{% extends "error-base.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block error_content %}
+
+  <img class="mb-4 img-error" src="{% static 'images/error-404-monochrome.svg' %}" />
+  <p class="lead">This requested URL was not found on this server.</p>
+                            
+{% endblock %}
