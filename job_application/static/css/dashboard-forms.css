@@ -1,0 +1,49 @@
+.form-flex-box {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.form-group-section {
+    width: 30%;
+    gap: 15px;
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+}
+h2.form-title{
+    color: #333;
+    margin-bottom: 20px;
+ }
+
+.form-group-section h2{
+    font-size: 18px;
+    color: #7563ff;
+ }
+.form-group-section label{
+   color: #8f8f8f;
+   font-size: 14px;
+}
+
+.submit-btn-flex-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+button.btn-submit {
+    width: 200px;
+}
+label.btn-label {
+    color: white;
+}
+@media screen and (max-width: 991px) {
+    .form-group-section {
+        width: 48%;
+    }
+}
+@media screen and (max-width: 728px) {
+    .form-group-section {
+        width: 100%;
+    }
+}
