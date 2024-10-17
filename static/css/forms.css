@@ -73,6 +73,10 @@ a.home-link::before {
     flex-direction: column;
     gap: 20px;
 }
+.account-container {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
 
 .account-form {
     gap: 20px;
