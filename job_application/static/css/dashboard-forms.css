@@ -16,7 +16,7 @@ h2.form-title{
     color: #333;
     margin-bottom: 20px;
  }
-input[type=text] {
+input[type=date] {
     background: transparent;
     bottom: 0;
     color: transparent;
