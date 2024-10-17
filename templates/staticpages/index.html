@@ -30,53 +30,23 @@
 </section>
 
 <section id="services">
-  <div class="price-box">
-    <div class="price-image">
+  {% for service in services %}
+    <div class="price-box">
+      <div class="price-image" style="background-image: url('{% static "images/header-bg.png" %}');">
+      </div>
+      <div class="content">
+        <h1 class="price">€0.00/<span>month</span></h1>
+        <ul>
+          <li>Manually update applications</li>
+          <li>Store CVS and Cover Letters</li>
+          <li>Limited Applications</li>
+        </ul>
+      </div>
+      <div class="buy-now-button">
+        <p class="buy-now-button-text">Buy Now</p>
+      </div>
     </div>
-    <div class="content">
-      <h1 class="price">€0.00/<span>month</span></h1>
-      <ul>
-        <li>Manually update applications</li>
-        <li>Store CVS and Cover Letters</li>
-        <li>Limited Applications</li>
-      </ul>
-    </div>
-    <div class="buy-now-button">
-      <p class="buy-now-button-text">Buy Now</p>
-    </div>
-  </div>
-
-  <div class="price-box">
-    <div class="price-image">
-    </div>
-    <div class="content">
-      <h1 class="price">€9.99/<span>month</span></h1>
-      <ul>
-        <li>Migrate Applications from csv files</li>
-        <li>Create CV's from templates</li>
-        <li>Unlimited Applications</li>
-      </ul>
-    </div>
-    <div class="buy-now-button">
-      <p class="buy-now-button-text">Buy Now</p>
-    </div>
-  </div>
-
-  <div class="price-box">
-    <div class="price-image">
-    </div>
-    <div class="content">
-      <h1 class="price">€24.99/<span>month</span></h1>
-      <ul>
-        <li>Automatically track applications</li>
-        <li>AI assistance with CV generation</li>
-        <li>Suggested Jobs to apply to</li>
-      </ul>
-    </div>
-    <div class="buy-now-button">
-      <p class="buy-now-button-text">Buy Now</p>
-    </div>
-  </div>
+  {% endfor %}
 </section>
 
 <!-- Contact -->
@@ -119,7 +89,7 @@
   <section class="landing-page-footer">
     <div class="footer-box">
       <div class="footer-box-item">
-        <h2 class="footer-content-title">"Change your job application process for life."</h2>
+        <h2 class="footer-content-title">Change your job application process for life.</h2>
         <p class="footer-content">
           Take the stress out of job hunting with our intuitive job application tracker. Easily manage your applications, set reminders for follow-ups, and track your progress—all in one place. Stay organized and focus on what matters: landing your next opportunity! </p>
       </div>
