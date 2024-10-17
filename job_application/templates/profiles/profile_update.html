@@ -1,9 +1,13 @@
-{% extends "base.html" %}
+{% extends "job-application-base.html" %}
 {% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+{% endblock %}
 
 {% block title %}Update Profile Details{% endblock title %}
 
-{% block content %}
+{% block dashboard_content %}
 <div class="account-container">
 <h1 class="account-heading">Update Profile Details</h1>
 

@@ -9,7 +9,7 @@
 
 <h1 class="account-heading">{% trans "Sign Out" %}</h1>
 
-<p class="account-text">{% trans 'Are you sure you want to sign out?' %}</p>
+<p class="account-text">{% trans 'Are you sure you want to sign out?' %}<a href="{% url 'dashboard' %}"> no</a></p>
 
 <!-- Sign Out Form -->
 <form method="post" action="{% url 'account_logout' %}" class="account-form">

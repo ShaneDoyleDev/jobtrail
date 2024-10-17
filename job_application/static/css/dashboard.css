@@ -287,6 +287,10 @@ main {
   width: calc(100dvw - 225px);
   background-color: #fff;
 }
+.account-container {
+  margin-top: 30px!important;
+  margin-bottom: 30px!important;
+}
 .btn {
   background-color: var(--white) !important;
 }
@@ -301,6 +305,11 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.pagination {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 @media screen and (max-width: 991px) {
   nav.nav-right-mobile-active {
@@ -387,10 +396,6 @@ main {
   .applications-section-title {
     text-align: center;
   }
-  .pagination {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-  }
+  
 }
 
