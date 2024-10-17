@@ -10942,6 +10942,10 @@ body {
 #layoutError #layoutError_content {
   min-width: 0;
   flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 }
 #layoutError #layoutError_footer {
   min-width: 0;
