@@ -152,6 +152,11 @@ class PersonalProfileCreateView(DynamicTitleMixin, CreateView):
     form_class = PersonalProfileForm
     template_name = 'inidvidual/abstract_form.html'
     success_url = reverse_lazy('dashboard')
+    
+    def form_valid(self, form):
+        # Add the user to the form instance
+        form.instance.user = self.request.user  # Assuming there's a 'user' field in the PersonalProfile model
+        return super().form_valid(form)
 
 class PersonalProfileUpdateView(DynamicTitleMixin, UpdateView):
     model = PersonalProfile
@@ -166,6 +171,11 @@ class EducationItemCreateView(DynamicTitleMixin, CreateView):
     form_class = EducationItemForm
     template_name = 'inidvidual/abstract_form.html'
     success_url = reverse_lazy('dashboard')
+    
+    def form_valid(self, form):
+        # Add the user to the form instance
+        form.instance.user = self.request.user  # Assuming there's a 'user' field in the PersonalProfile model
+        return super().form_valid(form)
 
 class EducationItemUpdateView(DynamicTitleMixin, UpdateView):
     model = EducationItem
@@ -180,6 +190,11 @@ class HackathonItemCreateView(DynamicTitleMixin, CreateView):
     form_class = HackathonItemForm
     template_name = 'inidvidual/abstract_form.html'
     success_url = reverse_lazy('dashboard')
+    
+    def form_valid(self, form):
+        # Add the user to the form instance
+        form.instance.user = self.request.user  # Assuming there's a 'user' field in the PersonalProfile model
+        return super().form_valid(form)
 
 class HackathonItemUpdateView(DynamicTitleMixin, UpdateView):
     model = HackathonItem
@@ -194,6 +209,11 @@ class ProjectSkillCreateView(DynamicTitleMixin, CreateView):
     form_class = ProjectSkillForm
     template_name = 'inidvidual/abstract_form.html'
     success_url = reverse_lazy('dashboard')
+    
+    def form_valid(self, form):
+        # Add the user to the form instance
+        form.instance.user = self.request.user  # Assuming there's a 'user' field in the PersonalProfile model
+        return super().form_valid(form)
 
 class ProjectSkillUpdateView(DynamicTitleMixin, UpdateView):
     model = ProjectSkill
@@ -208,6 +228,11 @@ class ProjectCreateView(DynamicTitleMixin, CreateView):
     form_class = ProjectForm
     template_name = 'inidvidual/abstract_form.html'
     success_url = reverse_lazy('dashboard')
+    
+    def form_valid(self, form):
+        # Add the user to the form instance
+        form.instance.user = self.request.user  # Assuming there's a 'user' field in the PersonalProfile model
+        return super().form_valid(form)
 
 class ProjectUpdateView(DynamicTitleMixin, UpdateView):
     model = Project
@@ -222,6 +247,11 @@ class JobCreateView(DynamicTitleMixin, CreateView):
     form_class = JobForm
     template_name = 'inidvidual/abstract_form.html'
     success_url = reverse_lazy('dashboard')
+    
+    def form_valid(self, form):
+        # Add the user to the form instance
+        form.instance.user = self.request.user  # Assuming there's a 'user' field in the PersonalProfile model
+        return super().form_valid(form)
 
 class JobUpdateView(DynamicTitleMixin, UpdateView):
     model = Job
@@ -236,6 +266,11 @@ class SoftSkillCreateView(DynamicTitleMixin, CreateView):
     form_class = SoftSkillForm
     template_name = 'inidvidual/abstract_form.html'
     success_url = reverse_lazy('dashboard')
+    
+    def form_valid(self, form):
+        # Add the user to the form instance
+        form.instance.user = self.request.user  # Assuming there's a 'user' field in the PersonalProfile model
+        return super().form_valid(form)
 
 class SoftSkillUpdateView(DynamicTitleMixin, UpdateView):
     model = SoftSkill
