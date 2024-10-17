@@ -10,46 +10,47 @@
 {% block title %}Create CV{% endblock title %}
 
 {% block dashboard_content %}
-<div class="detailed-application">
-<div class="header-container">
-    <h1 class="page-title">Create CV</h1>
-  </div>
-  <form method="POST" class="detailed-cv-form">
-    {% csrf_token %}
-    
-    <h3 class="section-title">Contact Details</h3>
-    {% for field in contact_form %}
-    <!-- Add the custom label class here -->
-    <div class="mb-3">
-    <label class="form-label" for="{{ field.id_for_label }}">
-        {{ field.label }} 
-    
-    </label>
-    {{ field|add_class:"form-input" }}
-
-    <!-- For displaying field errors -->
-    {% if field.errors %}
-    <div class="alert alert-danger">{{ field.errors }}</div>
-    {% endif %}
+<div class="detailed-application" style="width: 100%;
+    padding-top: 50px;
+    padding-left: 50px;
+    background-color: white;">
+    <div class="header-container">
+        <h1 class="page-title">Create CV</h1>
     </div>
-    {% endfor %}
+    <form method="POST" class="detailed-cv-form" style="width: 60%;">
+        {% csrf_token %}
+            <h3 class="section-title">Contact Details</h3>
+        {% for field in contact_form %}
+        <!-- Add the custom label class here -->
+        <div class="mb-3">
+            <label class="form-label" for="{{ field.id_for_label }}">
+            {{ field.label }} 
+            </label>
+            {{ field|add_class:"form-input" }}
 
-    <h3 class="section-title">Personal Profile</h3>
-    {% for field in profile_form %}
-    <!-- Add the custom label class here -->
-    <div class="mb-3">
-    <label class="form-label" for="{{ field.id_for_label }}">
-        {{ field.label }} 
-    
-    </label>
-    {{ field|add_class:"form-input" }}
+            <!-- For displaying field errors -->
+            {% if field.errors %}
+            <div class="alert alert-danger">{{ field.errors }}</div>
+            {% endif %}
+            </div>
+            {% endfor %}
 
-    <!-- For displaying field errors -->
-    {% if field.errors %}
-    <div class="alert alert-danger">{{ field.errors }}</div>
-    {% endif %}
-    </div>
-    {% endfor %}
+            <h3 class="section-title">Personal Profile</h3>
+            {% for field in profile_form %}
+            <!-- Add the custom label class here -->
+            <div class="mb-3">
+            <label class="form-label" for="{{ field.id_for_label }}">
+                {{ field.label }} 
+            
+            </label>
+            {{ field|add_class:"form-input" }}
+
+            <!-- For displaying field errors -->
+            {% if field.errors %}
+            <div class="alert alert-danger">{{ field.errors }}</div>
+            {% endif %}
+            </div>
+            {% endfor %}
 
     <!-- Education -->
     <h3 class="section-title">Education</h3>
@@ -214,6 +215,7 @@
 
     <button type="submit" class="btn-submit">Submit</button>
 </form>
+</div>
 
 
 <script>
